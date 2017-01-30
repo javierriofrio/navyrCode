@@ -19,14 +19,11 @@
     <h1>Slide 3</h1>
   </ion-slide>
 </ion-slides>
-
-    <form id="navyr-form2" class="list">
-      <label class="item item-input" id="navyr-search2" style="">
-        <i class="icon ion-search placeholder-icon"></i>
-        <input placeholder="" type="search">
-      </label>
-      <div class="spacer" style="width: 300px; height: 15px;"></div>
-      <h4 id="navyr-heading2" style="color: rgb(0, 0, 0);">Top Establecimientos</h4>
-    </form>
+<ion-searchbar
+  [(ngModel)]="myInput"
+  [showCancelButton]="shouldShowCancel"
+  (ionInput)="onInput($event)"
+  (ionCancel)="onCancel($event)">
+</ion-searchbar>
 
 </ion-content>
