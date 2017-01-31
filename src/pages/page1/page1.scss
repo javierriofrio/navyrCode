@@ -1,3 +1,42 @@
 page-page1 {
 
+    .tituloSeccion {
+        width: 100%;
+        padding: 5px;
+        background-color: #Ef6c00;
+        font-weight: 400;
+        color: #fff
+    }
+
+    ion-card{
+        border-radius: 20px !important;
+    }
+
+    ion-card h2{
+        text-align: center;
+    }
+
+    .family-icon-scroller {
+    height: auto;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    list-style: none;
+}
+
+.family-icon {
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+    height: auto;
+    white-space: normal;
+}
+
+.family-icon ion-card{
+    width: 100%;
+    height: auto;
+    margin: 5px;
+}
+
 }
