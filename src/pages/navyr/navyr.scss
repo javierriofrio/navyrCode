@@ -12,6 +12,12 @@ page-navyr {
         border-radius: 20px !important;
     }
 
+    ion-card img{
+        padding-left: 5px;
+        padding-right: 5px;
+        width: 100px;
+    }
+
     ion-card h2{
         text-align: center;
     }
@@ -23,12 +29,12 @@ page-navyr {
     overflow-y: hidden;
     white-space: nowrap;
     list-style: none;
+    padding-left: 0px;
 }
 
 .family-icon {
     display: inline-block;
-    vertical-align: top;
-    margin: 10px;
+    vertical-align: top;    
     height: auto;
     white-space: normal;
 }
@@ -38,5 +44,6 @@ page-navyr {
     height: auto;
     margin: 5px;
 }
+
 
 }
