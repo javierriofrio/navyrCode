@@ -4,13 +4,15 @@ import { MyApp } from './app.component';
 import { Navyr } from '../pages/navyr/navyr';
 import { MiCuenta } from '../pages/micuenta/micuenta';
 import { MisReservas } from '../pages/misreservas/misreservas';
+import { Establecimiento } from '../pages/establecimiento/establecimiento';
 
 @NgModule({
   declarations: [
     MyApp,
     Navyr,
     MiCuenta,
-    MisReservas
+    MisReservas,
+    Establecimiento
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -20,7 +22,8 @@ import { MisReservas } from '../pages/misreservas/misreservas';
     MyApp,
     Navyr,
     MiCuenta,
-    MisReservas
+    MisReservas,
+    Establecimiento
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

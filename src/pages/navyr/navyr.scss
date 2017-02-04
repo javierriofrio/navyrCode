@@ -1,3 +1,6 @@
+/**
+Secciones
+*/
 page-navyr {
 
     .tituloSeccion {
@@ -8,22 +11,13 @@ page-navyr {
         color: #fff
     }
 
-    ion-card{
-        border-radius: 20px !important;
-    }
-
-    ion-card img{
-        padding-left: 5px;
-        padding-right: 5px;
-        width: 100px;
-    }
-
     ion-card h2{
         text-align: center;
     }
 
-    .family-icon-scroller {
+.family-icon-scroller {
     height: auto;
+    margin-top: 5px;
     -webkit-overflow-scrolling: touch;
     overflow-x: auto;
     overflow-y: hidden;
@@ -32,7 +26,7 @@ page-navyr {
     padding-left: 0px;
 }
 
-.family-icon {
+ .family-icon-scroller .family-icon {
     display: inline-block;
     vertical-align: top;    
     height: auto;
@@ -40,10 +34,33 @@ page-navyr {
 }
 
 .family-icon ion-card{
-    width: 100%;
+    width: 100px;
+    border-radius: 5px;
     height: auto;
-    margin: 5px;
+    margin: 2px;
 }
 
+.family-icon ion-card ion-item{
+    min-height: 3rem;
+}
+
+.family-icon .label-md {
+    margin: 0px;
+}
+
+.icon-establecimiento{
+    margin-top: 20px;
+    padding: 0px;
+    list-style: none;
+}
+
+.icon-establecimiento .family-icon ion-card{
+    width: 50% !important;
+    height: auto;
+    float: left;
+    margin: 0px;
+    padding: 5px;
+    border-radius: 0px;
+}
 
 }

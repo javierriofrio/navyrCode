@@ -13,7 +13,7 @@ import { MisReservas } from '../pages/misreservas/misreservas';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = MisReservas;
+  rootPage: any = Navyr;
 
   pages: Array<{title: string, component: any}>;
 
