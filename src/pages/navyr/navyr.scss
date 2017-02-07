@@ -15,6 +15,9 @@ page-navyr {
         text-align: center;
     }
 
+/**
+Seccion de iconos de establecimientos - categorias
+*/
 .family-icon-scroller {
     height: auto;
     margin-top: 5px;
@@ -56,6 +59,15 @@ page-navyr {
 
 .icon-establecimiento .family-icon ion-card{
     width: 50% !important;
+    @media screen and (min-width: 460px) {
+        width: 25% !important;
+    }
+    @media screen and (min-width: 800px) {
+        width: 20% !important;
+    }
+    @media screen and (min-width: 1200px) {
+        width: 10% !important;
+    }
     height: auto;
     float: left;
     margin: 0px;
