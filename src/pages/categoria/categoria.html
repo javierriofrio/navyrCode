@@ -7,12 +7,83 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>categoria</ion-title>
+    <ion-title>Categoria</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+  <ion-title>Aulas</ion-title>
+  <ion-slides options="{'loop': true}" slider="slider1" delegate-handle="slider1" id="navyr-slider1" style="width:100%;height:200px;">
+    <ion-slide>
+      <img src="https://www.tarjetasaenz.com.ar/images/promociones.jpg">
+    </ion-slide>
+    <ion-slide>
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL1W7hDKIVWC2KBFFgh5qDdU3SBs-o8m7ckSzddHP7g63Vsre1">
+    </ion-slide>
+  </ion-slides>
+<div class="tituloSeccion">Top Establecimientos</div>
+
+<ul class="family-icon-scroller">
+    <li class="family-icon" [navPush]="establecimiento">
+      <ion-card>
+        <img src="http://vignette1.wikia.nocookie.net/logopedia/images/6/63/Pizza_Hut_2012_logo.png/revision/latest?cb=20140507122847">
+      </ion-card>
+    </li>
+    <li class="family-icon" [navPush]="establecimiento">
+      <ion-card>
+        <img src="https://img.pystatic.com/restaurants/tabulenewlogo.jpg">
+      </ion-card>
+    </li>
+    <li class="family-icon" [navPush]="establecimiento">
+      <ion-card>
+        <img src="https://img.pystatic.com/restaurants/logosla-caleta---refugio-de-comidas.jpg">
+      </ion-card>
+    </li>
+    <li class="family-icon" [navPush]="establecimiento">
+      <ion-card>
+        <img src="https://i1.wp.com/www.seeklogo.com/images/J/Juan_Valdez_Cafe-logo-9D9A5C862E-seeklogo.com.gif">
+      </ion-card>
+    </li>
+</ul>
+<div class="tituloSeccion">Sub-Categorías</div>
+<ul class="family-icon-scroller">
+    <li class="family-icon">
+      <ion-card>
+        <img src="assets/img/categorias/imagenes_categorias_Bares.png">
+      </ion-card>
+    </li>
+    <li class="family-icon">
+      <ion-card>
+        <img src="assets/img/categorias/imagenes_categorias_Canchas.png">
+      </ion-card>
+    </li>
+</ul>
+
+<ul class="icon-establecimiento">
+    <li class="family-icon">
+      <ion-card>
+        <img src="http://du4zwgdg3nwxa.cloudfront.net/logotipos/k/kf/kfc-quito-ecuador-logo-1347029017.jpg">
+      </ion-card>
+    </li>
+    <li class="family-icon">
+      <ion-card>
+        <img src="http://du4zwgdg3nwxa.cloudfront.net/logotipos/b/ba/bar-restaurant-el-dorado-logo.jpg">
+      </ion-card>
+    </li>
+    <li class="family-icon">
+      <ion-card>
+        <img src="https://img.pystatic.com/restaurants/tabulenewlogo.jpg">
+      </ion-card>
+    </li>
+    <li class="family-icon">
+      <ion-card>
+        <img src="https://i1.wp.com/www.seeklogo.com/images/J/Juan_Valdez_Cafe-logo-9D9A5C862E-seeklogo.com.gif">
+      </ion-card>
+    </li>
+</ul>
+
 
 </ion-content>
