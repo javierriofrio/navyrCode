@@ -5,6 +5,7 @@ import { Navyr } from '../pages/navyr/navyr';
 import { MiCuenta } from '../pages/micuenta/micuenta';
 import { MisReservas } from '../pages/misreservas/misreservas';
 import { Establecimiento } from '../pages/establecimiento/establecimiento';
+import { Categoria } from '../pages/categoria/categoria';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { Establecimiento } from '../pages/establecimiento/establecimiento';
     Navyr,
     MiCuenta,
     MisReservas,
-    Establecimiento
+    Establecimiento,
+    Categoria
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -23,7 +25,8 @@ import { Establecimiento } from '../pages/establecimiento/establecimiento';
     Navyr,
     MiCuenta,
     MisReservas,
-    Establecimiento
+    Establecimiento,
+    Categoria
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

@@ -15,6 +15,10 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+/*
+Estilos para el menu lateral
+*/
+
 .toolbar-background-md{
     background-color: #000 !important;
 }
@@ -36,3 +40,83 @@ ion-avatar img {
     background-size: cover;
 }
 
+.menu-avatar{
+    width: 100px;
+}
+
+
+/*
+Estilos para las paginas
+*/
+
+ .tituloSeccion {
+        width: 100%;
+        padding: 5px;
+        background-color: #Ef6c00;
+        font-weight: 400;
+        color: #fff
+    }
+
+    ion-card h2{
+        text-align: center;
+    }
+
+/**
+Seccion de iconos de establecimientos - categorias
+*/
+.family-icon-scroller {
+    height: auto;
+    margin-top: 5px;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    list-style: none;
+    padding-left: 0px;
+}
+
+ .family-icon-scroller .family-icon {
+    display: inline-block;
+    vertical-align: top;    
+    height: auto;
+    white-space: normal;
+}
+
+.family-icon ion-card{
+    width: 100px;
+    border-radius: 5px;
+    height: auto;
+    margin: 2px;
+}
+
+.family-icon ion-card ion-item{
+    min-height: 3rem;
+}
+
+.family-icon .label-md {
+    margin: 0px;
+}
+
+.icon-establecimiento{
+    margin-top: 20px;
+    padding: 0px;
+    list-style: none;
+}
+
+.icon-establecimiento .family-icon ion-card{
+    width: 50% !important;
+    @media screen and (min-width: 460px) {
+        width: 25% !important;
+    }
+    @media screen and (min-width: 800px) {
+        width: 20% !important;
+    }
+    @media screen and (min-width: 1200px) {
+        width: 10% !important;
+    }
+    height: auto;
+    float: left;
+    margin: 0px;
+    padding: 5px;
+    border-radius: 0px;
+}
