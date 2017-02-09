@@ -16,6 +16,11 @@
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL1W7hDKIVWC2KBFFgh5qDdU3SBs-o8m7ckSzddHP7g63Vsre1">
   </ion-slide>
 </ion-slides>
+
+ <ion-fab>
+   <button ion-fab (click)="openModal()"><ion-icon name="pin"></ion-icon></button>
+ </ion-fab>
+
 <div class="tituloSeccion">Top Establecimientos</div>
 
 <ul class="family-icon-scroller">
@@ -62,37 +67,37 @@
         <img src="assets/img/categorias/imagenes_categorias_Aulas.png">
       </ion-card>
     </li>
-    <li class="family-icon">
+    <li class="family-icon" [navPush]="categoria">
       <ion-card>
         <img src="assets/img/categorias/imagenes_categorias_Bares.png">
       </ion-card>
     </li>
-    <li class="family-icon">
+    <li class="family-icon" [navPush]="categoria">
       <ion-card>
         <img src="assets/img/categorias/imagenes_categorias_Canchas.png">
       </ion-card>
     </li>
-    <li class="family-icon">
+    <li class="family-icon" [navPush]="categoria">
       <ion-card>
         <img src="assets/img/categorias/imagenes_categorias_Peluquerias.png">
       </ion-card>
     </li>
-    <li class="family-icon">
+    <li class="family-icon" [navPush]="categoria">
       <ion-card>
         <img src="assets/img/categorias/imagenes_categorias_Restaurantes.png">
       </ion-card>
     </li>
-    <li class="family-icon">
+    <li class="family-icon" [navPush]="categoria">
       <ion-card>
         <img src="assets/img/categorias/imagenes_categorias_Salas de Eventos.png">
       </ion-card>
     </li>
-    <li class="family-icon">
+    <li class="family-icon" [navPush]="categoria">
       <ion-card>
         <img src="assets/img/categorias/imagenes_categorias_Spa.png">
       </ion-card>
     </li>
-    <li class="family-icon">
+    <li class="family-icon" [navPush]="categoria">
       <ion-card>
         <img src="assets/img/categorias/imagenes_categorias_Tours.png">
       </ion-card>
@@ -100,39 +105,46 @@
 </ul>
 
 <ul class="icon-establecimiento">
-    <li class="family-icon">
+    <li class="family-icon" [navPush]="establecimiento">
       <ion-card>
         <img src="http://vignette1.wikia.nocookie.net/logopedia/images/6/63/Pizza_Hut_2012_logo.png/revision/latest?cb=20140507122847">
+        <div class="tituloSeccion">Pizza Hut</div>
       </ion-card>
     </li>
-    <li class="family-icon">
+    <li class="family-icon" [navPush]="establecimiento">
       <ion-card>
         <img src="http://du4zwgdg3nwxa.cloudfront.net/logotipos/e/el/el-rincon-del-buen-sazon-logo-1415730159.jpg">
+        <div class="tituloSeccion">El Buen Sabor</div>
       </ion-card>
     </li>
-    <li class="family-icon">
+    <li class="family-icon" [navPush]="establecimiento">
       <ion-card>
         <img src="http://du4zwgdg3nwxa.cloudfront.net/logotipos/k/kf/kfc-quito-ecuador-logo-1347029017.jpg">
+        <div class="tituloSeccion">KFC</div>
       </ion-card>
     </li>
-    <li class="family-icon">
+    <li class="family-icon" [navPush]="establecimiento">
       <ion-card>
         <img src="http://du4zwgdg3nwxa.cloudfront.net/logotipos/b/ba/bar-restaurant-el-dorado-logo.jpg">
+        <div class="tituloSeccion">El Dorado</div>
       </ion-card>
     </li>
-    <li class="family-icon">
+    <li class="family-icon" [navPush]="establecimiento">
       <ion-card>
         <img src="https://img.pystatic.com/restaurants/tabulenewlogo.jpg">
+        <div class="tituloSeccion">Tabule</div>
       </ion-card>
     </li>
-    <li class="family-icon">
+    <li class="family-icon" [navPush]="establecimiento">
       <ion-card>
         <img src="https://img.pystatic.com/restaurants/logosla-caleta---refugio-de-comidas.jpg">
+        <div class="tituloSeccion">La Caleta</div>
       </ion-card>
     </li>
-    <li class="family-icon">
+    <li class="family-icon" [navPush]="establecimiento">
       <ion-card>
         <img src="https://i1.wp.com/www.seeklogo.com/images/J/Juan_Valdez_Cafe-logo-9D9A5C862E-seeklogo.com.gif">
+        <div class="tituloSeccion">Juan Valdez</div>
       </ion-card>
     </li>
 </ul>
