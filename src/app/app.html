@@ -1,6 +1,6 @@
 <ion-menu [content]="content">
   <ion-header>
-    <ion-toolbar>
+    <ion-toolbar menuClose  (click)="openRootPage()">
       <ion-avatar>
         <img class="menu-avatar" src="assets/img/avatar-img.png">
       </ion-avatar>
@@ -10,6 +10,15 @@
 <ion-content>
   <ion-list>
     <ion-item menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon name="{{p.icon}}" item-left></ion-icon>
+        {{p.title}}
+      </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>
+      Navyr
+    </ion-list-header>
+    <ion-item menuClose ion-item *ngFor="let p of pages2" (click)="openPage(p)">
         <ion-icon name="{{p.icon}}" item-left></ion-icon>
         {{p.title}}
       </ion-item>

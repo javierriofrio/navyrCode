@@ -16,21 +16,24 @@
 // automatically applied to the <body> element in the app.
 
 /*
-Estilos para el menu lateral
+Estilos para el header de pantallas
 */
 
-.toolbar-background-md{
+.header .toolbar-background-md{
     background-color: #000 !important;
 }
 
-.bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
+.header .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
     color: #fff !important;
 }
 
-.toolbar-title-md{
+.header .toolbar-title-md{
     color: #fff !important;
 }
 
+/*
+Estilos para el menu lateral
+*/
 ion-avatar img {
     border-radius: 50% !important;
 }
@@ -97,6 +100,14 @@ Seccion de iconos de establecimientos - categorias
     margin: 0px;
 }
 
+/*Establecimientos Sueltos*/
+
+.icon-establecimiento .tituloSeccion {
+    text-align: center;
+    margin-top: 10px;
+
+}
+
 .icon-establecimiento{
     margin-top: 20px;
     padding: 0px;
@@ -119,4 +130,17 @@ Seccion de iconos de establecimientos - categorias
     margin: 0px;
     padding: 5px;
     border-radius: 0px;
+}
+
+/*
+Icono flotantes
+*/
+
+ion-fab{
+    bottom: 20px;
+    right: 30px;
+}
+
+ion-fab button{
+    background-color: #Ef6c00 !important;
 }
