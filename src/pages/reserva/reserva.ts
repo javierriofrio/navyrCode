@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Platform, ViewController, NavParams } from 'ionic-angular';
+import { Platform, ViewController, NavParams } from 'ionic-angular';
 
 /*
   Generated class for the Reserva page.

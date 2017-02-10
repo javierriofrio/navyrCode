@@ -17,10 +17,8 @@ export class Navyr {
 
   }
 
-  openModal() {
-
-    let modal = this.modalCtrl.create(Ubicacion);
-    modal.present();
+  openUbicacion() {
+      this.navCtrl.push(Ubicacion);
   }
 
 }
