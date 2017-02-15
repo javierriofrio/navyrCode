@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { Establecimiento } from '../establecimiento/establecimiento';
 import { Categoria } from '../categoria/categoria';
-import { ModalController, NavController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { Ubicacion } from '../ubicacion/ubicacion';
 
 
@@ -13,7 +13,7 @@ import { Ubicacion } from '../ubicacion/ubicacion';
 export class Navyr {
   establecimiento = Establecimiento;
   categoria = Categoria;
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController) {
 
   }
 

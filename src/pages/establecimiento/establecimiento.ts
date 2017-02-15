@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { ModalController, NavController, NavParams } from 'ionic-angular';
+import { Reserva } from '../reserva/reserva';
 
 /*
   Generated class for the Establecimiento page.
@@ -13,10 +14,15 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class Establecimiento {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EstablecimientoPage');
+  }
+
+  abrirReserva() {
+      let profileModal = this.modalCtrl.create(Reserva);
+      profileModal.present();
   }
 
 }
