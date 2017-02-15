@@ -19,4 +19,8 @@ export class Reserva {
     public viewCtrl: ViewController
   ) {
   }
+
+  dismiss(){
+    this.viewCtrl.dismiss();
+  }
 }

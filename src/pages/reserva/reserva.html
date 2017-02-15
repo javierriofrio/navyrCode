@@ -24,10 +24,35 @@
       <h2>Lugar</h2>
       <p>Pizza Hut</p>
     </ion-item>
-  </ion-list>
     <ion-item>
       <h2>Titulo de la Reserva</h2>
       <ion-label fixed>ej. Cena Familiar</ion-label>
       <ion-input type="text" value=""></ion-input>
     </ion-item>
+    <ion-item>
+      <h2>No de personas</h2>
+      <ion-label fixed>ej. 4</ion-label>
+      <ion-input type="text" value=""></ion-input>
+    </ion-item>
+    <ion-item>
+      <h2>Descripcióm de la Reserva</h2>
+      <ion-label fixed>ej. Cumpleaños de Byron</ion-label>
+      <ion-input type="text" value=""></ion-input>
+    </ion-item>
+    <ion-item>
+      <h2>Fecha</h2>
+      <ion-label>Fecha Reserva:</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <h2>Hora</h2>
+      <ion-label>Hora Reserva:</ion-label>
+      <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+    </ion-item>
+
+  </ion-list>
+  <div class="botones">
+    <button ion-button clear>Cancelar</button>
+    <button ion-button clear>Crear Reserva</button>
+  </div>
 </ion-content>
