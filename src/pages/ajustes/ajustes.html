@@ -15,7 +15,17 @@
 
 
 <ion-content padding>
+  <div class="spacer" style="height: 20px;"></div>
+  <p>Configuraciones para las reservas en los Establecimientos</p>
   <ion-list>
+      <ion-item>
+      <ion-label>Ciudad</ion-label>
+      <ion-select [(ngModel)]="gender">
+        <ion-option value="Quito" selected="true">Quito</ion-option>
+        <ion-option value="Guayaquil">Guayaquil</ion-option>
+        <ion-option value="Cuenca">Cuenca</ion-option>
+      </ion-select>
+      </ion-item>
     <ion-item>
       <ion-label>Distancia de Busqueda de Locales</ion-label>
       <ion-range min="1" max="50" step="5" [(ngModel)]="rango">

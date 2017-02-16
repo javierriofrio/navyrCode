@@ -7,7 +7,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Reserva
+      Crear Reserva
     </ion-title>
     <ion-buttons start>
       <button ion-button (click)="dismiss()">
@@ -18,41 +18,37 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-title>Crear Reserva</ion-title>
+  <div class="spacer" style="height: 20px;"></div>
   <ion-list>
     <ion-item>
-      <h2>Lugar</h2>
-      <p>Pizza Hut</p>
+      <ion-label floating>Lugar</ion-label>
+      <ion-input type="text" value="Pizza Hut"></ion-input>
     </ion-item>
     <ion-item>
-      <h2>Titulo de la Reserva</h2>
-      <ion-label fixed>ej. Cena Familiar</ion-label>
+      <ion-label floating>Titulo de la Reserva:</ion-label>
       <ion-input type="text" value=""></ion-input>
     </ion-item>
     <ion-item>
-      <h2>No de personas</h2>
-      <ion-label fixed>ej. 4</ion-label>
+      <ion-label floating>No de personas</ion-label>
       <ion-input type="text" value=""></ion-input>
     </ion-item>
     <ion-item>
-      <h2>Descripcióm de la Reserva</h2>
-      <ion-label fixed>ej. Cumpleaños de Byron</ion-label>
+      <ion-label floating>Descripción de la Reserva</ion-label>
       <ion-input type="text" value=""></ion-input>
     </ion-item>
     <ion-item>
-      <h2>Fecha</h2>
-      <ion-label>Fecha Reserva:</ion-label>
+      <ion-label stacked>Fecha Reserva:</ion-label>
       <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY"></ion-datetime>
     </ion-item>
     <ion-item>
-      <h2>Hora</h2>
-      <ion-label>Hora Reserva:</ion-label>
+      <ion-label stacked>Hora Reserva:</ion-label>
       <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
     </ion-item>
-
+    <ion-item>
+    </ion-item>
   </ion-list>
   <div class="botones">
-    <button ion-button clear>Cancelar</button>
+    <button ion-button clear (click)="dismiss()">Cancelar</button>
     <button ion-button clear>Crear Reserva</button>
   </div>
 </ion-content>
