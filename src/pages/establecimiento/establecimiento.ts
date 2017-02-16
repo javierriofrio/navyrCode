@@ -23,7 +23,7 @@ import {
 export class Establecimiento {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
-    this.loadMap()
+    //this.loadMap()
   }
 
   ionViewDidLoad() {
