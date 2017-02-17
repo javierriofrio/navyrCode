@@ -21,11 +21,9 @@
     <ion-navbar color="primary">
         <ion-title>{{viewTitle}}</ion-title>
         <ion-buttons end>
-            <button ion-button [disabled]="isToday" (click)="today()">Today</button>
             <button ion-button (click)="changeMode('month')">M</button>
             <button ion-button (click)="changeMode('week')">W</button>
             <button ion-button (click)="changeMode('day')">D</button>
-            <button ion-button (click)="loadEvents()">Load Events</button>
         </ion-buttons>
     </ion-navbar>
   <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate" (onCurrectDateChanged)="onCurrentDateChanged($event)"

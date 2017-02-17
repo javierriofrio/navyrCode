@@ -161,3 +161,26 @@ botones
     color: #Ef6c00 !important;
     font-size: 1.2em;
 }
+
+/*
+Formularios
+*/
+
+.item-md.item-input.input-has-focus .item-inner{
+    border-bottom-color: #Ef6c00 !important;
+    box-shadow: inset 0 -1px 0 0 #Ef6c00;
+}
+
+.input-has-focus ion-label{
+    color:#Ef6c00 !important;
+}
+
+.item-ios.item-input.input-has-focus .item-inner{
+    border-bottom-color: #Ef6c00 !important;
+    box-shadow: inset 0 -1px 0 0 #Ef6c00;
+}
+
+.item-wp.item-input.input-has-focus .item-inner input{
+    border-color: #Ef6c00 !important;
+}
+
