@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Ubicacion } from '../ubicacion/ubicacion';
 
 /*
   Generated class for the Categoria page.
@@ -17,6 +18,10 @@ export class Categoria {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CategoriaPage');
+  }
+
+    openUbicacion() {
+      this.navCtrl.push(Ubicacion);
   }
 
 }

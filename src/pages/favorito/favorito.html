@@ -5,14 +5,39 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>favorito</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Favoritos</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-
+<ul class="icon-establecimiento">
+    <li class="family-icon" [navPush]="establecimiento">
+      <ion-card>
+        <img src="http://vignette1.wikia.nocookie.net/logopedia/images/6/63/Pizza_Hut_2012_logo.png/revision/latest?cb=20140507122847">
+        <div class="tituloSeccion">Pizza Hut</div>
+      </ion-card>
+    </li>
+    <li class="family-icon" [navPush]="establecimiento">
+      <ion-card>
+        <img src="http://du4zwgdg3nwxa.cloudfront.net/logotipos/e/el/el-rincon-del-buen-sazon-logo-1415730159.jpg">
+        <div class="tituloSeccion">El Buen Sabor</div>
+      </ion-card>
+    </li>
+    <li class="family-icon" [navPush]="establecimiento">
+      <ion-card>
+        <img src="http://du4zwgdg3nwxa.cloudfront.net/logotipos/k/kf/kfc-quito-ecuador-logo-1347029017.jpg">
+        <div class="tituloSeccion">KFC</div>
+      </ion-card>
+    </li>
+    <li class="family-icon" [navPush]="establecimiento">
+      <ion-card>
+        <img src="https://i1.wp.com/www.seeklogo.com/images/J/Juan_Valdez_Cafe-logo-9D9A5C862E-seeklogo.com.gif">
+        <div class="tituloSeccion">Juan Valdez</div>
+      </ion-card>
+    </li>
+</ul>
 </ion-content>

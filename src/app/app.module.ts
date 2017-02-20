@@ -10,6 +10,7 @@ import { Ajustes } from '../pages/ajustes/ajustes';
 import { NgCalendarModule  } from 'ionic2-calendar';
 import { Reserva } from '../pages/reserva/reserva';
 import { Ubicacion } from '../pages/ubicacion/ubicacion';
+import { Favorito } from '../pages/favorito/favorito';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { Ubicacion } from '../pages/ubicacion/ubicacion';
     Categoria,
     Ajustes,
     Reserva,
-    Ubicacion
+    Ubicacion,
+    Favorito
   ],
   imports: [
     NgCalendarModule,
@@ -37,7 +39,8 @@ import { Ubicacion } from '../pages/ubicacion/ubicacion';
     Categoria,
     Ajustes,
     Reserva,
-    Ubicacion
+    Ubicacion,
+    Favorito
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
