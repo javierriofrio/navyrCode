@@ -4,22 +4,35 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Navyr</ion-title>
+        <ion-buttons end>
+        <button button ion-button clear [navPush]="buscar"><ion-icon class="icono-buscar" name="search"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-<<<<<<< HEAD
-<ion-slides options="{'initialSlide': 0,'loop': true, 'autoplay' : 2000}" slider="slider1" delegate-handle="slider1" id="navyr-slider1" style="width:100%;height:200px;">
-=======
+  <!--
+2) colocación de splash
+3) agregar en el menú la opción de mis favoritos, y en los establecimientos dar la opción de agregar a favoritos
+8) los formatos de las textos en la parte de servicios y galería que sean mas estéticos (tamaño del texto)
+10) en base a las imágenes de servicios enviadas a WhatsApp ubicarles en el app
+11) revisar la agenda (ver si no hay una opción de un calendario coMo el de Google para utilizar en el app)
+
+12) al momento de desplegar la información del establecimiento (cuando muestra servicios y galería ) adicionalmente a agregar la opción de reserva se vea la opción del mapa de ese establecimiento y que me indique la ubicación y como llegar
+
+13) los mapas deben indicar la ubicación geográfica de los establecimientos y como llegar a ellos
+14) recuerda xfa que al momento de generar la reserva se crea un código que es alfanumérico y genera el código QR
+15) si la reservación no se realiza por falta de espacio no cancelación del establecimiento mostrar cómo sugerencia los establecimientos cercanos.
+  -->
+<!--<ion-slides options="{'initialSlide': 0,'loop': true, 'autoplay' : 2000}" slider="slider1" delegate-handle="slider1" id="navyr-slider1" style="width:100%;height:200px;">
 
 <ion-list>
   <ion-item *ngFor="let negocio of negocios | async">
     {{negocio.id}}
   </ion-item>
 </ion-list>
-<!--
-<ion-slides options="{'loop': true}" slider="slider1" delegate-handle="slider1" id="navyr-slider1" style="width:100%;height:200px;">
->>>>>>> ee6651e3304be6897dd6e39b0c23f8e56058694e
+-->
+<ion-slides autoplay="2000" loop="true"  slider="slider1" delegate-handle="slider1" id="navyr-slider1" style="width:100%;height:200px;">
   <ion-slide>
     <img src="https://www.tarjetasaenz.com.ar/images/promociones.jpg">
   </ion-slide>
@@ -158,5 +171,5 @@
         <div class="tituloSeccion">Juan Valdez</div>
       </ion-card>
     </li>
-</ul>-->
+</ul>
 </ion-content>

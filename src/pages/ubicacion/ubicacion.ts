@@ -25,6 +25,10 @@ import {
 export class Ubicacion {
 
   constructor(public viewCtrl: ViewController) {
+  
+  }
+
+  ngAfterViewInit() {
     this.loadMap();
   }
 

@@ -1,3 +1,8 @@
 page-ajustes {
-
+    .range-md .range-bar-active, 
+    .range-md .range-pin,
+    .range-md .range-knob,
+    .range-md .range-pin::before{
+        background: #Ef6c00;
+    }
 }

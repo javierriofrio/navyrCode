@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, NavController, NavParams } from 'ionic-angular';
+import { ModalController} from 'ionic-angular';
 import { Reserva } from '../reserva/reserva';
 import {
   GoogleMap,
@@ -22,7 +22,7 @@ import {
 })
 export class Establecimiento {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
+  constructor(public modalCtrl: ModalController) {
     //this.loadMap()
   }
 
@@ -33,6 +33,10 @@ export class Establecimiento {
   abrirReserva() {
       let profileModal = this.modalCtrl.create(Reserva);
       profileModal.present();
+  }
+
+  ngAfterViewInit() {
+    //this.loadMap();
   }
 
   loadMap() {

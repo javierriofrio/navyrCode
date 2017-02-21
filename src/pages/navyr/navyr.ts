@@ -4,6 +4,7 @@ import { Establecimiento } from '../establecimiento/establecimiento';
 import { Categoria } from '../categoria/categoria';
 import { NavController } from 'ionic-angular';
 import { Ubicacion } from '../ubicacion/ubicacion';
+import { Buscar } from '../buscar/buscar';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 
 
@@ -14,6 +15,7 @@ import {AngularFire, FirebaseListObservable} from 'angularfire2';
 export class Navyr {
   establecimiento = Establecimiento;
   categoria = Categoria;
+  buscar = Buscar;
   negocio: FirebaseListObservable<any>;
 
   constructor(public navCtrl: NavController, af: AngularFire) {
@@ -25,5 +27,6 @@ export class Navyr {
   openUbicacion() {
       this.navCtrl.push(Ubicacion);
   }
+  
 
 }

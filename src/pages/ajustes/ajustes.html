@@ -28,9 +28,9 @@
       </ion-item>
     <ion-item>
       <ion-label>Distancia de Busqueda de Locales</ion-label>
-       <ion-range min="0" max="50" step="1" pin="true" [(ngModel)]="contrast" color="secondary">
-        <ion-icon range-left small name="contrast"></ion-icon>
-        <ion-icon range-right name="contrast"></ion-icon>
+       <ion-range min="0" max="50" step="1" pin="true" default="25" [(ngModel)]="contrast" color="default">
+        <ion-icon range-left small name="remove"></ion-icon>
+        <ion-icon range-right name="add"></ion-icon>
       </ion-range>
     </ion-item>
   </ion-list>
