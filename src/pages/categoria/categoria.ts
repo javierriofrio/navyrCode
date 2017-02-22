@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Ubicacion } from '../ubicacion/ubicacion';
+import { Navyr } from '../navyr/navyr';
 
 /*
   Generated class for the Categoria page.
@@ -22,6 +23,10 @@ export class Categoria {
 
     openUbicacion() {
       this.navCtrl.push(Ubicacion);
+  }
+   
+  openRootPage() {
+	  this.navCtrl.setRoot(Navyr);
   }
 
 }

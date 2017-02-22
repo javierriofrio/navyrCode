@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Navyr } from '../navyr/navyr';
 
 /*
   Generated class for the Misreservas page.
@@ -101,5 +102,9 @@ export class MisReservas {
         current.setHours(0, 0, 0);
         return date < current;
 };
+
+  openRootPage() {
+	  this.navCtrl.setRoot(Navyr);
+  }
 
 }

@@ -9,25 +9,31 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
+        <button class="button-header" (click)="openRootPage()"><img src="assets/icon/navyr.png"/></button>
     <ion-title>Ajustes</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-  <div class="spacer" style="height: 20px;"></div>
-  <p>Configuraciones para las reservas en los Establecimientos</p>
+  <div class="spacer"></div>
+  <div class="titulo tituloSeccion centrar">Configuracion de NAVYR</div>
+  <div class="spacer"></div>
+  <div class="ajuste">Ciudad por defecto para la búsqueda:</div>
   <ion-list>
       <ion-item>
       <ion-label>Ciudad</ion-label>
-      <ion-select [(ngModel)]="gender">
+      <ion-select [(ngModel)]="ciudad">
         <ion-option value="Quito" selected="true">Quito</ion-option>
         <ion-option value="Guayaquil">Guayaquil</ion-option>
         <ion-option value="Cuenca">Cuenca</ion-option>
       </ion-select>
       </ion-item>
+  </ion-list>
+  <div class="spacer"></div>
+      <div class="ajuste">Distancia en Km para realizar la búsqueda:</div>
+  <ion-list>  
     <ion-item>
-      <ion-label>Distancia de Busqueda de Locales</ion-label>
        <ion-range min="0" max="50" step="1" pin="true" default="25" [(ngModel)]="contrast" color="default">
         <ion-icon range-left small name="remove"></ion-icon>
         <ion-icon range-right name="add"></ion-icon>

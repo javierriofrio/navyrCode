@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Navyr } from '../navyr/navyr';
 
 /*
   Generated class for the Favorito page.
@@ -17,6 +18,10 @@ export class Favorito {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FavoritoPage');
+  }
+  
+  openRootPage() {
+	  this.navCtrl.setRoot(Navyr);
   }
 
 }

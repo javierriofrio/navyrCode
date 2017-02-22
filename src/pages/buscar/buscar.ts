@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Navyr } from '../navyr/navyr';
 
 /*
   Generated class for the Buscar page.
@@ -17,6 +18,10 @@ export class Buscar {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BuscarPage');
+  }
+
+  openRootPage() {
+	  this.navCtrl.setRoot(Navyr);
   }
 
 }

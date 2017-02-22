@@ -19,7 +19,7 @@ export class Navyr {
   negocio: FirebaseListObservable<any>;
 
   constructor(public navCtrl: NavController, af: AngularFire) {
-    this.negocio = af.database.list('/production/public/business');
+    //this.negocio = af.database.list('/production/public/business');
 
     //console.log(this.negocio);
   }

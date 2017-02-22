@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Camera } from 'ionic-native';
 import {DomSanitizer} from '@angular/platform-browser';
+import { Navyr } from '../navyr/navyr';
 
 @Component({
   selector: 'page-micuenta',
@@ -29,6 +30,10 @@ export class MiCuenta {
     }, (err) => {
       // Handle error
     });
+  }
+  
+  openRootPage() {
+	  this.navCtrl.setRoot(Navyr);
   }
 
 }

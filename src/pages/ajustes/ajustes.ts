@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Navyr } from '../navyr/navyr';
 
 /*
   Generated class for the Ajustes page.
@@ -12,11 +13,14 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'ajustes.html'
 })
 export class Ajustes {
-
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AjustesPage');
+  }
+
+  openRootPage() {
+	  this.navCtrl.setRoot(Navyr);
   }
 
 }

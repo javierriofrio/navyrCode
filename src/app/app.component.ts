@@ -7,6 +7,7 @@ import { MiCuenta } from '../pages/micuenta/micuenta';
 import { MisReservas } from '../pages/misreservas/misreservas';
 import { Ajustes } from '../pages/ajustes/ajustes';
 import { Favorito } from '../pages/favorito/favorito';
+import { Buscar } from '../pages/buscar/buscar';
 
 
 @Component({
@@ -28,6 +29,7 @@ export class MyApp {
     this.pages = [
       { title: 'Mi Cuenta', component: MiCuenta, icon: 'contact' },
       { title: 'Mis Reservas', component: MisReservas, icon: 'calendar' },
+      { title: 'Buscar', component: Buscar, icon: 'search' },
       { title: 'Favoritos', component: Favorito, icon: 'star' },
       { title: 'Compartir App', component: MisReservas, icon: 'share' },
       { title: 'Cerrar Sesión', component: MisReservas, icon: 'log-out' }

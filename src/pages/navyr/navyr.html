@@ -3,6 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
+          <button class="button-header" (click)="openRootPage()"><img src="assets/icon/navyr.png"/></button>
     <ion-title>Navyr</ion-title>
         <ion-buttons end>
         <button button ion-button clear [navPush]="buscar"><ion-icon class="icono-buscar" name="search"></ion-icon></button>
@@ -11,28 +12,8 @@
 </ion-header>
 
 <ion-content padding>
-  <!--
-2) colocación de splash
-3) agregar en el menú la opción de mis favoritos, y en los establecimientos dar la opción de agregar a favoritos
-8) los formatos de las textos en la parte de servicios y galería que sean mas estéticos (tamaño del texto)
-10) en base a las imágenes de servicios enviadas a WhatsApp ubicarles en el app
-11) revisar la agenda (ver si no hay una opción de un calendario coMo el de Google para utilizar en el app)
 
-12) al momento de desplegar la información del establecimiento (cuando muestra servicios y galería ) adicionalmente a agregar la opción de reserva se vea la opción del mapa de ese establecimiento y que me indique la ubicación y como llegar
-
-13) los mapas deben indicar la ubicación geográfica de los establecimientos y como llegar a ellos
-14) recuerda xfa que al momento de generar la reserva se crea un código que es alfanumérico y genera el código QR
-15) si la reservación no se realiza por falta de espacio no cancelación del establecimiento mostrar cómo sugerencia los establecimientos cercanos.
-  -->
-<!--<ion-slides options="{'initialSlide': 0,'loop': true, 'autoplay' : 2000}" slider="slider1" delegate-handle="slider1" id="navyr-slider1" style="width:100%;height:200px;">
-
-<ion-list>
-  <ion-item *ngFor="let negocio of negocios | async">
-    {{negocio.id}}
-  </ion-item>
-</ion-list>
--->
-<ion-slides autoplay="2000" loop="true"  slider="slider1" delegate-handle="slider1" id="navyr-slider1" style="width:100%;height:200px;">
+<ion-slides autoplayDisableOnInteraction="false" autoplay="2000" loop="true"  slider="slider1" delegate-handle="slider1" id="navyr-slider1" style="width:100%;height:200px;">
   <ion-slide>
     <img src="https://www.tarjetasaenz.com.ar/images/promociones.jpg">
   </ion-slide>
@@ -41,11 +22,11 @@
   </ion-slide>
 </ion-slides>
 
- <ion-fab>
-   <button ion-fab (click)="openUbicacion()"><ion-icon name="pin"></ion-icon></button>
+ <ion-fab class="ubicacion">
+   <button ion-fab (click)="openUbicacion()"><ion-icon  name="pin"></ion-icon></button>
  </ion-fab>
 
-<div class="tituloSeccion">Top Establecimientos</div>
+<div class="titulo tituloSeccion">Top Establecimientos</div>
 
 <ul class="family-icon-scroller">
     <li class="family-icon" [navPush]="establecimiento">
@@ -84,7 +65,7 @@
       </ion-card>
     </li>
 </ul>
-<div class="tituloSeccion">Categorías</div>
+<div class="titulo tituloSeccion">Categorías</div>
 <ul class="family-icon-scroller">
     <li class="family-icon" [navPush]="categoria">
       <ion-card>
@@ -127,48 +108,48 @@
       </ion-card>
     </li>
 </ul>
-<div class="tituloSeccion">Establecimientos</div>
+<div class=" titulo tituloSeccion">Establecimientos</div>
 <ul class="icon-establecimiento">
     <li class="family-icon" [navPush]="establecimiento">
       <ion-card>
         <img src="http://vignette1.wikia.nocookie.net/logopedia/images/6/63/Pizza_Hut_2012_logo.png/revision/latest?cb=20140507122847">
-        <div class="tituloSeccion">Pizza Hut</div>
+        <div class="titulo-establecimiento centrar">Pizza Hut</div>
       </ion-card>
     </li>
     <li class="family-icon" [navPush]="establecimiento">
       <ion-card>
         <img src="http://du4zwgdg3nwxa.cloudfront.net/logotipos/e/el/el-rincon-del-buen-sazon-logo-1415730159.jpg">
-        <div class="tituloSeccion">El Buen Sabor</div>
+        <div class="titulo-establecimiento centrar">El Buen Sabor</div>
       </ion-card>
     </li>
     <li class="family-icon" [navPush]="establecimiento">
       <ion-card>
         <img src="http://du4zwgdg3nwxa.cloudfront.net/logotipos/k/kf/kfc-quito-ecuador-logo-1347029017.jpg">
-        <div class="tituloSeccion">KFC</div>
+        <div class="titulo-establecimiento centrar">KFC</div>
       </ion-card>
     </li>
     <li class="family-icon" [navPush]="establecimiento">
       <ion-card>
         <img src="http://du4zwgdg3nwxa.cloudfront.net/logotipos/b/ba/bar-restaurant-el-dorado-logo.jpg">
-        <div class="tituloSeccion">El Dorado</div>
+        <div class="titulo-establecimiento centrar">El Dorado</div>
       </ion-card>
     </li>
     <li class="family-icon" [navPush]="establecimiento">
       <ion-card>
         <img src="https://img.pystatic.com/restaurants/tabulenewlogo.jpg">
-        <div class="tituloSeccion">Tabule</div>
+        <div class="titulo-establecimiento centrar">Tabule</div>
       </ion-card>
     </li>
     <li class="family-icon" [navPush]="establecimiento">
       <ion-card>
         <img src="https://img.pystatic.com/restaurants/logosla-caleta---refugio-de-comidas.jpg">
-        <div class="tituloSeccion">La Caleta</div>
+        <div class="titulo-establecimiento centrar">La Caleta</div>
       </ion-card>
     </li>
     <li class="family-icon" [navPush]="establecimiento">
       <ion-card>
         <img src="https://i1.wp.com/www.seeklogo.com/images/J/Juan_Valdez_Cafe-logo-9D9A5C862E-seeklogo.com.gif">
-        <div class="tituloSeccion">Juan Valdez</div>
+        <div class="titulo-establecimiento centrar">Juan Valdez</div>
       </ion-card>
     </li>
 </ul>

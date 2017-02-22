@@ -15,6 +15,15 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+
+/*
+Generales
+*/
+
+.centrar{
+        text-align: center;
+}
+
 /*
 Estilos para el header de pantallas
 */
@@ -52,17 +61,33 @@ ion-avatar img {
 Estilos para las paginas
 */
 
- .tituloSeccion {
+ .titulo {
       width: 100%;
-      padding: 5px;
+      padding: 4px;
       background-color: #Ef6c00;
-      font-weight: 400;
+      font-weight: 500;
+      font-size: 1.2em;
       color: #fff
  } 
+
+ .tituloSeccion{
+     padding-left: 10px;
+ }
 
  ion-card h2{
      text-align: center;
  }
+
+ .titulo-establecimiento{
+      width: 100%;
+      padding: 3px;
+      background-color: #Ef6c00;
+      font-weight: 400;
+      font-size: 1em;
+      color: #fff
+ }
+
+     
 
 /**
 Seccion de iconos de establecimientos - categorias
@@ -102,11 +127,6 @@ Seccion de iconos de establecimientos - categorias
 
 /*Establecimientos Sueltos*/
 
-.icon-establecimiento .tituloSeccion {
-    text-align: center;
-
-}
-
 .icon-establecimiento{
     margin-top: 20px;
     padding: 0px;
@@ -137,12 +157,25 @@ Icono flotantes
 
 ion-fab{
     bottom: 20px;
-    right: 30px;
+    right: 20px;
 }
 
 ion-fab button{
     background-color: #Ef6c00 !important;
 }
+
+.favoritos{
+    top: 20px;
+    right:20px;
+    background-color: white !important;
+    color: #999;
+}
+
+.fab-ios{
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.14), 0 4px 5px rgba(0, 0, 0, 0.1);
+}
+
+
 
 
 /*
@@ -151,6 +184,16 @@ Titulos
 
 h4 {
     font-size: 1.8rem;
+}
+
+.toolbar-title-wp, .toolbar-title-md{
+    padding-top: 6px;
+}
+
+.button-header{
+    float:left;
+    padding:0px;   
+    background-color: transparent;
 }
 
 /*
@@ -183,5 +226,21 @@ Formularios
 
 .item-wp.item-input.input-has-focus .item-inner input{
     border-color: #Ef6c00 !important;
+}
+
+.spacer{
+     height: 20px;
+}
+
+/*
+IOS 
+*/
+
+.back-button-icon-ios{
+    padding-right: 22px;
+}
+
+.back-button-text-ios{
+    display: none;
 }
 
