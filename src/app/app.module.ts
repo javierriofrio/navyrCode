@@ -17,11 +17,11 @@ import { Buscar } from '../pages/buscar/buscar';
 import { AngularFireModule } from 'angularfire2';
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyBwSbg27y-LmEG1wjic37aW2aKL5W0TjhQ",
-  authDomain: "navyrtest.firebaseapp.com",
-  databaseURL: "https://navyrtest.firebaseio.com",
-  storageBucket: "navyrtest.appspot.com",
-  messagingSenderId: "1009758447164"
+  apiKey: "AIzaSyC0JZwWB0uCsq7Uv7WxAUkIQSJhBRALAM4",
+  authDomain: "navyr.firebaseapp.com",
+  databaseURL: "https://navyr.firebaseio.com",
+  storageBucket: "project-8626609783434337582.appspot.com",
+  messagingSenderId: "329734583670"
 };
 
 @NgModule({

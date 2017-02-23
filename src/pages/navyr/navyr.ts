@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { Establecimiento } from '../establecimiento/establecimiento';
 import { Categoria } from '../categoria/categoria';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import { Ubicacion } from '../ubicacion/ubicacion';
 import { Buscar } from '../buscar/buscar';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
@@ -16,17 +16,15 @@ export class Navyr {
   establecimiento = Establecimiento;
   categoria = Categoria;
   buscar = Buscar;
-  negocio: FirebaseListObservable<any>;
+  negocios: FirebaseListObservable<any>;
 
-  constructor(public navCtrl: NavController, af: AngularFire) {
-    //this.negocio = af.database.list('/production/public/business');
+  constructor(public navCtrl: NavController, af: AngularFire, public alertCtrl: AlertController) {
+    this.negocios = af.database.list('/produccion/businessPromo');
 
-    //console.log(this.negocio);
   }
 
   openUbicacion() {
       this.navCtrl.push(Ubicacion);
   }
-  
 
 }

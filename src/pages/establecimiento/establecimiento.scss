@@ -3,4 +3,12 @@ page-establecimiento {
         width: 100%;
         height: 50%;
       }
+
+      .favoritos{
+        top: 0px;
+      }
+
+      ion-item ion-label{
+        overflow: unset;
+      }
 }

@@ -28,10 +28,6 @@ export class Ubicacion {
   constructor( public navCtrl: NavController) {
     this.loadMap();
   }
-
-  ngAfterViewInit() {
-    this.loadMap();
-  }
   
   openRootPage() {
 	  this.navCtrl.setRoot(Navyr);
@@ -56,15 +52,35 @@ export class Ubicacion {
 
       latitud = pos.coords.latitude;
       longitud = pos.coords.longitude;
-      let map = new GoogleMap(element);
+      // create LatLng object
+      let ionic: GoogleMapsLatLng = new GoogleMapsLatLng(latitud, longitud);
+      let map = new GoogleMap(element,{
+        'backgroundColor': 'white',
+        'controls': {
+          'compass': true,
+          'myLocationButton': true,
+          'indoorPicker': true,
+          'zoom': true
+        },
+        'gestures': {
+          'scroll': true,
+          'tilt': true,
+          'rotate': true,
+          'zoom': true
+        },
+        'camera': {
+          'latLng': ionic,
+          'tilt': 30,
+          'zoom': 15,
+          'bearing': 50
+        }
+      });
+
       // listen to MAP_READY event
       map.one(GoogleMapsEvent.MAP_READY).then(() => console.log('Map is ready!'));
 
-      // create LatLng object
-      let ionic: GoogleMapsLatLng = new GoogleMapsLatLng(latitud, longitud);
-
       // create CameraPosition
-      let position: CameraPosition = {
+ /*     let position: CameraPosition = {
         target: ionic,
         zoom: 18,
         tilt: 30
@@ -72,7 +88,7 @@ export class Ubicacion {
 
       // move the map's camera to position
       map.moveCamera(position);
-
+*/
       // create new marker
       let markerOptions: GoogleMapsMarkerOptions = {
         position: ionic,
@@ -83,6 +99,7 @@ export class Ubicacion {
         .then((marker: GoogleMapsMarker) => {
           marker.showInfoWindow();
         });
+
     });
 
 
