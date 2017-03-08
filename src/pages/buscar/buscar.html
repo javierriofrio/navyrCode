@@ -15,13 +15,17 @@
   </ion-navbar>
 
 </ion-header>
-
-
 <ion-content padding>
-  <ion-searchbar
-    [(ngModel)]="myInput"
-    [showCancelButton]="shouldShowCancel"
-    (ionInput)="onInput($event)"
-    (ionCancel)="onCancel($event)">
-  </ion-searchbar>
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let item of items" [navPush]="establecimiento">
+      <ion-thumbnail item-left>
+        <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTysjSATK43aN4HGxSxf6o5M8-MX7IkpJk6-COwlGSIrNaVWvFR">
+      </ion-thumbnail>
+      <h2>{{ item }}</h2>
+      <p><ion-icon name="wifi" item-left></ion-icon>WIFI</p>
+      <p><ion-icon name="car" item-left></ion-icon>Parqueadero</p>
+      <p><ion-icon name="paw" item-left></ion-icon>Mascotas</p>
+    </ion-item>
+  </ion-list>
 </ion-content>
