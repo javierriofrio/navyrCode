@@ -23,6 +23,28 @@ Generales
 .centrar{
         text-align: center;
 }
+/*
+Menu
+*/
+
+.menu-header{
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.menu-header ion-col{
+    padding:0px;
+}
+
+.menu-label{
+    margin-top: 20px; 
+    margin-left: -15px;  
+}
+
+.menu-label label{
+    padding-top: 20px;
+}
 
 /*
 Estilos para el header de pantallas
@@ -48,8 +70,7 @@ ion-avatar img {
 }
 
 .menu-inner .toolbar-background {
-    background: url('../assets/img/Quito-1-680x365.jpg');
-    background-size: cover;
+    background: #333 !important;
 }
 
 .menu-avatar{
@@ -155,9 +176,25 @@ Seccion de iconos de establecimientos - categorias
 Icono flotantes
 */
 
-ion-fab{
+.ubicacion{
     bottom: 20px;
     right: 20px;
+}
+
+.boton-reserva{
+    width: 100%;
+}
+
+.boton-reserva button{
+    width: 100%;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.boton-reservar button{
+    font-size: 15px;
+    font-weight: 400;
 }
 
 ion-fab button{

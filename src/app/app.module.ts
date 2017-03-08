@@ -12,6 +12,9 @@ import { Reserva } from '../pages/reserva/reserva';
 import { Ubicacion } from '../pages/ubicacion/ubicacion';
 import { Favorito } from '../pages/favorito/favorito';
 import { Buscar } from '../pages/buscar/buscar';
+import { Puntos } from '../pages/puntos/puntos';
+import { Ircategorias } from '../pages/ircategorias/ircategorias';
+import { Terminos } from '../pages/terminos/terminos';
 
 // Import the AF2 Module
 import { AngularFireModule } from 'angularfire2';
@@ -36,7 +39,10 @@ export const firebaseConfig = {
     Reserva,
     Ubicacion,
     Favorito,
-    Buscar
+    Buscar,
+    Puntos,
+    Ircategorias,
+    Terminos
   ],
   imports: [
     NgCalendarModule,
@@ -55,7 +61,10 @@ export const firebaseConfig = {
     Reserva,
     Ubicacion,
     Favorito,
-    Buscar
+    Buscar,
+    Puntos,
+    Ircategorias,
+    Terminos
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

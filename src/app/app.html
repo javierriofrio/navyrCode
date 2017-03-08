@@ -1,9 +1,29 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar menuClose  (click)="openRootPage()">
-      <ion-avatar>
-        <img class="menu-avatar" src="assets/img/avatar-img.png">
-      </ion-avatar>
+      <ion-grid class="menu-header"> 
+        <ion-row>
+          <ion-col width-30>
+            <ion-avatar>
+              <img class="menu-avatar" src="assets/img/avatar-img.png">
+            </ion-avatar>
+          </ion-col>
+          <ion-col>
+            <ion-grid class="menu-label">
+              <ion-row>
+                <ion-col>
+                  <label>Usuario prueba</label>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <label>Navyr Puntos 0</label>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-toolbar>
   </ion-header>
 

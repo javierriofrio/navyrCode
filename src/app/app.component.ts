@@ -8,6 +8,9 @@ import { MisReservas } from '../pages/misreservas/misreservas';
 import { Ajustes } from '../pages/ajustes/ajustes';
 import { Favorito } from '../pages/favorito/favorito';
 import { Buscar } from '../pages/buscar/buscar';
+import { Puntos } from '../pages/puntos/puntos';
+import { Ircategorias } from '../pages/ircategorias/ircategorias';
+import { Terminos } from '../pages/terminos/terminos';
 
 
 @Component({
@@ -29,6 +32,8 @@ export class MyApp {
     this.pages = [
       { title: 'Mi Cuenta', component: MiCuenta, icon: 'contact' },
       { title: 'Mis Reservas', component: MisReservas, icon: 'calendar' },
+      { title: 'Mis Navyr Puntos', component: Puntos, icon: 'ribbon' },
+      { title: 'Ir a Categorias', component: Ircategorias, icon: 'folder-open' },
       { title: 'Buscar', component: Buscar, icon: 'search' },
       { title: 'Favoritos', component: Favorito, icon: 'star' },
       { title: 'Compartir App', component: MisReservas, icon: 'share' },
@@ -37,6 +42,7 @@ export class MyApp {
 
     this.pages2 = [
       { title: 'Ajustes', component: Ajustes, icon: 'settings' },
+      { title: 'Términos y Condiciones', component: Ajustes, icon: 'clipboard' },
       { title: 'Contacto', component: MisReservas, icon: 'mail' },
       { title: 'Acerca De', component: MisReservas, icon: 'happy' }
     ];
