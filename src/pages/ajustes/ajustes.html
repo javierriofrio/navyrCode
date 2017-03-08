@@ -19,6 +19,20 @@
   <div class="spacer"></div>
   <div class="titulo tituloSeccion centrar">Configuracion de NAVYR</div>
   <div class="spacer"></div>
+  <div class="ajuste">Idioma:</div>
+  <ion-list radio-group>
+    <ion-item>
+      <ion-label>Español</ion-label>
+      <ion-radio checked="true" value="es"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>English</ion-label>
+      <ion-radio value="en"></ion-radio>
+    </ion-item>
+
+  </ion-list>
+  <div class="spacer"></div>
   <div class="ajuste">Ciudad por defecto para la búsqueda:</div>
   <ion-list>
       <ion-item>
@@ -40,5 +54,8 @@
       </ion-range>
     </ion-item>
   </ion-list>
-
+  <ion-buttons class="barra-botones" start>
+    <button ion-button class="boton-aceptar" round>Guardar</button>
+    <button ion-button color="dark" round>Cancelar Cuenta</button>
+  </ion-buttons>
 </ion-content>

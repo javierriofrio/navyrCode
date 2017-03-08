@@ -23,6 +23,19 @@ Generales
 .centrar{
         text-align: center;
 }
+
+/*
+Promociones - home
+*/
+
+.swiper-slide img{
+    width: 100%;
+}
+
+ion-slides{
+    height: auto;
+}
+
 /*
 Menu
 */
@@ -50,15 +63,15 @@ Menu
 Estilos para el header de pantallas
 */
 
-.header .toolbar-background-md{
+.header .toolbar-background{
     background-color: #000 !important;
 }
 
-.header .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
+.header .bar-button-default, .bar-button-clear, .bar-button{
     color: #fff !important;
 }
 
-.header .toolbar-title-md{
+.header .toolbar-title{
     color: #fff !important;
 }
 
@@ -70,7 +83,8 @@ ion-avatar img {
 }
 
 .menu-inner .toolbar-background {
-    background: #333 !important;
+    background: url('../assets/img/header.png');
+    background-size: cover;
 }
 
 .menu-avatar{
@@ -183,6 +197,7 @@ Icono flotantes
 
 .boton-reserva{
     width: 100%;
+    padding: 10px;
 }
 
 .boton-reserva button{
@@ -269,6 +284,26 @@ Formularios
      height: 20px;
 }
 
+.fechas-formulario{
+    margin-top: 25px;
+}
+
+.item-datetime .item-inner{
+    border-bottom: 1px solid #dedede !important;
+}
+
+.barra-botones{
+    text-align: center;
+}
+
+.boton-aceptar{
+    background-color:#Ef6c00;
+}
+
+.boton-cancelar{
+    background-color:#Ef6c00;
+}
+
 /*
 IOS 
 */
@@ -279,5 +314,26 @@ IOS
 
 .back-button-text-ios{
     display: none;
+}
+
+.content-ios {
+    background-color: #fff !important;
+}
+
+.list-ios > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block {
+    border-bottom: none;
+}
+.list-ios > .item-block:first-child {
+    border-top: none;
+}
+
+.item-ios ion-thumbnail ion-img, .item-ios ion-thumbnail img{
+    width: 120px;
+    height: 120px;
+}
+
+
+.text-ios-primary{
+    color: #fff;
 }
 
