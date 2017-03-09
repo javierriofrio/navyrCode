@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Categoria } from '../categoria/categoria';
 
 /*
   Generated class for the Ircategorias page.
@@ -13,6 +14,7 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class Ircategorias {
 
+  categoria = Categoria;
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
