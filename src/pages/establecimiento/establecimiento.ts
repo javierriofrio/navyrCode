@@ -6,7 +6,6 @@ import {
   GoogleMap,
   GoogleMapsEvent,
   GoogleMapsLatLng,
-  CameraPosition,
   GoogleMapsMarkerOptions,
   GoogleMapsMarker
 } from 'ionic-native';

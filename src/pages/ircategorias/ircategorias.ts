@@ -13,10 +13,7 @@ import { Categoria } from '../categoria/categoria';
   templateUrl: 'ircategorias.html'
 })
 export class Ircategorias {
-<<<<<<< HEAD
 
-=======
->>>>>>> 71f1de4abf00d9e803c83fd886a581436ef190c5
   categoria = Categoria;
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 

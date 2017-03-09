@@ -5,7 +5,6 @@ import {
   GoogleMap,
   GoogleMapsEvent,
   GoogleMapsLatLng,
-  CameraPosition,
   GoogleMapsMarkerOptions,
   GoogleMapsMarker,
   Geolocation

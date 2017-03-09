@@ -30,19 +30,20 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
+      { title: 'Inicio', component: Navyr, icon: 'home' },
       { title: 'Mi Cuenta', component: MiCuenta, icon: 'contact' },
       { title: 'Mis Reservas', component: MisReservas, icon: 'calendar' },
       { title: 'Mis Navyr Puntos', component: Puntos, icon: 'ribbon' },
       { title: 'Ir a Categorias', component: Ircategorias, icon: 'folder-open' },
       { title: 'Buscar', component: Buscar, icon: 'search' },
       { title: 'Favoritos', component: Favorito, icon: 'star' },
-      { title: 'Compartir App', component: MisReservas, icon: 'share' },
       { title: 'Cerrar Sesión', component: MisReservas, icon: 'log-out' }
     ];
 
     this.pages2 = [
       { title: 'Ajustes', component: Ajustes, icon: 'settings' },
-      { title: 'Términos y Condiciones', component: Ajustes, icon: 'clipboard' },
+      { title: 'Términos y Condiciones', component: Terminos, icon: 'clipboard' },
+      { title: 'Compartir App', component: MisReservas, icon: 'share' },
       { title: 'Contacto', component: MisReservas, icon: 'mail' },
       { title: 'Acerca De', component: MisReservas, icon: 'happy' }
     ];
