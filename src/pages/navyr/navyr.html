@@ -3,8 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-          <button class="button-header" (click)="openRootPage()"><img src="assets/icon/navyr.png"/></button>
-    <ion-title>Navyr</ion-title>
+    <ion-title><img src="assets/img/logo.png"/></ion-title>
         <ion-buttons end>
         <button button ion-button clear [navPush]="buscar"><ion-icon class="icono-buscar" name="search"></ion-icon></button>
     </ion-buttons>
@@ -13,18 +12,9 @@
 
 <ion-content padding>
 
-<!--<ion-list>
-  <ion-item *ngFor="let negocio of negocios | async">
-    <img [src]="image">
-  </ion-item>
-</ion-list>-->
-
-<ion-slides class="slider-home" autoplayDisableOnInteraction="false" autoplay="2000" loop="true"  slider="slider1" delegate-handle="slider1" id="navyr-slider1" style="width:100%;height:200px;">
-  <ion-slide>
-    <img src="https://www.tarjetasaenz.com.ar/images/promociones.jpg">
-  </ion-slide>
-  <ion-slide>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL1W7hDKIVWC2KBFFgh5qDdU3SBs-o8m7ckSzddHP7g63Vsre1">
+<ion-slides  class="slider-home"  slider="slider1">
+  <ion-slide *ngFor="let promo of promos | async">
+    <img [src]="promo.url">
   </ion-slide>
 </ion-slides>
 
@@ -71,92 +61,23 @@
       </ion-card>
     </li>
 </ul>
+
 <div class="titulo tituloSeccion">Categorías</div>
 <ul class="family-icon-scroller">
-    <li class="family-icon" [navPush]="categoria">
+    <li class="family-icon" [navPush]="categoria" *ngFor="let category of categories | async">
       <ion-card>
-        <img src="assets/img/categorias/imagenes_categorias_Aulas.png">
-      </ion-card>
-    </li>
-    <li class="family-icon" [navPush]="categoria">
-      <ion-card>
-        <img src="assets/img/categorias/imagenes_categorias_Bares.png">
-      </ion-card>
-    </li>
-    <li class="family-icon" [navPush]="categoria">
-      <ion-card>
-        <img src="assets/img/categorias/imagenes_categorias_Canchas.png">
-      </ion-card>
-    </li>
-    <li class="family-icon" [navPush]="categoria">
-      <ion-card>
-        <img src="assets/img/categorias/imagenes_categorias_Peluquerias.png">
-      </ion-card>
-    </li>
-    <li class="family-icon" [navPush]="categoria">
-      <ion-card>
-        <img src="assets/img/categorias/imagenes_categorias_Restaurantes.png">
-      </ion-card>
-    </li>
-    <li class="family-icon" [navPush]="categoria">
-      <ion-card>
-        <img src="assets/img/categorias/imagenes_categorias_Salas de Eventos.png">
-      </ion-card>
-    </li>
-    <li class="family-icon" [navPush]="categoria">
-      <ion-card>
-        <img src="assets/img/categorias/imagenes_categorias_Spa.png">
-      </ion-card>
-    </li>
-    <li class="family-icon" [navPush]="categoria">
-      <ion-card>
-        <img src="assets/img/categorias/imagenes_categorias_Tours.png">
+        <img [src]="category.url">
       </ion-card>
     </li>
 </ul>
+
 <div class=" titulo tituloSeccion">Los más Destacados</div>
 
 <ul class="icon-establecimiento">
-    <li class="family-icon" [navPush]="establecimiento">
+    <li class="family-icon" [navPush]="establecimiento"  *ngFor="let buss of business | async">
       <ion-card>
-        <img src="http://vignette1.wikia.nocookie.net/logopedia/images/6/63/Pizza_Hut_2012_logo.png/revision/latest?cb=20140507122847">
+        <img [src]="buss.galerias.url">
         <div class="titulo-establecimiento centrar">Pizza Hut</div>
-      </ion-card>
-    </li>
-    <li class="family-icon" [navPush]="establecimiento">
-      <ion-card>
-        <img src="http://du4zwgdg3nwxa.cloudfront.net/logotipos/e/el/el-rincon-del-buen-sazon-logo-1415730159.jpg">
-        <div class="titulo-establecimiento centrar">El Buen Sabor</div>
-      </ion-card>
-    </li>
-    <li class="family-icon" [navPush]="establecimiento">
-      <ion-card>
-        <img src="http://du4zwgdg3nwxa.cloudfront.net/logotipos/k/kf/kfc-quito-ecuador-logo-1347029017.jpg">
-        <div class="titulo-establecimiento centrar">KFC</div>
-      </ion-card>
-    </li>
-    <li class="family-icon" [navPush]="establecimiento">
-      <ion-card>
-        <img src="http://du4zwgdg3nwxa.cloudfront.net/logotipos/b/ba/bar-restaurant-el-dorado-logo.jpg">
-        <div class="titulo-establecimiento centrar">El Dorado</div>
-      </ion-card>
-    </li>
-    <li class="family-icon" [navPush]="establecimiento">
-      <ion-card>
-        <img src="https://img.pystatic.com/restaurants/tabulenewlogo.jpg">
-        <div class="titulo-establecimiento centrar">Tabule</div>
-      </ion-card>
-    </li>
-    <li class="family-icon" [navPush]="establecimiento">
-      <ion-card>
-        <img src="https://img.pystatic.com/restaurants/logosla-caleta---refugio-de-comidas.jpg">
-        <div class="titulo-establecimiento centrar">La Caleta</div>
-      </ion-card>
-    </li>
-    <li class="family-icon" [navPush]="establecimiento">
-      <ion-card>
-        <img src="https://i1.wp.com/www.seeklogo.com/images/J/Juan_Valdez_Cafe-logo-9D9A5C862E-seeklogo.com.gif">
-        <div class="titulo-establecimiento centrar">Juan Valdez</div>
       </ion-card>
     </li>
 </ul>
