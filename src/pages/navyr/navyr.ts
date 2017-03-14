@@ -32,5 +32,8 @@ export class Navyr {
       this.navCtrl.push(Ubicacion);
   }
 
+  openCategoria(categoria) {
+      console.log(categoria);
+  }
 
 }

@@ -64,8 +64,8 @@
 
 <div class="titulo tituloSeccion">Categorías</div>
 <ul class="family-icon-scroller">
-    <li class="family-icon" [navPush]="categoria" *ngFor="let category of categories | async">
-      <ion-card>
+    <li class="family-icon" *ngFor="let category of categories | async">
+      <ion-card  (click)="openCategoria(category)">
         <img [src]="category.url">
       </ion-card>
     </li>
