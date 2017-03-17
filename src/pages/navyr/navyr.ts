@@ -18,13 +18,13 @@ export class Navyr {
   buscar = Buscar;
   promos: FirebaseListObservable<any>;
   categories: FirebaseListObservable<any>;
-  business: FirebaseListObservable<any>;
+  tops: FirebaseListObservable<any>;
   images : URL[];
 
   constructor(public navCtrl: NavController, af: AngularFire, public alertCtrl: AlertController) {
     this.promos = af.database.list('/development/private/businessPromo');
     this.categories = af.database.list('/development/catalogs/businessCategories');
-    this.business = af.database.list('/development/private/businessImages');
+    this.tops = af.database.list('/development/public/topBusiness');
     
   }
 
@@ -32,8 +32,17 @@ export class Navyr {
       this.navCtrl.push(Ubicacion);
   }
 
-  openCategoria(categoria) {
-      console.log(categoria);
+  openCategoria(nombreCategoria) {
+          this.navCtrl.push(Categoria, {
+            nombre: nombreCategoria,
+          });
+  }
+
+  openEstablecimiento(establecimiento) {
+    console.log(establecimiento);
+          this.navCtrl.push(Establecimiento, {
+            idEstablecimiento: establecimiento,
+          });
   }
 
 }

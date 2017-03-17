@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, NavController} from 'ionic-angular';
+import { ModalController, NavController, NavParams} from 'ionic-angular';
 import { Reserva } from '../reserva/reserva';
 import { Navyr } from '../navyr/navyr';
 import {
@@ -9,6 +9,7 @@ import {
   GoogleMapsMarkerOptions,
   GoogleMapsMarker
 } from 'ionic-native';
+import {AngularFire, FirebaseListObservable} from 'angularfire2';
 
 /*
   Generated class for the Establecimiento page.
@@ -21,9 +22,16 @@ import {
   templateUrl: 'establecimiento.html'
 })
 export class Establecimiento {
+  public idEstablecimiento:any;
+  establecimiento: FirebaseListObservable<any>;
+  nombreEstablecimiento : Object;
 
-  constructor(public modalCtrl: ModalController, public navCtrl: NavController) {
-   
+  constructor(public modalCtrl: ModalController, af: AngularFire, public navParams: NavParams, public navCtrl: NavController) {
+    this.idEstablecimiento = navParams.get("idEstablecimiento"); 
+    this.establecimiento = af.database.list('/development/public/business/'+this.idEstablecimiento+'/business');
+    this.establecimiento.forEach(element => {
+        this.nombreEstablecimiento = element;
+        });
   }
 
   /*ionViewDidLoad() {
@@ -41,7 +49,7 @@ export class Establecimiento {
 
 // Load map only after view is initialize
 ngAfterViewInit() {
- this.loadMap();
+ //this.loadMap();
 }
 
 loadMap() {
