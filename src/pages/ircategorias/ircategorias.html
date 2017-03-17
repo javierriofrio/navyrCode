@@ -17,44 +17,9 @@
 
 <ion-content padding>
 <ul class="icon-establecimiento">
-    <li class="family-icon" [navPush]="categoria">
-      <ion-card>
-        <img src="assets/img/categorias/imagenes_categorias_Aulas.png">
-      </ion-card>
-    </li>
-    <li class="family-icon" [navPush]="categoria">
-      <ion-card>
-        <img src="assets/img/categorias/imagenes_categorias_Bares.png">
-      </ion-card>
-    </li>
-    <li class="family-icon" [navPush]="categoria">
-      <ion-card>
-        <img src="assets/img/categorias/imagenes_categorias_Canchas.png">
-      </ion-card>
-    </li>
-    <li class="family-icon" [navPush]="categoria">
-      <ion-card>
-        <img src="assets/img/categorias/imagenes_categorias_Peluquerias.png">
-      </ion-card>
-    </li>
-    <li class="family-icon" [navPush]="categoria">
-      <ion-card>
-        <img src="assets/img/categorias/imagenes_categorias_Restaurantes.png">
-      </ion-card>
-    </li>
-    <li class="family-icon" [navPush]="categoria">
-      <ion-card>
-        <img src="assets/img/categorias/imagenes_categorias_Salas de Eventos.png">
-      </ion-card>
-    </li>
-    <li class="family-icon" [navPush]="categoria">
-      <ion-card>
-        <img src="assets/img/categorias/imagenes_categorias_Spa.png">
-      </ion-card>
-    </li>
-    <li class="family-icon" [navPush]="categoria">
-      <ion-card>
-        <img src="assets/img/categorias/imagenes_categorias_Tours.png">
+   <li class="family-icon" *ngFor="let category of categories | async">
+      <ion-card  (click)="openCategoria(category)">
+        <img [src]="category.url">
       </ion-card>
     </li>
 </ul>
