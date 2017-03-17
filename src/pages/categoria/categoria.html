@@ -58,7 +58,7 @@
 <ul class="family-icon-scroller">
     <li class="family-icon"  *ngFor="let category of categories | async">
       <ion-card>
-        <img [src]="category.$value">
+        <img  ng-if="category.$key != 'url'" [src]="category.$value">
       </ion-card>
     </li>
 </ul>
