@@ -11,7 +11,7 @@ import { NavController, NavParams } from 'ionic-angular';
   selector: 'page-puntos',
   templateUrl: 'puntos.html'
 })
-export class Puntos {
+export class PuntosPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Navyr } from '../navyr/navyr';
+import { NavyrPage } from '../navyr/navyr';
 import {
   GoogleMap,
   GoogleMapsEvent,
@@ -22,14 +22,14 @@ import {
   selector: 'page-ubicacion',
   templateUrl: 'ubicacion.html'
 })
-export class Ubicacion {
+export class UbicacionPage {
 
   constructor( public navCtrl: NavController) {
     this.loadMap();
   }
   
   openRootPage() {
-	  this.navCtrl.setRoot(Navyr);
+	  this.navCtrl.setRoot(NavyrPage);
   }
 
 

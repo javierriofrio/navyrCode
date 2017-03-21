@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Ubicacion } from '../ubicacion/ubicacion';
-import { Navyr } from '../navyr/navyr';
-import {AngularFire, FirebaseListObservable} from 'angularfire2';
+import { UbicacionPage } from '../ubicacion/ubicacion';
+import { NavyrPage } from '../navyr/navyr';
+import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2';
 
 /*
   Generated class for the Categoria page.
@@ -14,13 +14,13 @@ import {AngularFire, FirebaseListObservable} from 'angularfire2';
   selector: 'page-categoria',
   templateUrl: 'categoria.html'
 })
-export class Categoria {
+export class CategoriaPage {
   public nombreCategoria:any;
   categories: FirebaseListObservable<any>;
 
-  constructor(public navCtrl: NavController, af: AngularFire, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public database: AngularFireDatabase, public navParams: NavParams) {
     this.nombreCategoria = navParams.get("nombre"); 
-    this.categories = af.database.list('/development/catalogs/businessCategories/'+this.nombreCategoria);
+    this.categories = this.database.list('/development/catalogs/businessCategories/'+this.nombreCategoria);
                                                                                            
   }                                                     
 
@@ -29,11 +29,11 @@ export class Categoria {
   }
 
     openUbicacion() {
-      this.navCtrl.push(Ubicacion);
+      this.navCtrl.push(UbicacionPage);
   }
    
   openRootPage() {
-	  this.navCtrl.setRoot(Navyr);
+	  this.navCtrl.setRoot(NavyrPage);
   }
 
 }

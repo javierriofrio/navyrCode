@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Navyr } from '../navyr/navyr';
-import { Establecimiento } from '../establecimiento/establecimiento';
+import { NavyrPage } from '../navyr/navyr';
+import { EstablecimientoPage } from '../establecimiento/establecimiento';
 /*
   Generated class for the Buscar page.
 
@@ -12,10 +12,10 @@ import { Establecimiento } from '../establecimiento/establecimiento';
   selector: 'page-buscar',
   templateUrl: 'buscar.html'
 })
-export class Buscar {
+export class BuscarPage {
   searchQuery: string = '';
   items: string[];
-  establecimiento = Establecimiento
+  establecimiento = EstablecimientoPage
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
@@ -24,7 +24,7 @@ export class Buscar {
   }
 
   openRootPage() {
-	  this.navCtrl.setRoot(Navyr);
+	  this.navCtrl.setRoot(NavyrPage);
   }
 
 

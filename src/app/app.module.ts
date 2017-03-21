@@ -1,20 +1,20 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { Navyr } from '../pages/navyr/navyr';
-import { MiCuenta } from '../pages/micuenta/micuenta';
-import { MisReservas } from '../pages/misreservas/misreservas';
-import { Establecimiento } from '../pages/establecimiento/establecimiento';
-import { Categoria } from '../pages/categoria/categoria';
-import { Ajustes } from '../pages/ajustes/ajustes';
+import { NavyrPage } from '../pages/navyr/navyr';
+import { MiCuentaPage } from '../pages/micuenta/micuenta';
+import { MisReservasPage } from '../pages/misreservas/misreservas';
+import { EstablecimientoPage } from '../pages/establecimiento/establecimiento';
+import { CategoriaPage } from '../pages/categoria/categoria';
+import { AjustesPage } from '../pages/ajustes/ajustes';
 import { NgCalendarModule  } from 'ionic2-calendar';
-import { Reserva } from '../pages/reserva/reserva';
-import { Ubicacion } from '../pages/ubicacion/ubicacion';
-import { Favorito } from '../pages/favorito/favorito';
-import { Buscar } from '../pages/buscar/buscar';
-import { Puntos } from '../pages/puntos/puntos';
-import { Ircategorias } from '../pages/ircategorias/ircategorias';
-import { Terminos } from '../pages/terminos/terminos';
+import { ReservaPage } from '../pages/reserva/reserva';
+import { UbicacionPage } from '../pages/ubicacion/ubicacion';
+import { FavoritoPage } from '../pages/favorito/favorito';
+import { BuscarPage } from '../pages/buscar/buscar';
+import { PuntosPage } from '../pages/puntos/puntos';
+import { IrcategoriasPage } from '../pages/ircategorias/ircategorias';
+import { TerminosPage } from '../pages/terminos/terminos';
 
 // Import the AF2 Module
 import { AngularFireModule } from 'angularfire2';
@@ -30,19 +30,19 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    Navyr,
-    MiCuenta,
-    MisReservas,
-    Establecimiento,
-    Categoria,
-    Ajustes,
-    Reserva,
-    Ubicacion,
-    Favorito,
-    Buscar,
-    Puntos,
-    Ircategorias,
-    Terminos
+    NavyrPage,
+    MiCuentaPage,
+    MisReservasPage,
+    EstablecimientoPage,
+    CategoriaPage,
+    AjustesPage,
+    ReservaPage,
+    UbicacionPage,
+    FavoritoPage,
+    BuscarPage,
+    PuntosPage,
+    IrcategoriasPage,
+    TerminosPage
   ],
   imports: [
     NgCalendarModule,
@@ -52,19 +52,19 @@ export const firebaseConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    Navyr,
-    MiCuenta,
-    MisReservas,
-    Establecimiento,
-    Categoria,
-    Ajustes,
-    Reserva,
-    Ubicacion,
-    Favorito,
-    Buscar,
-    Puntos,
-    Ircategorias,
-    Terminos
+    NavyrPage,
+    MiCuentaPage,
+    MisReservasPage,
+    EstablecimientoPage,
+    CategoriaPage,
+    AjustesPage,
+    ReservaPage,
+    UbicacionPage,
+    FavoritoPage,
+    BuscarPage,
+    PuntosPage,
+    IrcategoriasPage,
+    TerminosPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

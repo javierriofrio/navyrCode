@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Navyr } from '../navyr/navyr';
+import { NavyrPage } from '../navyr/navyr';
 
 /*
   Generated class for the Misreservas page.
@@ -12,7 +12,7 @@ import { Navyr } from '../navyr/navyr';
   selector: 'page-misreservas',
   templateUrl: 'misreservas.html'
 })
-export class MisReservas {
+export class MisReservasPage {
    eventSource;
     viewTitle;
 
@@ -104,7 +104,7 @@ export class MisReservas {
 };
 
   openRootPage() {
-	  this.navCtrl.setRoot(Navyr);
+	  this.navCtrl.setRoot(NavyrPage);
   }
 
 }

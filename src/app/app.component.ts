@@ -2,15 +2,15 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
-import { Navyr } from '../pages/navyr/navyr';
-import { MiCuenta } from '../pages/micuenta/micuenta';
-import { MisReservas } from '../pages/misreservas/misreservas';
-import { Ajustes } from '../pages/ajustes/ajustes';
-import { Favorito } from '../pages/favorito/favorito';
-import { Buscar } from '../pages/buscar/buscar';
-import { Puntos } from '../pages/puntos/puntos';
-import { Ircategorias } from '../pages/ircategorias/ircategorias';
-import { Terminos } from '../pages/terminos/terminos';
+import { NavyrPage } from '../pages/navyr/navyr';
+import { MiCuentaPage } from '../pages/micuenta/micuenta';
+import { MisReservasPage } from '../pages/misreservas/misreservas';
+import { AjustesPage } from '../pages/ajustes/ajustes';
+import { FavoritoPage } from '../pages/favorito/favorito';
+import { BuscarPage } from '../pages/buscar/buscar';
+import { PuntosPage } from '../pages/puntos/puntos';
+import { IrcategoriasPage } from '../pages/ircategorias/ircategorias';
+import { TerminosPage } from '../pages/terminos/terminos';
 
 
 @Component({
@@ -19,7 +19,7 @@ import { Terminos } from '../pages/terminos/terminos';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = Navyr;
+  rootPage: any = NavyrPage;
 
   pages: Array<{title: string, component: any, icon: string}>;
 
@@ -30,22 +30,22 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Inicio', component: Navyr, icon: 'home' },
-      { title: 'Mi Cuenta', component: MiCuenta, icon: 'contact' },
-      { title: 'Mis Reservas', component: MisReservas, icon: 'calendar' },
-      { title: 'Mis Navyr Puntos', component: Puntos, icon: 'ribbon' },
-      { title: 'Ir a Categorias', component: Ircategorias, icon: 'folder-open' },
-      { title: 'Buscar', component: Buscar, icon: 'search' },
-      { title: 'Favoritos', component: Favorito, icon: 'star' },
-      { title: 'Cerrar Sesión', component: MisReservas, icon: 'log-out' }
+      { title: 'Inicio', component: NavyrPage, icon: 'home' },
+      { title: 'Mi Cuenta', component: MiCuentaPage, icon: 'contact' },
+      { title: 'Mis Reservas', component: MisReservasPage, icon: 'calendar' },
+      { title: 'Mis Navyr Puntos', component: PuntosPage, icon: 'ribbon' },
+      { title: 'Ir a Categorias', component: IrcategoriasPage, icon: 'folder-open' },
+      { title: 'Buscar', component: BuscarPage, icon: 'search' },
+      { title: 'Favoritos', component: FavoritoPage, icon: 'star' },
+      { title: 'Cerrar Sesión', component: MisReservasPage, icon: 'log-out' }
     ];
 
     this.pages2 = [
-      { title: 'Ajustes', component: Ajustes, icon: 'settings' },
-      { title: 'Términos y Condiciones', component: Terminos, icon: 'clipboard' },
-      { title: 'Compartir App', component: MisReservas, icon: 'share' },
-      { title: 'Contacto', component: MisReservas, icon: 'mail' },
-      { title: 'Acerca De', component: MisReservas, icon: 'happy' }
+      { title: 'Ajustes', component: AjustesPage, icon: 'settings' },
+      { title: 'Términos y Condiciones', component: TerminosPage, icon: 'clipboard' },
+      { title: 'Compartir App', component: MisReservasPage, icon: 'share' },
+      { title: 'Contacto', component: MisReservasPage, icon: 'mail' },
+      { title: 'Acerca De', component: MisReservasPage, icon: 'happy' }
     ];
 
   }
@@ -66,7 +66,7 @@ export class MyApp {
   }
 
   openRootPage() {
-	  this.nav.setRoot(Navyr);
+	  this.nav.setRoot(NavyrPage);
   }
   
 }

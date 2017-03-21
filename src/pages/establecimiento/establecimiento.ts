@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalController, NavController, NavParams} from 'ionic-angular';
-import { Reserva } from '../reserva/reserva';
-import { Navyr } from '../navyr/navyr';
+import { ReservaPage } from '../reserva/reserva';
+import { NavyrPage } from '../navyr/navyr';
 import {
   GoogleMap,
   GoogleMapsEvent,
@@ -9,7 +9,9 @@ import {
   GoogleMapsMarkerOptions,
   GoogleMapsMarker
 } from 'ionic-native';
-import {AngularFire, FirebaseListObservable} from 'angularfire2';
+import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2';
+
+import { Establecimiento } from '../commons/establecimiento';
 
 /*
   Generated class for the Establecimiento page.
@@ -21,17 +23,22 @@ import {AngularFire, FirebaseListObservable} from 'angularfire2';
   selector: 'page-establecimiento',
   templateUrl: 'establecimiento.html'
 })
-export class Establecimiento {
+export class EstablecimientoPage {
   public idEstablecimiento:any;
   establecimiento: FirebaseListObservable<any>;
   nombreEstablecimiento : Object;
 
-  constructor(public modalCtrl: ModalController, af: AngularFire, public navParams: NavParams, public navCtrl: NavController) {
+  constructor(public modalCtrl: ModalController, public database: AngularFireDatabase, public navParams: NavParams, public navCtrl: NavController) {
     this.idEstablecimiento = navParams.get("idEstablecimiento"); 
-    this.establecimiento = af.database.list('/development/public/business/'+this.idEstablecimiento+'/business');
-    this.establecimiento.forEach(element => {
-        this.nombreEstablecimiento = element;
-        });
+
+    alert(this.idEstablecimiento);
+    
+    this.establecimiento = this.database.list('/development/public/business/'+this.idEstablecimiento+'/business');
+    
+    this.establecimiento.forEach(item => {
+        console.log('Item:', item[0].$value);
+    });
+
   }
 
   /*ionViewDidLoad() {
@@ -39,12 +46,12 @@ export class Establecimiento {
   }*/
 
   abrirReserva() {
-      let profileModal = this.modalCtrl.create(Reserva);
+      let profileModal = this.modalCtrl.create(ReservaPage);
       profileModal.present();
   }
 
   openRootPage() {
-	  this.navCtrl.setRoot(Navyr);
+	  this.navCtrl.setRoot(NavyrPage);
   }
 
 // Load map only after view is initialize
@@ -115,3 +122,4 @@ loadMap() {
 
 
 }
+

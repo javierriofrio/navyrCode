@@ -3,13 +3,13 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Camera } from 'ionic-native';
 import {DomSanitizer} from '@angular/platform-browser';
-import { Navyr } from '../navyr/navyr';
+import { NavyrPage } from '../navyr/navyr';
 
 @Component({
   selector: 'page-micuenta',
   templateUrl: 'micuenta.html'
 })
-export class MiCuenta {
+export class MiCuentaPage {
   cameraData: string;
   photoTaken: boolean;
   cameraUrl: string;
@@ -33,7 +33,7 @@ export class MiCuenta {
   }
   
   openRootPage() {
-	  this.navCtrl.setRoot(Navyr);
+	  this.navCtrl.setRoot(NavyrPage);
   }
 
 }

@@ -11,7 +11,7 @@ import { Platform, ViewController, NavParams } from 'ionic-angular';
   selector: 'page-reserva',
   templateUrl: 'reserva.html'
 })
-export class Reserva {
+export class ReservaPage {
 
   constructor(
     public platform: Platform,

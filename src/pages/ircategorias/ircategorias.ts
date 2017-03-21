@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Categoria } from '../categoria/categoria';
+import { CategoriaPage } from '../categoria/categoria';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 
 /*
@@ -13,9 +13,9 @@ import {AngularFire, FirebaseListObservable} from 'angularfire2';
   selector: 'page-ircategorias',
   templateUrl: 'ircategorias.html'
 })
-export class Ircategorias {
+export class IrcategoriasPage {
 
-  categoria = Categoria;
+  categoria = CategoriaPage;
   categories: FirebaseListObservable<any>;
 
   constructor(public navCtrl: NavController, af : AngularFire, public navParams: NavParams) {

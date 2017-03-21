@@ -11,7 +11,7 @@ import { NavController, NavParams } from 'ionic-angular';
   selector: 'page-terminos',
   templateUrl: 'terminos.html'
 })
-export class Terminos {
+export class TerminosPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
