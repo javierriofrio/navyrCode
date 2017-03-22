@@ -17,10 +17,17 @@ import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2';
 export class CategoriaPage {
   public nombreCategoria:any;
   categories: FirebaseListObservable<any>;
+  listPromos: FirebaseListObservable<any>;
+  tops: FirebaseListObservable<any>;
+  importants: FirebaseListObservable<any>;
 
   constructor(public navCtrl: NavController, public database: AngularFireDatabase, public navParams: NavParams) {
     this.nombreCategoria = navParams.get("nombre"); 
     this.categories = this.database.list('/development/catalogs/businessCategories/'+this.nombreCategoria);
+    this.listPromos = this.database.list('/development/private/businessPromo');
+    //this.categories = this.database.list('/development/catalogs/businessCategories');
+    this.tops = this.database.list('/development/public/topBusiness');
+    this.importants = this.database.list('/development/public/topImportantBusiness');
                                                                                            
   }                                                     
 

@@ -7,12 +7,19 @@
 <ion-header>
 
   <ion-navbar>
-      <ion-title></ion-title>
+      <ion-title>{{establecimiento?.businessName}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
+
+  <ion-slides  class="slider-home"  slider="slider1">
+    <ion-slide *ngFor="let promo of listaPromociones | async">
+        <img [src]="promo.url">
+    </ion-slide>
+  </ion-slides>
+<!--
   <ion-slides options="{'loop': true}" slider="slider1" delegate-handle="slider1" id="navyr-slider1" style="width:100%;height:200px;">
     <ion-slide>
       <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTysjSATK43aN4HGxSxf6o5M8-MX7IkpJk6-COwlGSIrNaVWvFR">
@@ -24,24 +31,18 @@
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqKTId0F1LP5ZY-lZaVlLOR9QemSRn_j_FRXzl8Jr422pOs_fM">
     </ion-slide>
   </ion-slides>  
-
+-->
  <ion-fab bottom class="boton-reserva">
    <button ion-fab (click)="abrirReserva()">Reservar</button>
  </ion-fab>
 <ion-fab class="" top right edge>
  <button ion-fab mini class="favoritos" ion-fab><ion-icon  name="star"></ion-icon></button>
 </ion-fab>
-  <ion-title>Pizza Hut</ion-title>
   <h4>Servicios</h4>
-  <ion-list>
+  <ion-list  *ngFor="let service of listServices | async">
     <ion-item ion-item>
-      <ion-icon name="wifi" item-left></ion-icon>WIFI<ion-icon name="checkmark-circle" item-right></ion-icon>
-    </ion-item>
-    <ion-item ion-item>
-      <ion-icon name="car" item-left></ion-icon>Parqueadero<ion-icon name="checkmark-circle" item-right></ion-icon>
-    </ion-item>
-    <ion-item ion-item>
-      <ion-icon name="paw" item-left></ion-icon>Mascotas<ion-icon name="close-circle" item-right></ion-icon>
+      
+      <ion-icon name="{{service.icon}}" item-left></ion-icon>{{service.nombre}}<ion-icon name="{{service.available ? 'checkmark-circle' : 'close-circle'}}" item-right></ion-icon>
     </ion-item>
   </ion-list>
   <h4>Información</h4>

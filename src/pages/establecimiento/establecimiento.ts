@@ -9,9 +9,9 @@ import {
   GoogleMapsMarkerOptions,
   GoogleMapsMarker
 } from 'ionic-native';
-import {AngularFireDatabase, FirebaseObjectObservable} from 'angularfire2';
+import {AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable} from 'angularfire2';
 
-import { Establecimiento } from '../../commons/establecimiento';
+//import { Establecimiento } from '../../commons/establecimiento';
 
 /*
   Generated class for the Establecimiento page.
@@ -26,28 +26,32 @@ import { Establecimiento } from '../../commons/establecimiento';
 export class EstablecimientoPage {
   public idEstablecimiento:any;
   establecimientoData: FirebaseObjectObservable<any>;
-  establecimiento : Establecimiento;
+  listaPromociones : FirebaseListObservable<any>;
+  establecimiento : Object;
+  listServices: FirebaseListObservable<any>;
 
   constructor(public modalCtrl: ModalController, public database: AngularFireDatabase, public navParams: NavParams, public navCtrl: NavController) {
     this.idEstablecimiento = navParams.get("idEstablecimiento"); 
-
-    alert(this.idEstablecimiento);
     
+    this.listaPromociones = this.database.list('/development/private/businessImages/'+this.idEstablecimiento+'/galerias');
     this.establecimientoData = this.database.object('/development/public/business/'+this.idEstablecimiento+'/business');
     
     this.establecimientoData.forEach(item => {
-        
-        this.establecimiento.id = item.id;
-        this.establecimiento.nombre = item.businessName;
-        this.establecimiento.descripcion = item.description;
+        this.establecimiento = item;
 
     });
 
+    this.listServices = this.database.list('/development/private/businessServices/'+this.idEstablecimiento+'/services');
+this.listServices.forEach(item => {
+        console.log(item);
+
+    });
   }
 
-  /*ionViewDidLoad() {
-    this.loadMap()
-  }*/
+  ionViewDidLoad() {
+    //this.loadMap()
+    //this.establecimiento.id = 
+  }
 
   abrirReserva() {
       let profileModal = this.modalCtrl.create(ReservaPage);

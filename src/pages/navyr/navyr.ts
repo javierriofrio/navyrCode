@@ -40,7 +40,6 @@ export class NavyrPage {
   }
 
   openEstablecimiento(establecimiento) {
-    console.log(establecimiento);
           this.navCtrl.push(EstablecimientoPage, {
             idEstablecimiento: establecimiento,
           });
