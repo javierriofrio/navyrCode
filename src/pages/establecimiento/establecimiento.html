@@ -38,11 +38,11 @@
 <ion-fab class="" top right edge>
  <button ion-fab mini class="favoritos" ion-fab><ion-icon  name="star"></ion-icon></button>
 </ion-fab>
+
   <h4>Servicios</h4>
-  <ion-list  *ngFor="let service of listServices | async">
-    <ion-item ion-item>
-      
-      <ion-icon name="{{service.icon}}" item-left></ion-icon>{{service.nombre}}<ion-icon name="{{service.available ? 'checkmark-circle' : 'close-circle'}}" item-right></ion-icon>
+  <ion-list>
+    <ion-item ion-item *ngFor="let service of listServices | async">
+      <ion-icon name="{{service.icon}}" item-left></ion-icon>{{service.name}}<ion-icon name="checkmark-circle" item-right></ion-icon>
     </ion-item>
   </ion-list>
   <h4>Información</h4>
@@ -50,36 +50,33 @@
     <ion-item ion-item>
       <ion-icon name="calendar" item-left></ion-icon>
       <h4>Horario de Atención:</h4>
-      <p>Lunes - Viernes : 08:00 - 18:00</p>
-      <p>Sabado y Domingo : 10:00 - 16:00</p>
+      <p *ngFor="let schedule of listSchedules | async">
+        {{schedule.getString + schedule.open + " - " + schedule.close}}
+      </p>
     </ion-item>
     <ion-item ion-item>
       <ion-icon name="logo-usd" item-left></ion-icon>
       <h4>Precio Promedio:</h4>
-      <p>10$</p>
+      <p>{{feature?.price + "$"}}</p>
     </ion-item>
     <ion-item ion-item>
-      <ion-icon name="time" item-left></ion-icon>
-      <h4>Tiempo Permanencia:</h4>
-      <p>2 horas</p>
+      <ion-icon name="locate" item-left></ion-icon>
+      <h4>Dirección:</h4>
+      <p>{{direccion?.mainStreet + " " + direccion?.number + ", " + direccion?.sideStreet}}</p>
     </ion-item>
     <ion-item ion-item>
-      <ion-icon name="timer" item-left></ion-icon>
-      <h3>Tiempo Validez Reserva:</h3>
-      <p>15 min</p>
-    </ion-item>
-    <ion-item ion-item>
-      <ion-icon name="people" item-left></ion-icon>
-      <h3>Capacidad:</h3>
-      <p>80 personas</p>
-    </ion-item>
-    <ion-item ion-item>
-      <ion-icon name="contacts" item-left></ion-icon>
-      <h3>Clientes por Mesa:</h3>
-      <p>8 personas</p>
+      <ion-icon name="at" item-left></ion-icon>
+      <h4>Dirección Web:</h4>
+      <p>{{establecimiento?.webPage}}</p>
     </ion-item>
   </ion-list>
- 
+
+  <h4>Métodos de Pago</h4>
+  <ion-list class="payment_method">
+    <ion-item ion-item   *ngFor="let payment of listPayment | async">
+      <ion-icon name="{{payment.$key == 'cash'? 'logo-usd' : 'card'}}" item-left></ion-icon>{{payment.$key}}<ion-icon name="checkmark-circle" item-right></ion-icon>
+    </ion-item>
+  </ion-list>
   <h4>Ubicación</h4>
   <div #map id="map"></div>
 </ion-content>

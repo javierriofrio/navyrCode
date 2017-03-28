@@ -20,7 +20,7 @@ export class IrcategoriasPage {
   categories: FirebaseListObservable<any>;
 
   constructor(public navCtrl: NavController, database : AngularFireDatabase, public navParams: NavParams) {
-    this.categories = database.list('/development/catalogs/businessCategories');
+    this.categories = database.list('/development/shared/businessCategories');
   }
 
   ionViewDidLoad() {

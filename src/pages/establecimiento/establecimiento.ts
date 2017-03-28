@@ -11,6 +11,9 @@ import {
 } from 'ionic-native';
 import {AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable} from 'angularfire2';
 
+//commons
+import { Payment } from '../../commons/payment';
+
 //import { Establecimiento } from '../../commons/establecimiento';
 
 /*
@@ -28,29 +31,48 @@ export class EstablecimientoPage {
   establecimientoData: FirebaseObjectObservable<any>;
   listaPromociones : FirebaseListObservable<any>;
   establecimiento : Object;
+  feature : Object;
+  direccion : Object;
+  public latitude: number;
+  public longitude: number;
   listServices: FirebaseListObservable<any>;
+  listFeatures: FirebaseObjectObservable<any>;
+  listPayment: FirebaseListObservable<any>;
+  listSchedules: FirebaseListObservable<any>;
+  listDireccion: FirebaseObjectObservable<any>;
+  public payment: Payment;
 
+
+  
   constructor(public modalCtrl: ModalController, public database: AngularFireDatabase, public navParams: NavParams, public navCtrl: NavController) {
     this.idEstablecimiento = navParams.get("idEstablecimiento"); 
     
     this.listaPromociones = this.database.list('/development/private/businessImages/'+this.idEstablecimiento+'/galerias');
-    this.establecimientoData = this.database.object('/development/public/business/'+this.idEstablecimiento+'/business');
+    this.establecimientoData  = this.database.object('/development/public/business/'+this.idEstablecimiento+'/business');
+    this.listServices = this.database.list('/development/public/business/'+this.idEstablecimiento+'/businessServices/services');
+    this.listFeatures = this.database.object('/development/public/business/'+this.idEstablecimiento+'/businessServices/features');
+    this.listPayment = this.database.list('/development/public/business/'+this.idEstablecimiento+'/businessServices/paymentForms');
+    this.listSchedules = this.database.list('/development/public/business/'+this.idEstablecimiento+'/businessServices/schedules');
+    this.listDireccion = this.database.object('/development/public/business/'+this.idEstablecimiento+'/businessAddresses');
     
     this.establecimientoData.forEach(item => {
         this.establecimiento = item;
-
     });
 
-    this.listServices = this.database.list('/development/private/businessServices/'+this.idEstablecimiento+'/services');
-this.listServices.forEach(item => {
-        console.log(item);
-
+    this.listFeatures.forEach(item => {
+        this.feature = item;
     });
+
+    this.listDireccion.forEach(item => {
+        this.direccion = item;
+        console.log(item.latitude);
+    });
+
+
   }
 
   ionViewDidLoad() {
     //this.loadMap()
-    //this.establecimiento.id = 
   }
 
   abrirReserva() {
@@ -62,9 +84,17 @@ this.listServices.forEach(item => {
 	  this.navCtrl.setRoot(NavyrPage);
   }
 
+  generateArray(obj){
+    return Object.keys(obj).map((key)=>{ return obj[key]});
+  }
+
 // Load map only after view is initialize
 ngAfterViewInit() {
  //this.loadMap();
+}
+
+getPaymentMethod(paymentId:string){
+  this.payment = this.database.object('/shared/catalogs/paymentForms/'+paymentId);
 }
 
 loadMap() {
@@ -78,7 +108,7 @@ loadMap() {
  let element: HTMLElement = document.getElementById('map');
 
  // create LatLng object
- let ionic: GoogleMapsLatLng = new GoogleMapsLatLng(43.0741904,-89.3809802);
+ let ionic: GoogleMapsLatLng = new GoogleMapsLatLng(this.latitude,this.longitude);
  let map = new GoogleMap(element,{
         'backgroundColor': 'white',
         'controls': {
