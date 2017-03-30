@@ -23,7 +23,7 @@ export class NavyrPage {
 
   constructor(public navCtrl: NavController, public database: AngularFireDatabase, public alertCtrl: AlertController) {
     this.promos = this.database.list('/development/public/businessPromo');
-    this.categories = this.database.list('/development/shared/businessCategories');
+    this.categories = this.database.list('/development/shared/catalogs/businessCategories');
     this.tops = this.database.list('/development/public/topBusiness');
     this.importants = this.database.list('/development/public/topImportantBusiness');
     

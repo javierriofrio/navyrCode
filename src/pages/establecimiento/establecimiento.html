@@ -7,19 +7,19 @@
 <ion-header>
 
   <ion-navbar>
-      <ion-title>{{establecimiento?.businessName}}</ion-title>
+    <ion-title>{{establecimiento?.businessName}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
 
-  <ion-slides  class="slider-home"  slider="slider1">
-    <ion-slide *ngFor="let promo of listaPromociones | async">
-        <img [src]="promo.url">
+  <ion-slides class="slider-home" slider="slider1">
+    <ion-slide pager="true" *ngFor="let photo of galeryBussiness | async">
+      <img [src]="photo.url">
     </ion-slide>
   </ion-slides>
-<!--
+  <!--
   <ion-slides options="{'loop': true}" slider="slider1" delegate-handle="slider1" id="navyr-slider1" style="width:100%;height:200px;">
     <ion-slide>
       <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTysjSATK43aN4HGxSxf6o5M8-MX7IkpJk6-COwlGSIrNaVWvFR">
@@ -32,17 +32,22 @@
     </ion-slide>
   </ion-slides>  
 -->
- <ion-fab bottom class="boton-reserva">
-   <button ion-fab (click)="abrirReserva()">Reservar</button>
- </ion-fab>
-<ion-fab class="" top right edge>
- <button ion-fab mini class="favoritos" ion-fab><ion-icon  name="star"></ion-icon></button>
-</ion-fab>
+  <ion-fab bottom class="boton-reserva">
+    <button ion-fab (click)="abrirReserva()">Reservar</button>
+  </ion-fab>
+  <ion-fab class="" top right edge>
+    <button ion-fab mini class="favoritos" ion-fab><ion-icon  name="star"></ion-icon></button>
+  </ion-fab>
+
+  <p>
+    {{getEstablecimientoData()?.description}}
+  </p>
 
   <h4>Servicios</h4>
   <ion-list>
-    <ion-item ion-item *ngFor="let service of listServices | async">
-      <ion-icon name="{{service.icon}}" item-left></ion-icon>{{service.name}}<ion-icon name="checkmark-circle" item-right></ion-icon>
+    <ion-item ion-item *ngFor="let service of listCatalogServices | async">
+      <ion-icon name="{{service.iconMobile}}" item-left></ion-icon>{{service.name}}
+      <ion-icon name="{{getService(service.$key) ? 'checkmark-circle' : 'close-circle'}}" item-right></ion-icon>
     </ion-item>
   </ion-list>
   <h4>Información</h4>
@@ -57,24 +62,25 @@
     <ion-item ion-item>
       <ion-icon name="logo-usd" item-left></ion-icon>
       <h4>Precio Promedio:</h4>
-      <p>{{feature?.price + "$"}}</p>
+      <p>{{getFeature()?.price + "$"}}</p>
     </ion-item>
     <ion-item ion-item>
       <ion-icon name="locate" item-left></ion-icon>
       <h4>Dirección:</h4>
-      <p>{{direccion?.mainStreet + " " + direccion?.number + ", " + direccion?.sideStreet}}</p>
+      <p>{{getDireccion()?.mainStreet + " " + getDireccion()?.number + ", " + getDireccion()?.sideStreet}}</p>
     </ion-item>
     <ion-item ion-item>
       <ion-icon name="at" item-left></ion-icon>
       <h4>Dirección Web:</h4>
-      <p>{{establecimiento?.webPage}}</p>
+      <p>{{getEstablecimientoData()?.webPage}}</p>
     </ion-item>
   </ion-list>
 
   <h4>Métodos de Pago</h4>
   <ion-list class="payment_method">
-    <ion-item ion-item   *ngFor="let payment of listPayment | async">
-      <ion-icon name="{{payment.$key == 'cash'? 'logo-usd' : 'card'}}" item-left></ion-icon>{{payment.$key}}<ion-icon name="checkmark-circle" item-right></ion-icon>
+    <ion-item ion-item *ngFor="let payment of listPayment | async">
+      <ion-icon name="{{payment.$key == 'cash'? 'logo-usd' : 'card'}}" item-left></ion-icon>{{getPayment(payment.$key)}}
+      <ion-icon name="checkmark-circle" item-right></ion-icon>
     </ion-item>
   </ion-list>
   <h4>Ubicación</h4>

@@ -23,11 +23,12 @@ export class CategoriaPage {
 
   constructor(public navCtrl: NavController, public database: AngularFireDatabase, public navParams: NavParams) {
     this.nombreCategoria = navParams.get("nombre"); 
-    this.categories = this.database.list('/development/shared/businessCategories/'+this.nombreCategoria);
+    this.categories = this.database.list('/development/shared/catalogs/businessCategories/'+this.nombreCategoria);
     this.listPromos = this.database.list('/development/public/businessPromo');
     //this.categories = this.database.list('/development/catalogs/businessCategories');
     this.tops = this.database.list('/development/public/topBusiness');
     this.importants = this.database.list('/development/public/topImportantBusiness');
+
                                                                                            
   }                                                     
 
