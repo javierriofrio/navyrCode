@@ -15,6 +15,8 @@ import { BuscarPage } from '../pages/buscar/buscar';
 import { PuntosPage } from '../pages/puntos/puntos';
 import { IrcategoriasPage } from '../pages/ircategorias/ircategorias';
 import { TerminosPage } from '../pages/terminos/terminos';
+import { LoginPage } from '../pages/login/login';
+import { AuthService } from '../providers/auth-service';
 
 // Import the AF2 Module
 import { AngularFireModule } from 'angularfire2';
@@ -42,7 +44,8 @@ export const firebaseConfig = {
     BuscarPage,
     PuntosPage,
     IrcategoriasPage,
-    TerminosPage
+    TerminosPage,
+    LoginPage
   ],
   imports: [
     NgCalendarModule,
@@ -64,9 +67,10 @@ export const firebaseConfig = {
     BuscarPage,
     PuntosPage,
     IrcategoriasPage,
-    TerminosPage
+    TerminosPage,
+    LoginPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService]
 })
 export class AppModule {}
 // AF2 Settings

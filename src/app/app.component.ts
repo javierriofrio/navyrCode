@@ -11,6 +11,9 @@ import { BuscarPage } from '../pages/buscar/buscar';
 import { PuntosPage } from '../pages/puntos/puntos';
 import { IrcategoriasPage } from '../pages/ircategorias/ircategorias';
 import { TerminosPage } from '../pages/terminos/terminos';
+import { LoginPage } from '../pages/login/login';
+import { AuthService } from '../providers/auth-service';
+import { AngularFire } from 'angularfire2';
 
 
 @Component({
@@ -21,35 +24,47 @@ export class MyApp {
 
   rootPage: any = NavyrPage;
 
-  pages: Array<{title: string, component: any, icon: string}>;
+  auth: AuthService;
 
-  pagesLogOut: Array<{title: string, component: any, icon: string}>;
+  pages: Array<{ title: string, component: any, icon: string }>;
 
-  pages2: Array<{title: string, component: any, icon: string}>;
+  pagesLogOut: Array<{ title: string, component: any, icon: string }>;
 
-  constructor(public platform: Platform) {
+  pages2: Array<{ title: string, component: any, icon: string }>;
+
+  constructor(public platform: Platform, private af: AngularFire) {
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Inicio', component: NavyrPage, icon: 'home' },
-      { title: 'Mi Cuenta', component: MiCuentaPage, icon: 'contact' },
-      { title: 'Mis Reservas', component: MisReservasPage, icon: 'calendar' },
-      { title: 'Mis Navyr Puntos', component: PuntosPage, icon: 'ribbon' },
-      { title: 'Ir a Categorias', component: IrcategoriasPage, icon: 'folder-open' },
-      { title: 'Buscar', component: BuscarPage, icon: 'search' },
-      { title: 'Favoritos', component: FavoritoPage, icon: 'star' },
-      { title: 'Cerrar Sesión', component: MisReservasPage, icon: 'log-out' }
-    ];
+    const authObserver = af.auth.subscribe(user => {
+      console.log(user);
+      if (user) {
+        this.pages = [
+          { title: 'Inicio', component: NavyrPage, icon: 'home' },
+          { title: 'Mi Cuenta', component: MiCuentaPage, icon: 'contact' },
+          { title: 'Mis Reservas', component: MisReservasPage, icon: 'calendar' },
+          { title: 'Mis Navyr Puntos', component: PuntosPage, icon: 'ribbon' },
+          { title: 'Ir a Categorias', component: IrcategoriasPage, icon: 'folder-open' },
+          { title: 'Buscar', component: BuscarPage, icon: 'search' },
+          { title: 'Favoritos', component: FavoritoPage, icon: 'star' },
+          { title: 'Cerrar Sesión', component: MisReservasPage, icon: 'log-out' }
+        ];
+        authObserver.unsubscribe();
+      } else {
+        this.pages = [
+          { title: 'Inicio', component: NavyrPage, icon: 'home' },
+          { title: 'Ir a Categorias', component: IrcategoriasPage, icon: 'folder-open' },
+          { title: 'Buscar', component: BuscarPage, icon: 'search' },
+          { title: 'Favoritos', component: FavoritoPage, icon: 'star' },
+          { title: 'Crear Cuenta', component: MisReservasPage, icon: 'person-add' },
+          { title: 'Iniciar Sesión', component: LoginPage, icon: 'log-in' }
+        ];
+        authObserver.unsubscribe();
+      }
+    });
 
-    this.pagesLogOut = [
-      { title: 'Inicio', component: NavyrPage, icon: 'home' },
-      { title: 'Ir a Categorias', component: IrcategoriasPage, icon: 'folder-open' },
-      { title: 'Buscar', component: BuscarPage, icon: 'search' },
-      { title: 'Favoritos', component: FavoritoPage, icon: 'star' },
-      { title: 'Crear Cuenta', component: MisReservasPage, icon: 'person-add' },
-      { title: 'Iniciar Sesión', component: MisReservasPage, icon: 'log-in' }
-    ];
+    // used for an example of ngFor and navigation
+
+
 
     this.pages2 = [
       { title: 'Ajustes', component: AjustesPage, icon: 'settings' },
@@ -77,7 +92,7 @@ export class MyApp {
   }
 
   openRootPage() {
-	  this.nav.setRoot(NavyrPage);
+    this.nav.setRoot(NavyrPage);
   }
-  
+
 }

@@ -16,6 +16,13 @@ export class AuthService {
     return this.authState !== null;
   }
 
+  loginUser(newEmail: string, newPassword: string): firebase.Promise<any> {
+    return this.auth$.login({
+      email: newEmail,
+      password: newPassword
+    });
+  }
+
   signInWithFacebook(): firebase.Promise<FirebaseAuthState> {
     return this.auth$.login({
       provider: AuthProviders.Facebook,
