@@ -26,7 +26,7 @@ import { Establecimiento } from '../../commons/establecimiento';
 export class EstablecimientoPage {
   public idEstablecimiento:any;
   establecimientoData: FirebaseObjectObservable<any>;
-  establecimiento : Establecimiento;
+  establecimiento : Object;
 
   constructor(public modalCtrl: ModalController, public database: AngularFireDatabase, public navParams: NavParams, public navCtrl: NavController) {
     this.idEstablecimiento = navParams.get("idEstablecimiento"); 
@@ -37,9 +37,7 @@ export class EstablecimientoPage {
     
     this.establecimientoData.forEach(item => {
         
-        this.establecimiento.id = item.id;
-        this.establecimiento.nombre = item.businessName;
-        this.establecimiento.descripcion = item.description;
+        this.establecimiento = item.nombre
 
     });
 
