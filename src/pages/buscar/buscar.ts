@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { NavyrPage } from '../navyr/navyr';
 import { EstablecimientoPage } from '../establecimiento/establecimiento';
+import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2';
 /*
   Generated class for the Buscar page.
 

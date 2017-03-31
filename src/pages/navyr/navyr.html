@@ -12,7 +12,7 @@
 
 <ion-content padding>
 
-<ion-slides  class="slider-home"  slider="slider1">
+<ion-slides pager="true" autoplay="true" autoplayDisableOnInteraction="false" class="slider-home"  slider="slider1">
   <ion-slide *ngFor="let promo of promos | async">
     <img [src]="promo.url">
   </ion-slide>

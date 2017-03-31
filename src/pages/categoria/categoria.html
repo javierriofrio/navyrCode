@@ -26,31 +26,16 @@
     </ion-slide>
   </ion-slides>-->
   <ion-slides  class="slider-home"  slider="slider1">
-    <ion-slide *ngFor="let category of categories | async">
-      <img [src]="category.$value">
+    <ion-slide *ngFor="let promo of listPromos | async">
+      <img [src]="promo.url">
     </ion-slide>
   </ion-slides>
 <div class="titulo tituloSeccion">Top Establecimientos</div>
 
 <ul class="family-icon-scroller">
-    <li class="family-icon" [navPush]="establecimiento">
+    <li class="family-icon"  *ngFor="let top of tops | async" (tap)="openEstablecimiento(top.$key)">
       <ion-card>
-        <img src="http://vignette1.wikia.nocookie.net/logopedia/images/6/63/Pizza_Hut_2012_logo.png/revision/latest?cb=20140507122847">
-      </ion-card>
-    </li>
-    <li class="family-icon" [navPush]="establecimiento">
-      <ion-card>
-        <img src="https://img.pystatic.com/restaurants/tabulenewlogo.jpg">
-      </ion-card>
-    </li>
-    <li class="family-icon" [navPush]="establecimiento">
-      <ion-card>
-        <img src="https://img.pystatic.com/restaurants/logosla-caleta---refugio-de-comidas.jpg">
-      </ion-card>
-    </li>
-    <li class="family-icon" [navPush]="establecimiento">
-      <ion-card>
-        <img src="https://i1.wp.com/www.seeklogo.com/images/J/Juan_Valdez_Cafe-logo-9D9A5C862E-seeklogo.com.gif">
+        <img [src]="top.url">
       </ion-card>
     </li>
 </ul>
@@ -64,28 +49,10 @@
 </ul>
 <div class="titulo tituloSeccion">Los más Destacados</div>
 <ul class="icon-establecimiento">
-    <li class="family-icon">
+    <li class="family-icon"s *ngFor="let important of importants | async" (tap)="openEstablecimiento(top.$key)">
       <ion-card>
-        <img src="http://du4zwgdg3nwxa.cloudfront.net/logotipos/k/kf/kfc-quito-ecuador-logo-1347029017.jpg">
-        <div class="titulo-establecimiento centrar">KFC</div>
-      </ion-card>
-    </li>
-    <li class="family-icon">
-      <ion-card>
-        <img src="http://du4zwgdg3nwxa.cloudfront.net/logotipos/b/ba/bar-restaurant-el-dorado-logo.jpg">
-        <div class="titulo-establecimiento centrar">El Dorado</div>
-      </ion-card>
-    </li>
-    <li class="family-icon">
-      <ion-card>
-        <img src="https://img.pystatic.com/restaurants/tabulenewlogo.jpg">
-        <div class="titulo-establecimiento centrar">Tabule</div>
-      </ion-card>
-    </li>
-    <li class="family-icon">
-      <ion-card>
-        <img src="https://i1.wp.com/www.seeklogo.com/images/J/Juan_Valdez_Cafe-logo-9D9A5C862E-seeklogo.com.gif">
-        <div class="titulo-establecimiento centrar">Juan Valdez</div>
+        <img [src]="important.url">
+        <div class="titulo-establecimiento centrar">{{important.businessName}}</div>
       </ion-card>
     </li>
 </ul>

@@ -23,6 +23,8 @@ export class MyApp {
 
   pages: Array<{title: string, component: any, icon: string}>;
 
+  pagesLogOut: Array<{title: string, component: any, icon: string}>;
+
   pages2: Array<{title: string, component: any, icon: string}>;
 
   constructor(public platform: Platform) {
@@ -38,6 +40,15 @@ export class MyApp {
       { title: 'Buscar', component: BuscarPage, icon: 'search' },
       { title: 'Favoritos', component: FavoritoPage, icon: 'star' },
       { title: 'Cerrar Sesión', component: MisReservasPage, icon: 'log-out' }
+    ];
+
+    this.pagesLogOut = [
+      { title: 'Inicio', component: NavyrPage, icon: 'home' },
+      { title: 'Ir a Categorias', component: IrcategoriasPage, icon: 'folder-open' },
+      { title: 'Buscar', component: BuscarPage, icon: 'search' },
+      { title: 'Favoritos', component: FavoritoPage, icon: 'star' },
+      { title: 'Crear Cuenta', component: MisReservasPage, icon: 'person-add' },
+      { title: 'Iniciar Sesión', component: MisReservasPage, icon: 'log-in' }
     ];
 
     this.pages2 = [

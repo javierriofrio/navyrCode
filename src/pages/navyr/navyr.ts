@@ -22,8 +22,8 @@ export class NavyrPage {
   importants: FirebaseListObservable<any>;
 
   constructor(public navCtrl: NavController, public database: AngularFireDatabase, public alertCtrl: AlertController) {
-    this.promos = this.database.list('/development/private/businessPromo');
-    this.categories = this.database.list('/development/catalogs/businessCategories');
+    this.promos = this.database.list('/development/public/businessPromo');
+    this.categories = this.database.list('/development/shared/catalogs/businessCategories');
     this.tops = this.database.list('/development/public/topBusiness');
     this.importants = this.database.list('/development/public/topImportantBusiness');
     
@@ -40,7 +40,6 @@ export class NavyrPage {
   }
 
   openEstablecimiento(establecimiento) {
-    console.log(establecimiento);
           this.navCtrl.push(EstablecimientoPage, {
             idEstablecimiento: establecimiento,
           });

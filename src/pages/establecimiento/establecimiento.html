@@ -7,12 +7,19 @@
 <ion-header>
 
   <ion-navbar>
-      <ion-title>{{establecimiento}}</ion-title>
+    <ion-title>{{getEstablecimientoData()?.businessName}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
+
+  <ion-slides class="slider-home" slider="slider1">
+    <ion-slide pager="true" *ngFor="let photo of galeryBussiness | async">
+      <img [src]="photo.url">
+    </ion-slide>
+  </ion-slides>
+  <!--
   <ion-slides options="{'loop': true}" slider="slider1" delegate-handle="slider1" id="navyr-slider1" style="width:100%;height:200px;">
     <ion-slide>
       <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTysjSATK43aN4HGxSxf6o5M8-MX7IkpJk6-COwlGSIrNaVWvFR">
@@ -24,24 +31,23 @@
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqKTId0F1LP5ZY-lZaVlLOR9QemSRn_j_FRXzl8Jr422pOs_fM">
     </ion-slide>
   </ion-slides>  
+-->
+  <ion-fab bottom class="boton-reserva">
+    <button ion-fab (click)="abrirReserva()">Reservar</button>
+  </ion-fab>
+  <ion-fab class="" top right edge>
+    <button ion-fab mini class="favoritos" ion-fab><ion-icon  name="star"></ion-icon></button>
+  </ion-fab>
 
- <ion-fab bottom class="boton-reserva">
-   <button ion-fab (click)="abrirReserva()">Reservar</button>
- </ion-fab>
-<ion-fab class="" top right edge>
- <button ion-fab mini class="favoritos" ion-fab><ion-icon  name="star"></ion-icon></button>
-</ion-fab>
-  <ion-title>Pizza Hut</ion-title>
+  <p>
+    {{getEstablecimientoData()?.description}}
+  </p>
+
   <h4>Servicios</h4>
   <ion-list>
-    <ion-item ion-item>
-      <ion-icon name="wifi" item-left></ion-icon>WIFI<ion-icon name="checkmark-circle" item-right></ion-icon>
-    </ion-item>
-    <ion-item ion-item>
-      <ion-icon name="car" item-left></ion-icon>Parqueadero<ion-icon name="checkmark-circle" item-right></ion-icon>
-    </ion-item>
-    <ion-item ion-item>
-      <ion-icon name="paw" item-left></ion-icon>Mascotas<ion-icon name="close-circle" item-right></ion-icon>
+    <ion-item ion-item *ngFor="let service of listCatalogServices | async">
+      <ion-icon name="{{service.iconMobile}}" item-left></ion-icon>{{service.name}}
+      <ion-icon name="{{getService(service.$key) ? 'checkmark-circle' : 'close-circle'}}" item-right></ion-icon>
     </ion-item>
   </ion-list>
   <h4>Información</h4>
@@ -49,36 +55,34 @@
     <ion-item ion-item>
       <ion-icon name="calendar" item-left></ion-icon>
       <h4>Horario de Atención:</h4>
-      <p>Lunes - Viernes : 08:00 - 18:00</p>
-      <p>Sabado y Domingo : 10:00 - 16:00</p>
+      <p *ngFor="let schedule of listSchedules | async">
+        {{schedule.getString + schedule.open + " - " + schedule.close}}
+      </p>
     </ion-item>
     <ion-item ion-item>
       <ion-icon name="logo-usd" item-left></ion-icon>
       <h4>Precio Promedio:</h4>
-      <p>10$</p>
+      <p>{{getFeature()?.price + "$"}}</p>
     </ion-item>
     <ion-item ion-item>
-      <ion-icon name="time" item-left></ion-icon>
-      <h4>Tiempo Permanencia:</h4>
-      <p>2 horas</p>
+      <ion-icon name="locate" item-left></ion-icon>
+      <h4>Dirección:</h4>
+      <p>{{getDireccion()?.mainStreet + " " + getDireccion()?.number + ", " + getDireccion()?.sideStreet}}</p>
     </ion-item>
     <ion-item ion-item>
-      <ion-icon name="timer" item-left></ion-icon>
-      <h3>Tiempo Validez Reserva:</h3>
-      <p>15 min</p>
-    </ion-item>
-    <ion-item ion-item>
-      <ion-icon name="people" item-left></ion-icon>
-      <h3>Capacidad:</h3>
-      <p>80 personas</p>
-    </ion-item>
-    <ion-item ion-item>
-      <ion-icon name="contacts" item-left></ion-icon>
-      <h3>Clientes por Mesa:</h3>
-      <p>8 personas</p>
+      <ion-icon name="at" item-left></ion-icon>
+      <h4>Dirección Web:</h4>
+      <p>{{getEstablecimientoData()?.webPage}}</p>
     </ion-item>
   </ion-list>
- 
+
+  <h4>Métodos de Pago</h4>
+  <ion-list class="payment_method">
+    <ion-item ion-item *ngFor="let payment of listPayment | async">
+      <ion-icon name="{{payment.$key == 'cash'? 'logo-usd' : 'card'}}" item-left></ion-icon>{{getPayment(payment.$key)}}
+      <ion-icon name="checkmark-circle" item-right></ion-icon>
+    </ion-item>
+  </ion-list>
   <h4>Ubicación</h4>
   <div #map id="map"></div>
 </ion-content>
