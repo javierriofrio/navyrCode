@@ -33,10 +33,10 @@ export class EstablecimientoPage {
   objectFeatures: FirebaseObjectObservable<any>;
   objectDireccion: FirebaseObjectObservable<any>;
   objectPayment: FirebaseObjectObservable<any>;
-  establecimiento: Object;
-  feature: Object;
-  direccion: Direccion;
-  servicio: Boolean;
+  private establecimiento: Object;
+  private feature: Object;
+  private direccion: Direccion;
+  private servicio: Boolean;
   public latitude: number;
   public longitude: number;
   listCatalogServices: FirebaseListObservable<any>;
@@ -63,11 +63,9 @@ export class EstablecimientoPage {
   }
 
   getService(service: string) {
-
     this.objectService.subscribe(snapshot => {
       this.servicio = snapshot[service];
     });
-
     return this.servicio;
   }
 
