@@ -12,6 +12,7 @@ import { PuntosPage } from '../pages/puntos/puntos';
 import { IrcategoriasPage } from '../pages/ircategorias/ircategorias';
 import { TerminosPage } from '../pages/terminos/terminos';
 import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup'
 import { AuthService } from '../providers/auth-service';
 import { AngularFire } from 'angularfire2';
 
@@ -46,8 +47,9 @@ export class MyApp {
           { title: 'Ir a Categorias', component: IrcategoriasPage, icon: 'folder-open' },
           { title: 'Buscar', component: BuscarPage, icon: 'search' },
           { title: 'Favoritos', component: FavoritoPage, icon: 'star' },
-          { title: 'Cerrar Sesión', component: MisReservasPage, icon: 'log-out' }
+          { title: 'Cerrar Sesión', component: LoginPage, icon: 'log-out' }
         ];
+        console.log("registrado");
         authObserver.unsubscribe();
       } else {
         this.pages = [
@@ -55,9 +57,10 @@ export class MyApp {
           { title: 'Ir a Categorias', component: IrcategoriasPage, icon: 'folder-open' },
           { title: 'Buscar', component: BuscarPage, icon: 'search' },
           { title: 'Favoritos', component: FavoritoPage, icon: 'star' },
-          { title: 'Crear Cuenta', component: MisReservasPage, icon: 'person-add' },
+          { title: 'Crear Cuenta', component: SignupPage, icon: 'person-add' },
           { title: 'Iniciar Sesión', component: LoginPage, icon: 'log-in' }
         ];
+        console.log("registrado");
         authObserver.unsubscribe();
       }
     });

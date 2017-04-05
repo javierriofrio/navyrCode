@@ -16,10 +16,12 @@ import { PuntosPage } from '../pages/puntos/puntos';
 import { IrcategoriasPage } from '../pages/ircategorias/ircategorias';
 import { TerminosPage } from '../pages/terminos/terminos';
 import { LoginPage } from '../pages/login/login';
+import { ResetPasswordPage } from '../pages/reset-password/reset-password';
+import { SignupPage } from '../pages/signup/signup';
 import { AuthService } from '../providers/auth-service';
 
 // Import the AF2 Module
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyC0JZwWB0uCsq7Uv7WxAUkIQSJhBRALAM4",
@@ -28,6 +30,11 @@ export const firebaseConfig = {
   storageBucket: "project-8626609783434337582.appspot.com",
   messagingSenderId: "329734583670"
 };
+
+const myFirebaseAuthConfig = {
+  provider: AuthProviders.Password,
+  method: AuthMethods.Password
+}
 
 @NgModule({
   declarations: [
@@ -45,12 +52,14 @@ export const firebaseConfig = {
     PuntosPage,
     IrcategoriasPage,
     TerminosPage,
-    LoginPage
+    LoginPage,
+    ResetPasswordPage,
+    SignupPage
   ],
   imports: [
     NgCalendarModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -68,7 +77,9 @@ export const firebaseConfig = {
     PuntosPage,
     IrcategoriasPage,
     TerminosPage,
-    LoginPage
+    LoginPage,
+    ResetPasswordPage,
+    SignupPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService]
 })

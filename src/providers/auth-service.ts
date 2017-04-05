@@ -41,6 +41,14 @@ export class AuthService {
     this.auth$.logout();
   }
 
+  resetPassword(email: string): firebase.Promise<any> {
+    return firebase.auth().sendPasswordResetEmail(email);
+  }
+
+  signupUser(newEmail: string, newPassword: string): firebase.Promise<any> {
+    return this.auth$.createUser({ email: newEmail, password: newPassword });
+  }
+
   displayName(): string {
     if (this.authState != null) {
       return this.authState.facebook.displayName;
