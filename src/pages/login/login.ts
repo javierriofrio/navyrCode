@@ -19,8 +19,7 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController, public authData: AuthService, 
     public formBuilder: FormBuilder, public alertCtrl: AlertController,
-    public loadingCtrl: LoadingController,
-    private af: AngularFire) {
+    public loadingCtrl: LoadingController) {
 
       this.loginForm = formBuilder.group({
         email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],

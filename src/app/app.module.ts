@@ -16,6 +16,7 @@ import { PuntosPage } from '../pages/puntos/puntos';
 import { IrcategoriasPage } from '../pages/ircategorias/ircategorias';
 import { TerminosPage } from '../pages/terminos/terminos';
 import { LoginPage } from '../pages/login/login';
+import { LogoutPage } from '../pages/logout/logout';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 import { SignupPage } from '../pages/signup/signup';
 import { AuthService } from '../providers/auth-service';
@@ -53,6 +54,7 @@ const myFirebaseAuthConfig = {
     IrcategoriasPage,
     TerminosPage,
     LoginPage,
+    LogoutPage,
     ResetPasswordPage,
     SignupPage
   ],
@@ -78,6 +80,7 @@ const myFirebaseAuthConfig = {
     IrcategoriasPage,
     TerminosPage,
     LoginPage,
+    LogoutPage,
     ResetPasswordPage,
     SignupPage
   ],

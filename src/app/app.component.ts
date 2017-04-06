@@ -12,6 +12,7 @@ import { PuntosPage } from '../pages/puntos/puntos';
 import { IrcategoriasPage } from '../pages/ircategorias/ircategorias';
 import { TerminosPage } from '../pages/terminos/terminos';
 import { LoginPage } from '../pages/login/login';
+import { LogoutPage } from '../pages/logout/logout';
 import { SignupPage } from '../pages/signup/signup'
 import { AuthService } from '../providers/auth-service';
 import { AngularFire } from 'angularfire2';
@@ -25,20 +26,19 @@ export class MyApp {
 
   rootPage: any = NavyrPage;
 
-  auth: AuthService;
+  usuario : Object;
 
   pages: Array<{ title: string, component: any, icon: string }>;
 
-  pagesLogOut: Array<{ title: string, component: any, icon: string }>;
-
   pages2: Array<{ title: string, component: any, icon: string }>;
 
-  constructor(public platform: Platform, private af: AngularFire) {
+  constructor(public platform: Platform, private af: AngularFire, public authData: AuthService,) {
     this.initializeApp();
 
     const authObserver = af.auth.subscribe(user => {
       console.log(user);
       if (user) {
+        this.usuario = user;
         this.pages = [
           { title: 'Inicio', component: NavyrPage, icon: 'home' },
           { title: 'Mi Cuenta', component: MiCuentaPage, icon: 'contact' },
@@ -47,9 +47,8 @@ export class MyApp {
           { title: 'Ir a Categorias', component: IrcategoriasPage, icon: 'folder-open' },
           { title: 'Buscar', component: BuscarPage, icon: 'search' },
           { title: 'Favoritos', component: FavoritoPage, icon: 'star' },
-          { title: 'Cerrar Sesión', component: LoginPage, icon: 'log-out' }
+          { title: 'Cerrar Sesión', component: LogoutPage, icon: 'log-out' }
         ];
-        console.log("registrado");
         authObserver.unsubscribe();
       } else {
         this.pages = [
@@ -60,14 +59,11 @@ export class MyApp {
           { title: 'Crear Cuenta', component: SignupPage, icon: 'person-add' },
           { title: 'Iniciar Sesión', component: LoginPage, icon: 'log-in' }
         ];
-        console.log("registrado");
         authObserver.unsubscribe();
       }
     });
 
     // used for an example of ngFor and navigation
-
-
 
     this.pages2 = [
       { title: 'Ajustes', component: AjustesPage, icon: 'settings' },
@@ -96,6 +92,11 @@ export class MyApp {
 
   openRootPage() {
     this.nav.setRoot(NavyrPage);
+  }
+
+  logOut(){
+    this.authData.signOut();
+    this.openRootPage();
   }
 
 }

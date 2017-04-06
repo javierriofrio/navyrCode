@@ -38,6 +38,7 @@ export class AuthService {
   }
 
   signOut(): void {
+    console.log("entro aqui");
     this.auth$.logout();
   }
 

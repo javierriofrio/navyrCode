@@ -12,7 +12,7 @@
             <ion-grid class="menu-label">
               <ion-row>
                 <ion-col>
-                  <label>Usuario prueba</label>
+                  <label>{{usuario?.auth.email}}</label>
                 </ion-col>
               </ion-row>
               <ion-row>
@@ -29,7 +29,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+    <ion-item menuClose ion-item *ngFor="let p of pages" (tap)="openPage(p)">
         <ion-icon name="{{p.icon}}" item-left></ion-icon>
         {{p.title}}
       </ion-item>
@@ -38,7 +38,7 @@
     <ion-list-header>
       Navyr
     </ion-list-header>
-    <ion-item menuClose ion-item *ngFor="let p of pages2" (click)="openPage(p)">
+    <ion-item menuClose ion-item *ngFor="let p of pages2" (tap)="openPage(p)">
         <ion-icon name="{{p.icon}}" item-left></ion-icon>
         {{p.title}}
       </ion-item>
