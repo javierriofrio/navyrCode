@@ -1,1 +1,0 @@
-function distancias (p1,p2){

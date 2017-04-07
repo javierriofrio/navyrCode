@@ -6,7 +6,6 @@ import { NavyrPage } from '../navyr/navyr';
 import { SignupPage } from '../signup/signup';
 import { ResetPasswordPage } from '../reset-password/reset-password';
 import { EmailValidator } from '../../validators/email';
-import { AngularFire } from 'angularfire2';
 
 @Component({
   selector: 'page-login',

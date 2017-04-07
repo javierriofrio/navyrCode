@@ -29,6 +29,10 @@ export class NavyrPage {
     
   }
 
+  ionViewDidLoad() {
+     // location.reload();  
+    }
+
   openUbicacion() {
       this.navCtrl.push(UbicacionPage);
   }

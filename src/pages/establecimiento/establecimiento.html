@@ -84,5 +84,7 @@
     </ion-item>
   </ion-list>
   <h4>Ubicación</h4>
-  <div #map id="map"></div>
+  <div #map id="map">
+    <img src="https://maps.googleapis.com/maps/api/staticmap?maptype=roadmap&size=600x400&center={{getDireccion()?.latitude}},{{getDireccion()?.longitude}}&zoom=17&markers=color:red%7Clabel:P%7C{{getDireccion()?.latitude}},{{getDireccion()?.longitude}}&key= AIzaSyCbliPMff9MlsOG6zjYvC-najZI0QRK-Y8"/>
+  </div>
 </ion-content>
