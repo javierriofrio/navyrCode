@@ -6,9 +6,6 @@
 -->
 <ion-header>
       <ion-navbar>
-        <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
     <ion-title>Crear una Cuenta</ion-title>
   </ion-navbar>
 </ion-header>
@@ -16,9 +13,28 @@
 
 <ion-content padding>
   <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
-
     <ion-item>
-      <ion-label stacked>Email</ion-label>
+      <ion-label floating>Cédula:</ion-label>
+      <ion-input formControlName="cedula" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Nombres:</ion-label>
+      <ion-input formControlName="nombres" type="text"></ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-label floating>Apellidos:</ion-label>
+      <ion-input  formControlName="apellidos" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Teléfono:</ion-label>
+      <ion-input formControlName="telefono" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Fecha Nacimiento:</ion-label>
+      <ion-datetime formControlName="nacimiento" displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Email</ion-label>
       <ion-input formControlName="email" type="email" placeholder="Your email address"
         [class.invalid]="!signupForm.controls.email.valid && signupForm.controls.email.dirty"></ion-input>
     </ion-item>
@@ -27,7 +43,7 @@
     </ion-item>
 
     <ion-item>
-      <ion-label stacked>Password</ion-label>
+      <ion-label floating>Password</ion-label>
       <ion-input formControlName="password" type="password"  placeholder="Your password"
         [class.invalid]="!signupForm.controls.password.valid && signupForm.controls.password.dirty"></ion-input>
     </ion-item>

@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
 import { AuthProviders, AngularFireAuth, FirebaseAuthState, AuthMethods } from 'angularfire2';
+import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2';
 
 @Injectable()
 export class AuthService {
   private authState: FirebaseAuthState;
 
-  constructor(public auth$: AngularFireAuth) {
+  public userList : FirebaseListObservable<any>;
+
+  constructor(public auth$: AngularFireAuth, private database: AngularFireDatabase) {
     this.authState = auth$.getAuth();
     auth$.subscribe((state: FirebaseAuthState) => {
       this.authState = state;
     });
+    this.userList = this.database.list("/development/private/users");
   }
 
   get authenticated(): boolean {
@@ -46,7 +50,19 @@ export class AuthService {
     return firebase.auth().sendPasswordResetEmail(email);
   }
 
-  signupUser(newEmail: string, newPassword: string): firebase.Promise<any> {
+  signupUser(newEmail: string, newPassword: string, nombre: string, apellido: string, cedula: string, telefono: string, fechaNacimiento: string): firebase.Promise<any> {
+    
+    console.log(apellido,fechaNacimiento);
+    
+    this.userList.push({
+      apellido: apellido,
+      nombre: nombre,
+      cedula: cedula,
+      email: newEmail,
+      telefono: telefono,
+      fechaNacimiento: fechaNacimiento,
+      habilitado: true
+    });
     return this.auth$.createUser({ email: newEmail, password: newPassword });
   }
 

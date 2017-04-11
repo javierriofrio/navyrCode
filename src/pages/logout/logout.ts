@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
-import { NavyrPage } from '../navyr/navyr'
+import { NavyrPage } from '../navyr/navyr';
+import { LoginPage } from '../login/login';
 /*
   Generated class for the Logout page.
 
@@ -28,7 +29,7 @@ export class LogoutPage {
 
   logOut(){
     this.authData.signOut();
-    this.navCtrl.setRoot(NavyrPage);
+    this.navCtrl.setRoot(LoginPage);
   }
 
 

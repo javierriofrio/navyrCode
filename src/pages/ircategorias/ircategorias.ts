@@ -16,15 +16,11 @@ import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2';
 })
 export class IrcategoriasPage {
 
-  categoria = CategoriaPage;
+  //categoria = CategoriaPage;
   categories: FirebaseListObservable<any>;
 
   constructor(public navCtrl: NavController, database : AngularFireDatabase, public navParams: NavParams) {
-    this.categories = database.list('/development/shared/businessCategories');
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad IrcategoriasPage');
+    this.categories = database.list('/development/shared/catalogs/businessCategories');
   }
 
 

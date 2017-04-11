@@ -13,9 +13,7 @@ import { IrcategoriasPage } from '../pages/ircategorias/ircategorias';
 import { TerminosPage } from '../pages/terminos/terminos';
 import { LoginPage } from '../pages/login/login';
 import { LogoutPage } from '../pages/logout/logout';
-import { SignupPage } from '../pages/signup/signup'
 import { AuthService } from '../providers/auth-service';
-import { AngularFire } from 'angularfire2';
 
 
 @Component({
@@ -24,7 +22,7 @@ import { AngularFire } from 'angularfire2';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = NavyrPage;
+  rootPage: any;
 
   usuario : Object;
 
@@ -32,33 +30,35 @@ export class MyApp {
 
   pages2: Array<{ title: string, component: any, icon: string }>;
 
-  constructor(public platform: Platform, private af: AngularFire, public authData: AuthService,) {
+  constructor(public platform: Platform, public authData: AuthService,) {
     this.initializeApp();
+    this.pages = [
+              { title: 'Inicio', component: NavyrPage, icon: 'home' },
+              { title: 'Mi Cuenta', component: MiCuentaPage, icon: 'contact' },
+              { title: 'Mis Reservas', component: MisReservasPage, icon: 'calendar' },
+              { title: 'Mis Navyr Puntos', component: PuntosPage, icon: 'ribbon' },
+              { title: 'Ir a Categorias', component: IrcategoriasPage, icon: 'folder-open' },
+              { title: 'Buscar', component: BuscarPage, icon: 'search' },
+              { title: 'Favoritos', component: FavoritoPage, icon: 'star' },
+              { title: 'Cerrar Sesión', component: LogoutPage, icon: 'log-out' }
+            ];
 
-    const authObserver = af.auth.subscribe(user => {
-      console.log(user);
+    const authObserver = this.authData.auth$.subscribe(user => {
+     // console.log(user);
       if (user) {
-        this.usuario = user;
-        this.pages = [
-          { title: 'Inicio', component: NavyrPage, icon: 'home' },
-          { title: 'Mi Cuenta', component: MiCuentaPage, icon: 'contact' },
-          { title: 'Mis Reservas', component: MisReservasPage, icon: 'calendar' },
-          { title: 'Mis Navyr Puntos', component: PuntosPage, icon: 'ribbon' },
-          { title: 'Ir a Categorias', component: IrcategoriasPage, icon: 'folder-open' },
-          { title: 'Buscar', component: BuscarPage, icon: 'search' },
-          { title: 'Favoritos', component: FavoritoPage, icon: 'star' },
-          { title: 'Cerrar Sesión', component: LogoutPage, icon: 'log-out' }
-        ];
+        //this.usuario = user;
+        this.rootPage = NavyrPage;
         authObserver.unsubscribe();
       } else {
-        this.pages = [
+        /*this.pages = [
           { title: 'Inicio', component: NavyrPage, icon: 'home' },
           { title: 'Ir a Categorias', component: IrcategoriasPage, icon: 'folder-open' },
           { title: 'Buscar', component: BuscarPage, icon: 'search' },
           { title: 'Favoritos', component: FavoritoPage, icon: 'star' },
           { title: 'Crear Cuenta', component: SignupPage, icon: 'person-add' },
           { title: 'Iniciar Sesión', component: LoginPage, icon: 'log-in' }
-        ];
+        ];*/
+        this.rootPage = LoginPage;
         authObserver.unsubscribe();
       }
     });

@@ -18,7 +18,7 @@
 <ion-content padding>
 <ul class="icon-establecimiento">
    <li class="family-icon" *ngFor="let category of categories | async">
-      <ion-card  (click)="openCategoria(category)">
+      <ion-card  (click)="openCategoria(category.$key)">
         <img [src]="category.url">
       </ion-card>
     </li>

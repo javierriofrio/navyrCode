@@ -6,20 +6,16 @@
 -->
 <ion-header>
     <ion-navbar>
-        <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Iniciar Sesión</ion-title>
+      <ion-title>Iniciar Sesión</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <div style="text-align: center"><img  src="assets/img/logoLogin.png"/></div>
   <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
-
     <ion-item>
-      <ion-label stacked>Email</ion-label>
+      <ion-label floating>Email</ion-label>
       <ion-input #email formControlName="email" type="email" 
-        placeholder="Your email address"
         [class.invalid]="!loginForm.controls.email.valid &&
           loginForm.controls.email.dirty"></ion-input>
     </ion-item>
@@ -29,9 +25,8 @@
     </ion-item>
 
     <ion-item>
-      <ion-label stacked>Password</ion-label>
+      <ion-label floating>Password</ion-label>
       <ion-input #password formControlName="password" type="password"
-        placeholder="Your password"
         [class.invalid]="!loginForm.controls.password.valid &&
           loginForm.controls.password.dirty"></ion-input>
     </ion-item>
@@ -39,7 +34,8 @@
       loginForm.controls.password.dirty">
       <p>Su contraseña tiene que tener mas de 6 caracteres.</p>
     </ion-item>
-
+    <div class="spacer"></div>
+    <div class="spacer"></div>
     <button ion-button block type="submit">
       Inicio de sesión
     </button>
@@ -51,7 +47,7 @@
   </button>
 
   <button ion-button block clear (click)="createAccount()">
-    Create a new account
+    Crear una nueva cuenta
   </button>
 
 </ion-content>
