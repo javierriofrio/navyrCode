@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{getEstablecimientoData()?.businessName}}</ion-title>
+    <ion-title>{{establecimiento?.businessName}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -40,7 +40,7 @@
   </ion-fab>
 
   <p>
-    {{getEstablecimientoData()?.description}}
+    {{establecimiento?.description}}
   </p>
 
   <h4>Servicios</h4>
@@ -62,17 +62,17 @@
     <ion-item ion-item>
       <ion-icon name="logo-usd" item-left></ion-icon>
       <h4>Precio Promedio:</h4>
-      <p>{{getFeature()?.price + "$"}}</p>
+      <p>{{feature?.price + "$"}}</p>
     </ion-item>
     <ion-item ion-item>
       <ion-icon name="locate" item-left></ion-icon>
       <h4>Dirección:</h4>
-      <p>{{getDireccion()?.mainStreet + " " + getDireccion()?.number + ", " + getDireccion()?.sideStreet}}</p>
+      <p>{{direccion?.mainStreet + " " + direccion?.number + ", " + direccion?.sideStreet}}</p>
     </ion-item>
     <ion-item ion-item>
       <ion-icon name="at" item-left></ion-icon>
       <h4>Dirección Web:</h4>
-      <p>{{getEstablecimientoData()?.webPage}}</p>
+      <p>{{establecimiento?.webPage}}</p>
     </ion-item>
   </ion-list>
 
@@ -85,6 +85,6 @@
   </ion-list>
   <h4>Ubicación</h4>
   <div #map id="map">
-    <img src="https://maps.googleapis.com/maps/api/staticmap?maptype=roadmap&size=600x400&center={{getDireccion()?.latitude}},{{getDireccion()?.longitude}}&zoom=17&markers=color:red%7Clabel:P%7C{{getDireccion()?.latitude}},{{getDireccion()?.longitude}}&key= AIzaSyCbliPMff9MlsOG6zjYvC-najZI0QRK-Y8"/>
+    <img src="https://maps.googleapis.com/maps/api/staticmap?maptype=roadmap&size=600x400&center={{direccion?.latitude}},{{direccion?.longitude}}&zoom=17&markers=color:red%7Clabel:P%7C{{direccion?.latitude}},{{direccion?.longitude}}&key= AIzaSyCbliPMff9MlsOG6zjYvC-najZI0QRK-Y8"/>
   </div>
 </ion-content>

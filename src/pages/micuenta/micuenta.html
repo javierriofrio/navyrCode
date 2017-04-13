@@ -8,6 +8,7 @@
 </ion-header>
 
 <ion-content>
+
   <ion-list>
     <ion-item>
       <ion-thumbnail item-left>
@@ -16,31 +17,29 @@
       </ion-thumbnail>
       <ion-icon name="camera"  (click)="tomarFoto()"></ion-icon>
     </ion-item>
-  </ion-list>
-  <ion-list>
     <ion-item>
       <ion-label floating>Cédula:</ion-label>
-      <ion-input></ion-input>
+      <ion-input value="{{usuario?.cedula}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Nombres:</ion-label>
-      <ion-input></ion-input>
+      <ion-input value="{{usuario?.nombre}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Apellidos:</ion-label>
-      <ion-input></ion-input>
+      <ion-input  value="{{usuario?.apellido}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Teléfono:</ion-label>
-      <ion-input></ion-input>
+      <ion-input  value="{{usuario?.telefono}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Correo Electrónico:</ion-label>
-      <ion-input></ion-input>
+      <ion-input  value="{{usuario?.email}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Fecha Nacimiento:</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY"></ion-datetime>
+      <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY">{{usuario?.fechaNacimiento}}</ion-datetime>
     </ion-item>
   </ion-list>
     <div class="spacer"></div>

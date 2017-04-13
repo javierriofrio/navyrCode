@@ -11,7 +11,7 @@
 </ion-header>
 
 <ion-content padding>
-  <div style="text-align: center"><img  src="assets/img/logoLogin.png"/></div>
+  <div style="text-align: center"><img  src="assets/img/avatar-img.png"/></div>
   <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
     <ion-item>
       <ion-label floating>Email</ion-label>
@@ -36,17 +36,18 @@
     </ion-item>
     <div class="spacer"></div>
     <div class="spacer"></div>
-    <button ion-button block type="submit">
-      Inicio de sesión
-    </button>
+    <ion-buttons class="barra-botones" start>
+      <button type="submit" ion-button class="boton-aceptar" round>Inicio de sesión</button>
+      <button ion-button color="dark" round  (click)="goToRoot()">Cancelar</button>
+    </ion-buttons>
 
   </form>
 
-  <button ion-button block clear (click)="goToResetPassword()">
-    Olvidó si contraseña 🙁
+  <button class="button-clear" color="dark" ion-button block clear (click)="goToResetPassword()">
+    ¿Olvidó su contraseña?
   </button>
 
-  <button ion-button block clear (click)="createAccount()">
+  <button class="button-clear" color="dark" ion-button block clear (click)="createAccount()">
     Crear una nueva cuenta
   </button>
 

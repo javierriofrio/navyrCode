@@ -13,7 +13,7 @@ export class SignupPage {
   public signupForm;
   loading;
 
-  constructor(public nav: NavController, public authData: AuthService, 
+  constructor(public navCtrl: NavController, public authData: AuthService, 
     public formBuilder: FormBuilder, public loadingCtrl: LoadingController, 
     public alertCtrl: AlertController) {
 
@@ -38,11 +38,11 @@ export class SignupPage {
     if (!this.signupForm.valid){
       console.log(this.signupForm.value);
     } else {
-      this.authData.signupUser(this.signupForm.value.email, this.signupForm.value.password, 
-      this.signupForm.value.cedula,this.signupForm.value.apellidos,this.signupForm.value.nombres,
-      this.signupForm.value.telefono, this.signupForm.value.nacimiento)
+      this.authData.signupUser(this.signupForm.value.email, this.signupForm.value.password)
       .then(() => {
-        this.nav.setRoot(NavyrPage);
+        this.authData.createUser(this.authData.displayUID(), this.signupForm.value.email,this.signupForm.value.cedula,this.signupForm.value.apellidos,this.signupForm.value.nombres,
+        this.signupForm.value.telefono, this.signupForm.value.nacimiento)
+        this.navCtrl.setRoot(NavyrPage);
       }, (error) => {
         this.loading.dismiss().then( () => {
           var errorMessage: string = error.message;
@@ -64,5 +64,9 @@ export class SignupPage {
       });
       this.loading.present();
     }
+  }
+
+  goToRoot(){
+    this.navCtrl.setRoot(NavyrPage);
   }
 }

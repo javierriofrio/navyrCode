@@ -6,7 +6,7 @@ import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2';
 export class AuthService {
   private authState: FirebaseAuthState;
 
-  public userList : FirebaseListObservable<any>;
+  private userList : FirebaseListObservable<any>;
 
   constructor(public auth$: AngularFireAuth, private database: AngularFireDatabase) {
     this.authState = auth$.getAuth();
@@ -14,6 +14,7 @@ export class AuthService {
       this.authState = state;
     });
     this.userList = this.database.list("/development/private/users");
+    
   }
 
   get authenticated(): boolean {
@@ -50,11 +51,15 @@ export class AuthService {
     return firebase.auth().sendPasswordResetEmail(email);
   }
 
-  signupUser(newEmail: string, newPassword: string, nombre: string, apellido: string, cedula: string, telefono: string, fechaNacimiento: string): firebase.Promise<any> {
+  signupUser(newEmail: string, newPassword: string): firebase.Promise<any> {
     
-    console.log(apellido,fechaNacimiento);
     
-    this.userList.push({
+    return this.auth$.createUser({ email: newEmail, password: newPassword });
+  }
+
+
+  createUser(uid: string, newEmail: string, nombre: string, apellido: string, cedula: string, telefono: string, fechaNacimiento: string){
+    const userInfo = {
       apellido: apellido,
       nombre: nombre,
       cedula: cedula,
@@ -62,13 +67,22 @@ export class AuthService {
       telefono: telefono,
       fechaNacimiento: fechaNacimiento,
       habilitado: true
-    });
-    return this.auth$.createUser({ email: newEmail, password: newPassword });
+    }
+    this.userList.$ref.ref.child(uid).set(userInfo);
   }
 
   displayName(): string {
     if (this.authState != null) {
       return this.authState.facebook.displayName;
+    } else {
+      return '';
+    }
+  }
+
+
+  displayUID(): string{
+    if (this.authState != null) {
+      return this.authState.uid;
     } else {
       return '';
     }

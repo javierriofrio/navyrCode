@@ -3,6 +3,8 @@ import { ModalController, NavController, NavParams } from 'ionic-angular';
 import { ReservaPage } from '../reserva/reserva';
 import { NavyrPage } from '../navyr/navyr';
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2';
+import { LoginPage } from '../login/login';
+import { AuthService } from '../../providers/auth-service';
 
 //commons
 import { Direccion } from '../../commons/direccion';
@@ -39,13 +41,20 @@ export class EstablecimientoPage {
   paymentName: string;
 
 
-  constructor(public modalCtrl: ModalController, public database: AngularFireDatabase, public navParams: NavParams, public navCtrl: NavController) {
+  constructor(public modalCtrl: ModalController, public database: AngularFireDatabase, 
+  public navParams: NavParams, public navCtrl: NavController, public authData: AuthService) {
+    
     this.idEstablecimiento = navParams.get("idEstablecimiento");
-
-    this.establecimientoData = this.database.object('/development/public/business/' + this.idEstablecimiento + '/business');
-    this.objectService = this.database.object('/development/public/business/' + this.idEstablecimiento + '/businessServices/services');
-    this.objectFeatures = this.database.object('/development/public/business/' + this.idEstablecimiento + '/businessServices/features');
-    this.objectDireccion = this.database.object('/development/public/business/' + this.idEstablecimiento + '/businessAddresses');
+    this.database.object('/development/public/business/' + this.idEstablecimiento + '/business').subscribe(snapshot => {
+      this.establecimiento = snapshot;
+    });;
+ 
+    this.database.object('/development/public/business/' + this.idEstablecimiento + '/businessServices/features').subscribe(snapshot => {
+      this.feature = snapshot;
+    });;
+    this.database.object('/development/public/business/' + this.idEstablecimiento + '/businessAddresses').subscribe(snapshot => {
+      this.direccion = snapshot;
+    });;
     
 
     this.galeryBussiness = this.database.list('/development/private/businessImages/' + this.idEstablecimiento + '/galerias');
@@ -56,34 +65,10 @@ export class EstablecimientoPage {
   }
 
   getService(service: string) {
-    this.objectService.subscribe(snapshot => {
-      this.servicio = snapshot[service];
-    });
+    this.database.object('/development/public/business/' + this.idEstablecimiento + '/businessServices/services').subscribe(snapshot => {
+      this.servicio = snapshot;
+    });;
     return this.servicio;
-  }
-
-
-  getDireccion() {
-    this.objectDireccion.subscribe(snapshot => {
-      this.direccion = snapshot;
-    });
-    return this.direccion;
-  }
-
-  getEstablecimientoData() {
-    this.establecimientoData.subscribe(snapshot => {
-      this.establecimiento = snapshot;
-    });
-    return this.establecimiento;
-
-  }
-
-
-  getFeature() {
-    this.objectFeatures.subscribe(snapshot => {
-      this.feature = snapshot;
-    });
-    return this.feature;
   }
 
 
@@ -103,8 +88,18 @@ export class EstablecimientoPage {
   }
 
   abrirReserva() {
-    let profileModal = this.modalCtrl.create(ReservaPage);
-    profileModal.present();
+
+    const authObserver = this.authData.auth$.subscribe(user => {
+      console.log(user);
+      if (user) {
+        console.log(user.uid);
+          let profileModal = this.modalCtrl.create(ReservaPage);
+          profileModal.present();
+      } else {
+        this.navCtrl.setRoot(LoginPage);
+      }
+    });
+
   }
 
   openRootPage() {

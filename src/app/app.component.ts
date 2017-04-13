@@ -22,7 +22,7 @@ import { AuthService } from '../providers/auth-service';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any;
+  rootPage: any = NavyrPage;
 
   usuario : Object;
 
@@ -30,7 +30,7 @@ export class MyApp {
 
   pages2: Array<{ title: string, component: any, icon: string }>;
 
-  constructor(public platform: Platform, public authData: AuthService,) {
+  constructor(public platform: Platform, public authData: AuthService) {
     this.initializeApp();
     this.pages = [
               { title: 'Inicio', component: NavyrPage, icon: 'home' },
@@ -43,25 +43,25 @@ export class MyApp {
               { title: 'Cerrar Sesión', component: LogoutPage, icon: 'log-out' }
             ];
 
-    const authObserver = this.authData.auth$.subscribe(user => {
+    /*const authObserver = this.authData.auth$.subscribe(user => {
      // console.log(user);
       if (user) {
         //this.usuario = user;
         this.rootPage = NavyrPage;
         authObserver.unsubscribe();
       } else {
-        /*this.pages = [
+        this.pages = [
           { title: 'Inicio', component: NavyrPage, icon: 'home' },
           { title: 'Ir a Categorias', component: IrcategoriasPage, icon: 'folder-open' },
           { title: 'Buscar', component: BuscarPage, icon: 'search' },
           { title: 'Favoritos', component: FavoritoPage, icon: 'star' },
           { title: 'Crear Cuenta', component: SignupPage, icon: 'person-add' },
           { title: 'Iniciar Sesión', component: LoginPage, icon: 'log-in' }
-        ];*/
+        ];
         this.rootPage = LoginPage;
         authObserver.unsubscribe();
       }
-    });
+    });*/
 
     // used for an example of ngFor and navigation
 

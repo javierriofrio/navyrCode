@@ -252,6 +252,17 @@ h4 {
     background-color: transparent;
 }
 
+//Promociones
+
+.swiper-pagination-bullet {
+    opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #Ef6c00;
+    opacity: 1;
+}
+
 /*
 botones
 */
