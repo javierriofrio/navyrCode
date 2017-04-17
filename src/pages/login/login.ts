@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../providers/auth-service';
 import { NavyrPage } from '../navyr/navyr';
 import { SignupPage } from '../signup/signup';
+import { LogoutPage } from '../logout/logout'
 import { ResetPasswordPage } from '../reset-password/reset-password';
 import { EmailValidator } from '../../validators/email';
 
@@ -16,25 +17,31 @@ export class LoginPage {
   public loginForm: any;
   public loading: any;
 
-  constructor(public navCtrl: NavController, public authData: AuthService, 
+  constructor(public navCtrl: NavController, public authData: AuthService,
     public formBuilder: FormBuilder, public alertCtrl: AlertController,
     public loadingCtrl: LoadingController) {
 
-      this.loginForm = formBuilder.group({
-        email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
-        password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
-      });
-    }
+    this.loginForm = formBuilder.group({
+      email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
+      password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
+    });
+  }
 
-    loginUser(){
-      if (!this.loginForm.valid){
-        console.log(this.loginForm.value);
-      } else {
-        this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password)
-        .then( authData => {
+  loginUser() {
+    if (!this.loginForm.valid) {
+      console.log(this.loginForm.value);
+    } else {
+      this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password)
+        .then(authData => {
+          document.getElementById("usuario").innerHTML = "test";
+          document.getElementById("sesion-in").style.display = "none";
+          document.getElementById("sesion-out").parentNode.parentElement.style.display = "flex";
+          document.getElementById("cuenta").parentNode.parentElement.style.display = "flex";
+          document.getElementById("favoritos").parentNode.parentElement.style.display = "flex";
+          document.getElementById("puntos").parentNode.parentElement.style.display = "flex";
           this.navCtrl.setRoot(NavyrPage);
         }, error => {
-          this.loading.dismiss().then( () => {
+          this.loading.dismiss().then(() => {
             let alert = this.alertCtrl.create({
               message: error.message,
               buttons: [
@@ -48,22 +55,22 @@ export class LoginPage {
           });
         });
 
-        this.loading = this.loadingCtrl.create({
-          dismissOnPageChange: true,
-        });
-        this.loading.present();
-      }
+      this.loading = this.loadingCtrl.create({
+        dismissOnPageChange: true,
+      });
+      this.loading.present();
+    }
   }
 
-  goToResetPassword(){
+  goToResetPassword() {
     this.navCtrl.push(ResetPasswordPage);
   }
 
-  createAccount(){
+  createAccount() {
     this.navCtrl.push(SignupPage);
   }
 
-  goToRoot(){
+  goToRoot() {
     this.navCtrl.setRoot(NavyrPage);
   }
 

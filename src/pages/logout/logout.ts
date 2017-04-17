@@ -29,6 +29,12 @@ export class LogoutPage {
 
   logOut(){
     this.authData.signOut();
+    document.getElementById("usuario").innerHTML = "";
+    document.getElementById("sesion-in").style.display = "flex";
+    document.getElementById("sesion-out").style.display = "none";
+    document.getElementById("cuenta").style.display = "none";
+    document.getElementById("favoritos").style.display = "none";
+    document.getElementById("puntos").style.display = "none";
     this.navCtrl.setRoot(LoginPage);
   }
 

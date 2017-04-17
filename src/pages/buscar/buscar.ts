@@ -17,8 +17,12 @@ export class BuscarPage {
   searchQuery: string = '';
   items: string[];
   establecimiento = EstablecimientoPage
+  listEstablecimientos : FirebaseListObservable<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+              private database: AngularFireDatabase) {
+              this.initializeItems();
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BuscarPage');
@@ -30,6 +34,9 @@ export class BuscarPage {
 
 
   initializeItems() {
+    
+    this.listEstablecimientos = this.database.list('/development/public/business');
+
     this.items = [
       'Pizza Hut',
       'Chefarina',

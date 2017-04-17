@@ -52,8 +52,6 @@ export class AuthService {
   }
 
   signupUser(newEmail: string, newPassword: string): firebase.Promise<any> {
-    
-    
     return this.auth$.createUser({ email: newEmail, password: newPassword });
   }
 

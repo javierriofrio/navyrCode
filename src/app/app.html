@@ -12,12 +12,12 @@
             <ion-grid class="menu-label">
               <ion-row>
                 <ion-col>
-                  <label>{{usuario?.auth.email}}</label>
+                  <label id="usuario">{{usuario?.auth.email}}</label>
                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col>
-                  <label>Navyr Puntos 0</label>
+                  <label id="puntos"></label>
                 </ion-col>
               </ion-row>
             </ion-grid>
@@ -30,7 +30,7 @@
 <ion-content>
   <ion-list>
     <ion-item menuClose ion-item *ngFor="let p of pages" (tap)="openPage(p)">
-        <ion-icon name="{{p.icon}}" item-left></ion-icon>
+        <ion-icon  id="{{p.id}}" name="{{p.icon}}" item-left></ion-icon>
         {{p.title}}
       </ion-item>
   </ion-list>

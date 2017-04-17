@@ -26,42 +26,26 @@ export class MyApp {
 
   usuario : Object;
 
-  pages: Array<{ title: string, component: any, icon: string }>;
+  pages: Array<{ title: string, component: any, icon: string, id: string }>;
 
   pages2: Array<{ title: string, component: any, icon: string }>;
 
   constructor(public platform: Platform, public authData: AuthService) {
     this.initializeApp();
+
+
     this.pages = [
-              { title: 'Inicio', component: NavyrPage, icon: 'home' },
-              { title: 'Mi Cuenta', component: MiCuentaPage, icon: 'contact' },
-              { title: 'Mis Reservas', component: MisReservasPage, icon: 'calendar' },
-              { title: 'Mis Navyr Puntos', component: PuntosPage, icon: 'ribbon' },
-              { title: 'Ir a Categorias', component: IrcategoriasPage, icon: 'folder-open' },
-              { title: 'Buscar', component: BuscarPage, icon: 'search' },
-              { title: 'Favoritos', component: FavoritoPage, icon: 'star' },
-              { title: 'Cerrar Sesión', component: LogoutPage, icon: 'log-out' }
+              { title: 'Inicio', component: NavyrPage, icon: 'home', id: 'inicio' },
+              { title: 'Mi Cuenta', component: MiCuentaPage, icon: 'contact', id: 'cuenta' },
+              { title: 'Mis Reservas', component: MisReservasPage, icon: 'calendar', id: 'reservas' },
+              { title: 'Mis Navyr Puntos', component: PuntosPage, icon: 'ribbon', id: 'puntos' },
+              { title: 'Ir a Categorias', component: IrcategoriasPage, icon: 'folder-open', id: 'categorias' },
+              { title: 'Buscar', component: BuscarPage, icon: 'search', id: 'buscar' },
+              { title: 'Favoritos', component: FavoritoPage, icon: 'star', id: 'favoritos' },
+              { title: 'Iniciar Sesión', component: LoginPage, icon: 'log-in', id: 'sesion-in' },
+              { title: 'Cerrar Sesión', component: LogoutPage, icon: 'log-out', id: 'sesion-out' }
             ];
 
-    /*const authObserver = this.authData.auth$.subscribe(user => {
-     // console.log(user);
-      if (user) {
-        //this.usuario = user;
-        this.rootPage = NavyrPage;
-        authObserver.unsubscribe();
-      } else {
-        this.pages = [
-          { title: 'Inicio', component: NavyrPage, icon: 'home' },
-          { title: 'Ir a Categorias', component: IrcategoriasPage, icon: 'folder-open' },
-          { title: 'Buscar', component: BuscarPage, icon: 'search' },
-          { title: 'Favoritos', component: FavoritoPage, icon: 'star' },
-          { title: 'Crear Cuenta', component: SignupPage, icon: 'person-add' },
-          { title: 'Iniciar Sesión', component: LoginPage, icon: 'log-in' }
-        ];
-        this.rootPage = LoginPage;
-        authObserver.unsubscribe();
-      }
-    });*/
 
     // used for an example of ngFor and navigation
 
@@ -72,6 +56,14 @@ export class MyApp {
       { title: 'Contacto', component: MisReservasPage, icon: 'mail' },
       { title: 'Acerca De', component: MisReservasPage, icon: 'happy' }
     ];
+
+
+          document.getElementById("usuario").innerHTML = "test";
+          document.getElementById("sesion-in").style.display = "flex";
+          document.getElementById("sesion-out").parentNode.parentElement.style.display = "none";
+          document.getElementById("cuenta").parentNode.parentElement.style.display = "none";
+          document.getElementById("favoritos").parentNode.parentElement.style.display = "none";
+          document.getElementById("puntos").parentNode.parentElement.style.display = "none";
 
   }
 
