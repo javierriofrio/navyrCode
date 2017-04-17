@@ -35,10 +35,10 @@ export class LoginPage {
         .then(authData => {
           document.getElementById("usuario").innerHTML = "test";
           document.getElementById("sesion-in").style.display = "none";
-          document.getElementById("sesion-out").parentNode.parentElement.style.display = "flex";
-          document.getElementById("cuenta").parentNode.parentElement.style.display = "flex";
-          document.getElementById("favoritos").parentNode.parentElement.style.display = "flex";
-          document.getElementById("puntos").parentNode.parentElement.style.display = "flex";
+          document.getElementById("sesion-out").style.display = "flex";
+          document.getElementById("cuenta").style.display = "flex";
+          document.getElementById("favoritos").style.display = "flex";
+          document.getElementById("puntos").style.display = "flex";
           this.navCtrl.setRoot(NavyrPage);
         }, error => {
           this.loading.dismiss().then(() => {
