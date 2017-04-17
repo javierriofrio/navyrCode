@@ -58,13 +58,6 @@ export class MyApp {
     ];
 
 
-          document.getElementById("usuario").innerHTML = "test";
-          document.getElementById("sesion-in").style.display = "flex";
-          document.getElementById("sesion-out").parentNode.parentElement.style.display = "none";
-          document.getElementById("cuenta").parentNode.parentElement.style.display = "none";
-          document.getElementById("favoritos").parentNode.parentElement.style.display = "none";
-          document.getElementById("puntos").parentNode.parentElement.style.display = "none";
-
   }
 
   initializeApp() {
