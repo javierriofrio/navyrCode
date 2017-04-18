@@ -35,6 +35,7 @@ export class LogoutPage {
     document.getElementById("cuenta").style.display = "none";
     document.getElementById("favoritos").style.display = "none";
     document.getElementById("puntos").style.display = "none";
+    document.getElementById("reservas").style.display = "none";
     this.navCtrl.setRoot(LoginPage);
   }
 

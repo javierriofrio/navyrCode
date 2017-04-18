@@ -29,8 +29,8 @@
 
 <ion-content>
   <ion-list>
-    <ion-item menuClose ion-item *ngFor="let p of pages" (tap)="openPage(p)">
-        <ion-icon  id="{{p.id}}" name="{{p.icon}}" item-left></ion-icon>
+    <ion-item menuClose ion-item *ngFor="let p of pages" (tap)="openPage(p)"  attr.id="{{p.id}}">
+        <ion-icon  name="{{p.icon}}" item-left></ion-icon>
         {{p.title}}
       </ion-item>
   </ion-list>

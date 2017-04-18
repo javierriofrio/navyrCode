@@ -39,6 +39,7 @@ export class LoginPage {
           document.getElementById("cuenta").style.display = "flex";
           document.getElementById("favoritos").style.display = "flex";
           document.getElementById("puntos").style.display = "flex";
+          document.getElementById("reservas").style.display = "flex";
           this.navCtrl.setRoot(NavyrPage);
         }, error => {
           this.loading.dismiss().then(() => {
