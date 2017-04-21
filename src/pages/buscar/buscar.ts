@@ -38,28 +38,24 @@ export class BuscarPage {
     let val = ev.target.value;
     // Reset items back to all of the items
     if (val && val.trim() != '') {
-      this.listEstablecimientos = this.database.list('/development/public/business', {
-        query: {
-          orderByChild: 'name',
-          equalTo: val.toLowerCase()
-        }
-      }
-      );
+      
+      var list = this.database.list('/development/public/business').map(_items=>_items.filter(_item=>
+      _item.business.businessName.toLowerCase().startsWith(val.toLowerCase())));
+  }
+
+
+      list.subscribe(item=>{
+       this.listEstablecimientos = item;
+        return this.listEstablecimientos;
+      })
+    
     }
 
-    // set val to the value of the searchbar
-
-
-    // if the value is an empty string don't filter the items
-
-    //this.listEstablecimientos = this.listEstablecimientos.map(listEstablecimientos => {
-    // const filtered = 
-
-
-    //filter((item) => {
-    //return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
-    //})
-    //}
+ 
+    openEstablecimiento(establecimiento) {
+          this.navCtrl.push(EstablecimientoPage, {
+            idEstablecimiento: establecimiento,
+          });
   }
 }
 
