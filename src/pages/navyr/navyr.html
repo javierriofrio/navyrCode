@@ -25,8 +25,8 @@
 <div class="titulo tituloSeccion">Top Establecimientos</div>
 
 <ul class="family-icon-scroller">
-    <li class="family-icon"  *ngFor="let top of tops | async" (click)="openEstablecimiento(top.$key)">
-      <ion-card>
+    <li class="family-icon"  *ngFor="let top of tops | async">
+      <ion-card  (tap)="openEstablecimiento(top.$key)">
         <img [src]="top.url">
       </ion-card>
     </li>
@@ -34,8 +34,8 @@
 
 <div class="titulo tituloSeccion">Categorías</div>
 <ul class="family-icon-scroller">
-    <li class="family-icon" *ngFor="let category of categories | async"   (click)="openCategoria(category.$key)">
-      <ion-card>
+    <li class="family-icon" *ngFor="let category of categories | async">
+      <ion-card  (tap)="openCategoria(category.$key)">
         <img [src]="category.url">
       </ion-card>
     </li>
@@ -44,8 +44,8 @@
 <div class=" titulo tituloSeccion">Los más Destacados</div>
 
 <ul class="icon-establecimiento">
-    <li class="family-icon"s *ngFor="let important of importants | async" (click)="openEstablecimiento(top.$key)">
-      <ion-card>
+    <li class="family-icon"s *ngFor="let important of importants | async">
+      <ion-card (tap)="openEstablecimiento(important.$key)">
         <img [src]="important.url">
         <div class="titulo-establecimiento centrar">{{important.businessName}}</div>
       </ion-card>

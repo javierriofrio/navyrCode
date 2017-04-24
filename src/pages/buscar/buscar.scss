@@ -3,7 +3,21 @@ page-buscar {
         margin-top: 2px !important;
         margin-bottom: 2px !important;
     }
-    .find-list h2{
-        margin-bottom: 7px;
+
+    .find-list{
+        padding-left: 0px;
     }
+
+    .find-list h2{
+        margin-bottom: 6px;
+        font-size: 1.5rem
+    }
+    .find-list p{
+        font-size: 1.3rem;
+        text-align: justify;
+    }
+    .find-list .pre-line{
+        white-space: pre-line;
+    }
+
 }

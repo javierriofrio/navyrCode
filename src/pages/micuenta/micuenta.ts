@@ -19,6 +19,7 @@ export class MiCuentaPage {
   photoSelected: boolean;
   userData : FirebaseObjectObservable<any>;
   usuario : Object;
+  fechaNacimiento: String;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, private DomSanitizer: DomSanitizer, 
   private database: AngularFireDatabase, public authData: AuthService) {
@@ -31,7 +32,7 @@ export class MiCuentaPage {
         database.object(`/development/private/users/${user.uid}`).subscribe(
           snapshot => {
             this.usuario = snapshot
-            console.log(this.usuario);
+            this.fechaNacimiento = new Date(snapshot.fechaNacimiento).toISOString();
           }
         )
       } else {

@@ -14,8 +14,8 @@
 
 <ion-content padding>
 
-  <ion-slides class="slider-home" slider="slider1">
-    <ion-slide pager="true" *ngFor="let photo of galeryBussiness | async">
+  <ion-slides pager="true" class="slider-home" slider="slider1">
+    <ion-slide *ngFor="let photo of galeryBussiness | async">
       <img [src]="photo.url">
     </ion-slide>
   </ion-slides>
@@ -38,11 +38,12 @@
   <ion-fab class="" top right edge>
     <button ion-fab mini class="favoritos" ion-fab><ion-icon  name="star"></ion-icon></button>
   </ion-fab>
-
-  <p>
-    {{establecimiento?.description}}
-  </p>
-
+  <div class="description">
+    <p>
+      {{establecimiento?.description}}
+    </p>
+  </div>
+  <div class="spacer"></div>
   <h4>Servicios</h4>
   <ion-list>
     <ion-item ion-item *ngFor="let service of listCatalogServices | async">
@@ -73,7 +74,8 @@
       <ion-icon name="at" item-left></ion-icon>
       <h4>Dirección Web:</h4>
       <a href="{{establecimiento?.webPage}}">
-      <p>{{establecimiento?.webPage}}</p></a>
+        <p>{{establecimiento?.webPage}}</p>
+      </a>
     </ion-item>
   </ion-list>
 
@@ -86,6 +88,8 @@
   </ion-list>
   <h4>Ubicación</h4>
   <div #map id="map">
-    <img src="https://maps.googleapis.com/maps/api/staticmap?maptype=roadmap&size=600x400&center={{direccion?.latitude}},{{direccion?.longitude}}&zoom=17&markers=color:red%7Clabel:P%7C{{direccion?.latitude}},{{direccion?.longitude}}&key= AIzaSyCbliPMff9MlsOG6zjYvC-najZI0QRK-Y8"/>
+    <a href="http://maps.google.com/maps?q={{direccion?.latitude}},{{direccion?.longitude}}&ll={{direccion?.latitude}},{{direccion?.longitude}}&z=17">
+    <img src="https://maps.googleapis.com/maps/api/staticmap?maptype=roadmap&size=600x400&center={{direccion?.latitude}},{{direccion?.longitude}}&zoom=17&markers=color:red%7Clabel:P%7C{{direccion?.latitude}},{{direccion?.longitude}}&key= AIzaSyCbliPMff9MlsOG6zjYvC-najZI0QRK-Y8"
+    /></a>
   </div>
 </ion-content>

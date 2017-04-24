@@ -25,7 +25,7 @@
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL1W7hDKIVWC2KBFFgh5qDdU3SBs-o8m7ckSzddHP7g63Vsre1">
     </ion-slide>
   </ion-slides>-->
-  <ion-slides  class="slider-home"  slider="slider1">
+  <ion-slides  pager="true"  class="slider-home"  slider="slider1">
     <ion-slide *ngFor="let promo of listPromos | async">
       <img [src]="promo.url">
     </ion-slide>
@@ -47,9 +47,9 @@
       </ion-card>
     </li>
 </ul>
-<div class="titulo tituloSeccion">Los más Destacados</div>
+<div class="titulo tituloSeccion">Establecimientos</div>
 <ul class="icon-establecimiento">
-    <li class="family-icon"s *ngFor="let important of importants | async" (tap)="openEstablecimiento(top.$key)">
+    <li class="family-icon"s *ngFor="let important of importants | async" (tap)="openEstablecimiento(important.$key)">
       <ion-card>
         <img [src]="important.url">
         <div class="titulo-establecimiento centrar">{{important.businessName}}</div>

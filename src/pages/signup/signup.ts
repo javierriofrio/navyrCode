@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController, AlertController } from 'ionic-angular';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AuthService } from '../../providers/auth-service';
 import { EmailValidator } from '../../validators/email';
 import { NavyrPage } from '../navyr/navyr';
@@ -19,13 +19,29 @@ export class SignupPage {
 
     this.signupForm = formBuilder.group({
       email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
-      password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
+      password:['', Validators.compose([Validators.minLength(6), Validators.required])],
+      confirmPassword: ['', Validators.compose([Validators.minLength(6), Validators.required])],
+      
       cedula: ['', Validators.compose([Validators.minLength(10),Validators.maxLength(10), Validators.required])],
       apellidos: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
       nombres: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
       telefono: ['', Validators.compose([Validators.minLength(7), Validators.required])],
       nacimiento: ['', Validators.compose([Validators.required])]
     });
+  }
+
+  matchingPasswords(passwordKey: string, confirmPasswordKey: string) {
+    // TODO maybe use this https://github.com/yuyang041060120/ng2-validation#notequalto-1
+    return (group: FormGroup): {[key: string]: any} => {
+      let password = group.controls[passwordKey];
+      let confirmPassword = group.controls[confirmPasswordKey];
+
+      if (password.value !== confirmPassword.value) {
+        return {
+          mismatchedPasswords: true
+        };
+      }
+    }
   }
 
   /**

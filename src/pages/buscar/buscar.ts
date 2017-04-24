@@ -21,7 +21,7 @@ export class BuscarPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private database: AngularFireDatabase) {
-    this.listEstablecimientos = this.database.list('/development/public/business');
+    //this.listEstablecimientos = this.database.list('/development/public/business');
   }
 
   ionViewDidLoad() {
@@ -38,24 +38,23 @@ export class BuscarPage {
     let val = ev.target.value;
     // Reset items back to all of the items
     if (val && val.trim() != '') {
-      
-      var list = this.database.list('/development/public/business').map(_items=>_items.filter(_item=>
-      _item.business.businessName.toLowerCase().startsWith(val.toLowerCase())));
+
+      var list = this.database.list('/development/public/business').map(_items => _items.filter(_item =>
+        _item.business.businessName.toLowerCase().startsWith(val.toLowerCase())));
+
+      list.subscribe(item => {
+        this.listEstablecimientos = item;
+        return this.listEstablecimientos;
+      })
+    }
+
   }
 
 
-      list.subscribe(item=>{
-       this.listEstablecimientos = item;
-        return this.listEstablecimientos;
-      })
-    
-    }
-
- 
-    openEstablecimiento(establecimiento) {
-          this.navCtrl.push(EstablecimientoPage, {
-            idEstablecimiento: establecimiento,
-          });
+  openEstablecimiento(establecimiento) {
+    this.navCtrl.push(EstablecimientoPage, {
+      idEstablecimiento: establecimiento,
+    });
   }
 }
 

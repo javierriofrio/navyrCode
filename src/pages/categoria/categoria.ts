@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { UbicacionPage } from '../ubicacion/ubicacion';
 import { NavyrPage } from '../navyr/navyr';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2';
+import { EstablecimientoPage } from '../establecimiento/establecimiento'
 
 /*
   Generated class for the Categoria page.
@@ -43,5 +44,13 @@ export class CategoriaPage {
   openRootPage() {
 	  this.navCtrl.setRoot(NavyrPage);
   }
+
+
+  openEstablecimiento(establecimiento) {
+          this.navCtrl.push(EstablecimientoPage, {
+            idEstablecimiento: establecimiento,
+          });
+  }
+
 
 }

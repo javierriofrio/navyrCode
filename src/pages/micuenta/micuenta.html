@@ -10,7 +10,7 @@
 <ion-content>
 
   <ion-list>
-    <ion-item>
+    <ion-item class="item-no-border">
       <ion-thumbnail item-left>
         <img [src]="DomSanitizer.bypassSecurityTrustUrl(cameraData)" *ngIf="photoTaken">
         <img src="assets/img/avatar-img.png" *ngIf="!photoTaken">
@@ -39,7 +39,7 @@
     </ion-item>
     <ion-item>
       <ion-label stacked>Fecha Nacimiento:</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY">{{usuario?.fechaNacimiento}}</ion-datetime>
+      <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY" [(ngModel)]="fechaNacimiento"></ion-datetime>
     </ion-item>
   </ion-list>
     <div class="spacer"></div>

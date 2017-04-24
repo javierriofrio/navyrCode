@@ -11,4 +11,9 @@ page-establecimiento {
       ion-item ion-label{
         overflow: unset;
       }
+
+      .description p {
+        text-align: justify;
+      }
+      
 }
