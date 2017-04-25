@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+/*import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { FirebaseListObservable, AngularFireDatabase  } from 'angularfire2';
 
@@ -48,4 +48,4 @@ export class Fav {
   }
 
 
-}
+}*/

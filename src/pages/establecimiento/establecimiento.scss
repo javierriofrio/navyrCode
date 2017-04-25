@@ -4,10 +4,15 @@ page-establecimiento {
         height: 50%;
       }
 
-      .favoritos{
+      .favoritos, .favoritos-outline{
         top: 0px;
       }
 
+      .favoritos{
+        background: #D0E080
+      }  
+      
+      
       ion-item ion-label{
         overflow: unset;
       }

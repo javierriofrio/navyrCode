@@ -39,6 +39,7 @@ export class EstablecimientoPage {
   listSchedules: FirebaseListObservable<any>;
   galeryBussiness: FirebaseListObservable<any>;
   paymentName: string;
+  favorite: Object;
 
 
   constructor(public modalCtrl: ModalController, public database: AngularFireDatabase, 
@@ -56,11 +57,19 @@ export class EstablecimientoPage {
       this.direccion = snapshot;
     });;
     
-
     this.galeryBussiness = this.database.list('/development/private/businessImages/' + this.idEstablecimiento + '/galerias');
     this.listSchedules = this.database.list('/development/public/business/' + this.idEstablecimiento + '/businessServices/schedules');
     this.listPayment = this.database.list('/development/public/business/' + this.idEstablecimiento + '/businessServices/paymentForms');
     this.listCatalogServices = this.database.list('/development/shared/catalogs/services');
+
+    if(this.authData.authenticated){
+      console.log(this.authData.displayUID());
+ //     console.log('/development/private/businessFavorites/' + this.idEstablecimiento + '/' + this.authData.displayUID);
+      this.database.object('/development/private/businessFavorites/' + this.idEstablecimiento + '/' + this.authData.displayUID()).subscribe(snapshot => {
+        if(snapshot.value)
+          this.favorite = snapshot.value;
+      })
+    }
 
   }
 
@@ -80,6 +89,11 @@ export class EstablecimientoPage {
     });
 
     return this.paymentName;
+  }
+
+
+  addFavorites(){
+
   }
 
 
