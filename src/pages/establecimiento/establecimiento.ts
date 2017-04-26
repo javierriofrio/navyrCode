@@ -37,6 +37,7 @@ export class EstablecimientoPage {
   listCatalogServices: FirebaseListObservable<any>;
   listPayment: FirebaseListObservable<any>;
   listSchedules: FirebaseListObservable<any>;
+  listFavoritos: FirebaseListObservable<any>;
   galeryBussiness: FirebaseListObservable<any>;
   paymentName: string;
   favorite: Object;
@@ -65,6 +66,8 @@ export class EstablecimientoPage {
     if(this.authData.authenticated){
       console.log(this.authData.displayUID());
  //     console.log('/development/private/businessFavorites/' + this.idEstablecimiento + '/' + this.authData.displayUID);
+
+      this.listFavoritos = this.database.list('/development/private/businessFavorites/');
       this.database.object('/development/private/businessFavorites/' + this.idEstablecimiento + '/' + this.authData.displayUID()).subscribe(snapshot => {
         if(snapshot.value)
           this.favorite = snapshot.value;
@@ -93,7 +96,7 @@ export class EstablecimientoPage {
 
 
   addFavorites(){
-
+    this.listFavoritos.push(true)
   }
 
 
@@ -103,7 +106,7 @@ export class EstablecimientoPage {
 
   abrirReserva() {
 
-    const authObserver = this.authData.auth$.subscribe(user => {
+    this.authData.auth$.subscribe(user => {
       console.log(user);
       if (user) {
         console.log(user.uid);
