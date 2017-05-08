@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { NavyrPage } from '../navyr/navyr';
+import { Storage } from '@ionic/storage'
 
 /*
   Generated class for the Ajustes page.
@@ -13,7 +14,16 @@ import { NavyrPage } from '../navyr/navyr';
   templateUrl: 'ajustes.html'
 })
 export class AjustesPage {
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+
+  distance: Number;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
+    storage.ready().then(() => {
+       storage.get('distance').then((val) => {
+         this.distance = val;
+       })
+     });
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AjustesPage');
@@ -21,6 +31,12 @@ export class AjustesPage {
 
   openRootPage() {
 	  this.navCtrl.setRoot(NavyrPage);
+  }
+
+  guardarAjustes(){
+    this.storage.ready().then(()=> {
+      this.storage.set("distance",this.distance);
+    });
   }
 
 }

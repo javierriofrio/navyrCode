@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { NavController, NavParams } from 'ionic-angular';
 import { Camera } from 'ionic-native';
-import {DomSanitizer} from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { NavyrPage } from '../navyr/navyr';
 import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2';
 import { AuthService } from '../../providers/auth-service';
@@ -25,14 +25,12 @@ export class MiCuentaPage {
   private database: AngularFireDatabase, public authData: AuthService) {
     this.photoTaken = false;
 
-    const authObserver = this.authData.auth$.subscribe(user => {
-      console.log(user);
+   this.authData.auth$.subscribe(user => {
       if (user) {
-        console.log(user.uid);
         database.object(`/development/private/users/${user.uid}`).subscribe(
           snapshot => {
             this.usuario = snapshot
-            this.fechaNacimiento = new Date(snapshot.fechaNacimiento).toISOString();
+            this.fechaNacimiento = new Date(snapshot.fechaNacimiento).toString();
           }
         )
       } else {

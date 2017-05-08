@@ -4,7 +4,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../providers/auth-service';
 import { NavyrPage } from '../navyr/navyr';
 import { SignupPage } from '../signup/signup';
-import { LogoutPage } from '../logout/logout'
 import { ResetPasswordPage } from '../reset-password/reset-password';
 import { EmailValidator } from '../../validators/email';
 

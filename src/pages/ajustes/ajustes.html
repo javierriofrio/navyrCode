@@ -27,7 +27,7 @@
     </ion-item>
     <ion-item>
       <ion-label>English</ion-label>
-      <ion-radio value="en"></ion-radio>
+      <ion-radio ng-disabled="true" value="en"></ion-radio>
     </ion-item>
   </ion-list>
   <div class="spacer"></div>
@@ -37,16 +37,22 @@
       <ion-label>Ciudad</ion-label>
       <ion-select [(ngModel)]="ciudad">
         <ion-option value="Quito" selected="true">Quito</ion-option>
-        <ion-option value="Guayaquil">Guayaquil</ion-option>
-        <ion-option value="Cuenca">Cuenca</ion-option>
+        <ion-option ng-disabled="true" value="Guayaquil">Guayaquil</ion-option>
+        <ion-option ng-disabled="true" value="Cuenca">Cuenca</ion-option>
       </ion-select>
       </ion-item>
   </ion-list>
   <div class="spacer"></div>
       <div class="ajuste">Distancia en Km para realizar la búsqueda:</div>
-  <ion-list>  
+  <ion-list> 
+    <ion-list-header>
+       Distancia seleccionada:
+      <ion-badge color="default">
+          {{distance}}
+       </ion-badge>
+    </ion-list-header>
     <ion-item>
-       <ion-range min="0" max="50" step="1" pin="true" default="25" [(ngModel)]="contrast" color="default">
+       <ion-range min="0" max="50" step="1" pin="true" default="25" [(ngModel)]="distance" color="default">
         <ion-icon range-left small name="remove"></ion-icon>
         <ion-icon range-right name="add"></ion-icon>
       </ion-range>
