@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { NavyrPage } from '../navyr/navyr';
-import { Storage } from '@ionic/storage'
+import localForage from "localforage";
 
 /*
   Generated class for the Ajustes page.
@@ -15,14 +15,16 @@ import { Storage } from '@ionic/storage'
 })
 export class AjustesPage {
 
-  distance: Number;
+  distance: Object;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
-    storage.ready().then(() => {
-       storage.get('distance').then((val) => {
-         this.distance = val;
-       })
-     });
+  constructor(public navCtrl: NavController, public navParams: NavParams ) {
+    
+    localForage.getItem("distance").then((result) => {
+           this.distance = result ? <Array<Object>> result : [];
+        }, (error) => {
+            console.log("ERROR: ", error);
+        });
+       
   }
 
   ionViewDidLoad() {
@@ -34,9 +36,8 @@ export class AjustesPage {
   }
 
   guardarAjustes(){
-    this.storage.ready().then(()=> {
-      this.storage.set("distance",this.distance);
-    });
+      localForage.setItem("distance",this.distance);
+    
   }
 
 }

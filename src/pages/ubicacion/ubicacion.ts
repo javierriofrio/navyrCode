@@ -9,6 +9,8 @@ import {
   GoogleMapsMarker,
   Geolocation
 } from 'ionic-native';
+import localForage from "localforage";
+import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2'
 
 
 /*
@@ -24,8 +26,19 @@ import {
 })
 export class UbicacionPage {
 
-  constructor( public navCtrl: NavController) {
-    this.loadMap();
+  distance: Object;
+  restaurants: FirebaseListObservable<any>;
+
+  constructor( public navCtrl: NavController, private database: AngularFireDatabase) {
+    localForage.getItem("distance").then((result) => {
+           this.distance = result ? <Array<Object>> result : [];
+           console.log(this.distance);
+        }, (error) => {
+            console.log("ERROR: ", error);
+        });
+    this.restaurants = this.database.list('/development/public/businessByLocation/EC/Pichincha/Quito');
+
+    this.buscarRestaurantesPosicion(1,1);
   }
   
   openRootPage() {
@@ -45,6 +58,7 @@ export class UbicacionPage {
 
     // create a new map by passing HTMLElement
 
+
     Geolocation.getCurrentPosition().then(pos => {
 
       let element: HTMLElement = document.getElementById('map');
@@ -52,6 +66,7 @@ export class UbicacionPage {
       latitud = pos.coords.latitude;
       longitud = pos.coords.longitude;
       // create LatLng object
+
       let ionic: GoogleMapsLatLng = new GoogleMapsLatLng(latitud, longitud);
       let map = new GoogleMap(element,{
         'backgroundColor': 'white',
@@ -101,12 +116,35 @@ export class UbicacionPage {
 
     });
 
-
-
-
-
-
   }
+  
+  buscarRestaurantesPosicion(latitud,longitud){
+    var list = this.database.object('/development/public/business/BUSS_-KfbWDy2eHvLeya5j9wi');
+    
+    this.restaurants.subscribe(function(val){
+      val.forEach(element => {
+        
+      });
+    })
+  }
+
+  getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+    var R = 6371; // Radius of the earth in km
+    var dLat = this.deg2rad(lat2-lat1);  // deg2rad below
+    var dLon = this.deg2rad(lon2-lon1); 
+    var a = 
+      Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * 
+      Math.sin(dLon/2) * Math.sin(dLon/2)
+      ; 
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    var d = R * c; // Distance in km
+    return d;
+   }
+
+   deg2rad(deg) {
+    return deg * (Math.PI/180)
+   }
 
 
 }

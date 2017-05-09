@@ -21,7 +21,7 @@ export class NavyrPage {
   tops: FirebaseListObservable<any>;
   importants: FirebaseListObservable<any>;
 
-  constructor(public navCtrl: NavController, public database: AngularFireDatabase, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, private database: AngularFireDatabase, public alertCtrl: AlertController) {
     this.promos = this.database.list('/development/public/businessPromo');
     this.categories = this.database.list('/development/shared/catalogs/businessCategories');
     this.tops = this.database.list('/development/public/topBusiness');
