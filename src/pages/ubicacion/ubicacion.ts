@@ -10,7 +10,7 @@ import {
   Geolocation
 } from 'ionic-native';
 import localForage from "localforage";
-import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2'
+import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2'
 
 
 /*
@@ -28,7 +28,7 @@ export class UbicacionPage {
 
   distance: Object;
   restaurants: FirebaseListObservable<any>;
-
+  
   constructor( public navCtrl: NavController, private database: AngularFireDatabase) {
     localForage.getItem("distance").then((result) => {
            this.distance = result ? <Array<Object>> result : [];
@@ -36,9 +36,8 @@ export class UbicacionPage {
         }, (error) => {
             console.log("ERROR: ", error);
         });
+    
     this.restaurants = this.database.list('/development/public/businessByLocation/EC/Pichincha/Quito');
-
-    this.buscarRestaurantesPosicion(1,1);
   }
   
   openRootPage() {
@@ -62,11 +61,12 @@ export class UbicacionPage {
     Geolocation.getCurrentPosition().then(pos => {
 
       let element: HTMLElement = document.getElementById('map');
-
+      
       latitud = pos.coords.latitude;
       longitud = pos.coords.longitude;
       // create LatLng object
 
+      this.buscarRestaurantesPosicion(latitud,longitud);
       let ionic: GoogleMapsLatLng = new GoogleMapsLatLng(latitud, longitud);
       let map = new GoogleMap(element,{
         'backgroundColor': 'white',
@@ -119,13 +119,34 @@ export class UbicacionPage {
   }
   
   buscarRestaurantesPosicion(latitud,longitud){
-    var list = this.database.object('/development/public/business/BUSS_-KfbWDy2eHvLeya5j9wi');
     
-    this.restaurants.subscribe(function(val){
-      val.forEach(element => {
+    const data = this.database;
+
+    let array = [];
+    
+    this.restaurants.subscribe(snapshot=>{
+      snapshot.forEach(element => {
+
+        const infoRestaurantes = data.object('/development/public/business/'+element.$key)
         
-      });
+
+        infoRestaurantes.subscribe(snapshot=>{
+          if(this.getDistanceFromLatLonInKm(latitud,longitud,snapshot.businessAddresses.latitude,snapshot.businessAddresses.longitude)<this.distance){
+            array.push(snapshot.business.businessName);
+          }
+
+          /*.map(_items => _items.filter((_item){
+            if (this.getDistanceFromLatLonInKm(_item.latitude,_item.longitude,latitud,longitud) < this.distance)
+              return snapshot;
+          } ));*/
+        })
+
     })
+    
+  });
+
+console.log(array);     
+
   }
 
   getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
@@ -139,6 +160,7 @@ export class UbicacionPage {
       ; 
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
     var d = R * c; // Distance in km
+    console.log(d);
     return d;
    }
 
