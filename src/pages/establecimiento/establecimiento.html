@@ -36,7 +36,7 @@
     <button ion-fab (click)="abrirReserva()">Reservar</button>
   </ion-fab>
   <ion-fab class="" top right edge>
-    <button id="favorito" ion-fab mini class="favoritos" ion-fab><ion-icon  name="{{favorite ? 'star' : 'star-outline' }}" (tap)="addFavorites()"></ion-icon></button>
+    <button id="favorito" ion-fab mini class="favoritos" ion-fab (tap)="guardarQuitarFavorito()"><ion-icon  name="{{favorite ? 'star' : 'star-outline' }}"></ion-icon></button>
   </ion-fab>
   <div class="description">
     <p>

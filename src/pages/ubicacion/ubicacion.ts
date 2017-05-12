@@ -28,22 +28,50 @@ export class UbicacionPage {
 
   distance: Object;
   restaurants: FirebaseListObservable<any>;
-  
-  constructor( public navCtrl: NavController, private database: AngularFireDatabase) {
-    localForage.getItem("distance").then((result) => {
-           this.distance = result ? <Array<Object>> result : [];
-           console.log(this.distance);
-        }, (error) => {
-            console.log("ERROR: ", error);
-        });
-    
+
+  constructor(public navCtrl: NavController, private database: AngularFireDatabase) {
+
     this.restaurants = this.database.list('/development/public/businessByLocation/EC/Pichincha/Quito');
-  }
-  
-  openRootPage() {
-	  this.navCtrl.setRoot(NavyrPage);
+
+
+    localForage.getItem("distance").then((result) => {
+      this.distance = result ? result : 0;
+      console.log(this.distance);
+
+      /*this.buscarRestaurantesPosicion(-0.176815, -78.480938).then(function(result){
+        console.log(result);
+      });*/
+
+    }, (error) => {
+      console.log("ERROR: ", error);
+    });
+
+
   }
 
+  ionViewDidLoad(){
+    this.loadMap();
+  }
+
+  openRootPage() {
+    this.navCtrl.setRoot(NavyrPage);
+  }
+
+  /*getMarkers() {
+    this.http.get('assets/data/markers.json')
+    .map((res) => res.json())
+    .subscribe(data => {
+      this.addMarkersToMap(data);
+    });
+  }
+
+  addMarkersToMap(markers) {
+    for(let marker of markers) {
+      const position = new GoogleMapsLatLng(marker.latitude, marker.longitude);
+      const dogwalkMarker = new GoogleMapsMarker({position: position, title: marker.title});
+      dogwalkMarker(this.map);
+    }
+  }*/
 
   loadMap() {
 
@@ -60,15 +88,14 @@ export class UbicacionPage {
 
     Geolocation.getCurrentPosition().then(pos => {
 
-      let element: HTMLElement = document.getElementById('map');
-      
+      const element: HTMLElement = document.getElementById('map');
+
       latitud = pos.coords.latitude;
       longitud = pos.coords.longitude;
       // create LatLng object
 
-      this.buscarRestaurantesPosicion(latitud,longitud);
-      let ionic: GoogleMapsLatLng = new GoogleMapsLatLng(latitud, longitud);
-      let map = new GoogleMap(element,{
+      const ionic: GoogleMapsLatLng = new GoogleMapsLatLng(latitud, longitud);
+      const map = new GoogleMap(element, {
         'backgroundColor': 'white',
         'controls': {
           'compass': true,
@@ -94,17 +121,17 @@ export class UbicacionPage {
       map.one(GoogleMapsEvent.MAP_READY).then(() => console.log('Map is ready!'));
 
       // create CameraPosition
- /*     let position: CameraPosition = {
-        target: ionic,
-        zoom: 18,
-        tilt: 30
-      };
-
-      // move the map's camera to position
-      map.moveCamera(position);
-*/
+      /*     let position: CameraPosition = {
+             target: ionic,
+             zoom: 18,
+             tilt: 30
+           };
+     
+           // move the map's camera to position
+           map.moveCamera(position);
+     */
       // create new marker
-      let markerOptions: GoogleMapsMarkerOptions = {
+      const markerOptions: GoogleMapsMarkerOptions = {
         position: ionic,
         title: "Tu Posicion"
       };
@@ -114,59 +141,76 @@ export class UbicacionPage {
           marker.showInfoWindow();
         });
 
+      /*this.buscarRestaurantesPosicion(latitud, longitud).forEach(item => {
+        const pos: GoogleMapsLatLng = new GoogleMapsLatLng(item.latitude, item.longitude);
+        const markerOptions: GoogleMapsMarkerOptions = {
+          position: pos,
+          title: item.name
+        };
+        map.addMarker(markerOptions)
+          .then((marker: GoogleMapsMarker) => {
+            marker.showInfoWindow();
+          });
+      })*/
+
     });
 
+
   }
-  
-  buscarRestaurantesPosicion(latitud,longitud){
-    
+
+
+  buscarRestaurantesPosicion = function(latitud, longitud){
     const data = this.database;
-
     let array = [];
-    
-    this.restaurants.subscribe(snapshot=>{
-      snapshot.forEach(element => {
+    return new Promise((resolve,reject)=>{
+      this.restaurants.subscribe(snapshot => {
 
-        const infoRestaurantes = data.object('/development/public/business/'+element.$key)
-        
+        snapshot.forEach(element => {
 
-        infoRestaurantes.subscribe(snapshot=>{
-          if(this.getDistanceFromLatLonInKm(latitud,longitud,snapshot.businessAddresses.latitude,snapshot.businessAddresses.longitude)<this.distance){
-            array.push(snapshot.business.businessName);
-          }
+          const promise = new Promise((resolve,reject)=>{
+          data.object('/development/public/business/' + element.$key).subscribe(snapshot => {
+            if (this.getDistanceFromLatLonInKm(latitud, longitud, snapshot.businessAddresses.latitude, snapshot.businessAddresses.longitude) <= this.distance) {
+              console.log('entro aqui');
+              array.push({
+                name: snapshot.business.businessName,
+                latitude: snapshot.businessAddresses.latitude,
+                longitude: snapshot.businessAddresses.longitude
+              });
+            }
+            })
+            /*.map(_items => _items.filter((_item){
+              if (this.getDistanceFromLatLonInKm(_item.latitude,_item.longitude,latitud,longitud) < this.distance)
+                return snapshot;
+            } ));*/
+          })
 
-          /*.map(_items => _items.filter((_item){
-            if (this.getDistanceFromLatLonInKm(_item.latitude,_item.longitude,latitud,longitud) < this.distance)
-              return snapshot;
-          } ));*/
         })
+      })
+        resolve(array);
+        reject('FAIL');
 
-    })
-    
-  });
-
-console.log(array);     
-
+    });
+      
   }
 
-  getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+  getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
     var R = 6371; // Radius of the earth in km
-    var dLat = this.deg2rad(lat2-lat1);  // deg2rad below
-    var dLon = this.deg2rad(lon2-lon1); 
-    var a = 
-      Math.sin(dLat/2) * Math.sin(dLat/2) +
-      Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * 
-      Math.sin(dLon/2) * Math.sin(dLon/2)
-      ; 
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    var dLat = this.deg2rad(lat2 - lat1);  // deg2rad below
+    var dLon = this.deg2rad(lon2 - lon1);
+    var a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2)
+      ;
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = R * c; // Distance in km
-    console.log(d);
-    return d;
-   }
 
-   deg2rad(deg) {
-    return deg * (Math.PI/180)
-   }
+    return d;
+  }
+
+  deg2rad(deg) {
+    return deg * (Math.PI / 180)
+  }
 
 
 }

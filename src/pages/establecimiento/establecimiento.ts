@@ -29,6 +29,7 @@ export class EstablecimientoPage {
   objectDireccion: FirebaseObjectObservable<any>;
   objectPayment: FirebaseObjectObservable<any>;
   private establecimiento: Object;
+  private establecimientoId;
   private feature: Object;
   private direccion: Direccion;
   private servicio: Boolean;
@@ -43,34 +44,34 @@ export class EstablecimientoPage {
   favorite: Object;
 
 
-  constructor(public modalCtrl: ModalController, public database: AngularFireDatabase, 
-  public navParams: NavParams, public navCtrl: NavController, public authData: AuthService) {
-    
+  constructor(public modalCtrl: ModalController, public database: AngularFireDatabase,
+    public navParams: NavParams, public navCtrl: NavController, public authData: AuthService) {
+
     this.idEstablecimiento = navParams.get("idEstablecimiento");
     this.database.object('/development/public/business/' + this.idEstablecimiento + '/business').subscribe(snapshot => {
+      this.establecimientoId = snapshot.id;
       this.establecimiento = snapshot;
     });;
- 
+
     this.database.object('/development/public/business/' + this.idEstablecimiento + '/businessServices/features').subscribe(snapshot => {
       this.feature = snapshot;
     });;
     this.database.object('/development/public/business/' + this.idEstablecimiento + '/businessAddresses').subscribe(snapshot => {
       this.direccion = snapshot;
     });;
-    
+
     this.galeryBussiness = this.database.list('/development/private/businessImages/' + this.idEstablecimiento + '/galerias');
     this.listSchedules = this.database.list('/development/public/business/' + this.idEstablecimiento + '/businessServices/schedules');
     this.listPayment = this.database.list('/development/public/business/' + this.idEstablecimiento + '/businessServices/paymentForms');
     this.listCatalogServices = this.database.list('/development/shared/catalogs/services');
 
-    if(this.authData.authenticated){
-      console.log(this.authData.displayUID());
- //     console.log('/development/private/businessFavorites/' + this.idEstablecimiento + '/' + this.authData.displayUID);
+    if (this.authData.authenticated) {
+      //     console.log('/development/private/businessFavorites/' + this.idEstablecimiento + '/' + this.authData.displayUID);
 
       this.listFavoritos = this.database.list('/development/private/businessFavorites/');
       this.database.object('/development/private/businessFavorites/' + this.idEstablecimiento + '/' + this.authData.displayUID()).subscribe(snapshot => {
-        if(snapshot.value)
-          this.favorite = snapshot.value;
+        if (snapshot)
+          this.favorite = snapshot.$value;
       })
     }
 
@@ -84,9 +85,9 @@ export class EstablecimientoPage {
   }
 
 
-  getPayment(payment : string){
-    
-    this.objectPayment = this.database.object('/development/shared/catalogs/paymentForms/'+payment);
+  getPayment(payment: string) {
+
+    this.objectPayment = this.database.object('/development/shared/catalogs/paymentForms/' + payment);
     this.objectPayment.subscribe(snapshot => {
       this.paymentName = snapshot['name'];
     });
@@ -95,7 +96,7 @@ export class EstablecimientoPage {
   }
 
 
-  addFavorites(){
+  addFavorites() {
     this.listFavoritos.push(true)
   }
 
@@ -110,13 +111,28 @@ export class EstablecimientoPage {
       console.log(user);
       if (user) {
         console.log(user.uid);
-          let profileModal = this.modalCtrl.create(ReservaPage);
-          profileModal.present();
+        let profileModal = this.modalCtrl.create(ReservaPage);
+        profileModal.present();
       } else {
         this.navCtrl.setRoot(LoginPage);
       }
     });
 
+  }
+
+  guardarQuitarFavorito() {
+    if (this.authData.authenticated) {
+      const id = this.establecimientoId;
+      let fav = this.favorite ? "false" : "true";
+      const authId = this.authData.displayUID()
+      const json = '{'+ id +': {'+ authId + ':'+ fav + '} }'
+      this.listFavoritos.push({
+        id: {
+          authId: fav
+        }
+      })
+
+    }
   }
 
   openRootPage() {
