@@ -70,7 +70,7 @@ export class EstablecimientoPage {
 
       this.listFavoritos = this.database.list('/development/private/businessFavorites/');
       this.database.object('/development/private/businessFavorites/' + this.idEstablecimiento + '/' + this.authData.displayUID()).subscribe(snapshot => {
-        if (snapshot)
+        if (snapshot.$value)
           this.favorite = snapshot.$value;
       })
     }
@@ -80,7 +80,7 @@ export class EstablecimientoPage {
   getService(service: string) {
     this.database.object('/development/public/business/' + this.idEstablecimiento + '/businessServices/services').subscribe(snapshot => {
       this.servicio = snapshot;
-    });;
+    });
     return this.servicio;
   }
 
@@ -93,11 +93,6 @@ export class EstablecimientoPage {
     });
 
     return this.paymentName;
-  }
-
-
-  addFavorites() {
-    this.listFavoritos.push(true)
   }
 
 
@@ -122,17 +117,12 @@ export class EstablecimientoPage {
 
   guardarQuitarFavorito() {
     if (this.authData.authenticated) {
-      const id = this.establecimientoId;
-      let fav = this.favorite ? "false" : "true";
-      const authId = this.authData.displayUID()
-      const json = '{'+ id +': {'+ authId + ':'+ fav + '} }'
-      this.listFavoritos.push({
-        id: {
-          authId: fav
-        }
-      })
-
-    }
+      const id = this.establecimientoId
+      let fav = this.favorite == "false" ? "true" : "false";
+      const authId = this.authData.displayUID();
+      this.listFavoritos.$ref.ref.child(id).child(authId).set(fav);
+      
+   }
   }
 
   openRootPage() {

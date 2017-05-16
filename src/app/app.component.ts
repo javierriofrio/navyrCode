@@ -24,7 +24,7 @@ export class MyApp {
 
   rootPage: any = NavyrPage;
 
-  usuario : Object;
+  usuario: Object;
 
   pages: Array<{ title: string, component: any, icon: string, id: string }>;
 
@@ -35,16 +35,16 @@ export class MyApp {
 
 
     this.pages = [
-              { title: 'Inicio', component: NavyrPage, icon: 'home', id: 'inicio' },
-              { title: 'Mi Cuenta', component: MiCuentaPage, icon: 'contact', id: 'cuenta' },
-              { title: 'Mis Reservas', component: MisReservasPage, icon: 'calendar', id: 'reservas' },
-              { title: 'Mis Navyr Puntos', component: PuntosPage, icon: 'ribbon', id: 'puntos' },
-              { title: 'Ir a Categorias', component: IrcategoriasPage, icon: 'folder-open', id: 'categorias' },
-              { title: 'Buscar', component: BuscarPage, icon: 'search', id: 'buscar' },
-              { title: 'Favoritos', component: FavoritoPage, icon: 'star', id: 'favoritos' },
-              { title: 'Iniciar Sesión', component: LoginPage, icon: 'log-in', id: 'sesion-in' },
-              { title: 'Cerrar Sesión', component: LogoutPage, icon: 'log-out', id: 'sesion-out' }
-            ];
+      { title: 'Inicio', component: NavyrPage, icon: 'home', id: 'inicio' },
+      { title: 'Mi Cuenta', component: MiCuentaPage, icon: 'contact', id: 'cuenta' },
+      { title: 'Mis Reservas', component: MisReservasPage, icon: 'calendar', id: 'reservas' },
+      { title: 'Mis Navyr Puntos', component: PuntosPage, icon: 'ribbon', id: 'nav-puntos' },
+      { title: 'Ir a Categorias', component: IrcategoriasPage, icon: 'folder-open', id: 'categorias' },
+      { title: 'Buscar', component: BuscarPage, icon: 'search', id: 'buscar' },
+      { title: 'Favoritos', component: FavoritoPage, icon: 'star', id: 'favoritos' },
+      { title: 'Iniciar Sesión', component: LoginPage, icon: 'log-in', id: 'sesion-in' },
+      { title: 'Cerrar Sesión', component: LogoutPage, icon: 'log-out', id: 'sesion-out' }
+    ];
 
 
     // used for an example of ngFor and navigation
@@ -66,6 +66,18 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
+      console.log(this.authData.authenticated);
+      if (!this.authData.authenticated) {
+        document.getElementById('sesion-out').style.display = 'none';
+        document.getElementById('cuenta').style.display = 'none';
+        document.getElementById('puntos').style.display = 'none';
+        document.getElementById('nav-puntos').style.display = 'none';
+        //document.getElementById('favoritos').style.display = 'none';
+        document.getElementById('reservas').style.display = 'none';
+      }
+      else {
+        document.getElementById('sesion-in').style.display = 'none';
+      }
     });
   }
 
@@ -79,7 +91,7 @@ export class MyApp {
     this.nav.setRoot(NavyrPage);
   }
 
-  logOut(){
+  logOut() {
     this.authData.signOut();
     this.openRootPage();
   }

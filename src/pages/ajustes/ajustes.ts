@@ -16,6 +16,7 @@ import localForage from "localforage";
 export class AjustesPage {
 
   distance: Object;
+  ciudad: String = "Quito";
 
   constructor(public navCtrl: NavController, public navParams: NavParams ) {
     
