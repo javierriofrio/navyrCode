@@ -8,44 +8,45 @@
 </ion-header>
 
 <ion-content>
-
+<form [formGroup]="cuentaForm" (submit)="guardarDatosCuenta(usuario?.$key)" novalidate>
   <ion-list>
     <ion-item class="item-no-border">
       <ion-thumbnail item-left>
-        <img [src]="DomSanitizer.bypassSecurityTrustUrl(cameraData)" *ngIf="photoTaken">
+        <img formControlName="imagen" [src]="DomSanitizer.bypassSecurityTrustUrl(cameraData)" *ngIf="photoTaken">
         <img src="assets/img/avatar-img.png" *ngIf="!photoTaken">
       </ion-thumbnail>
       <ion-icon name="camera"  (click)="tomarFoto()"></ion-icon>
     </ion-item>
     <ion-item>
       <ion-label floating>Cédula:</ion-label>
-      <ion-input value="{{usuario?.cedula}}"></ion-input>
+      <ion-input formControlName="cedula"  value="{{usuario?.cedula}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Nombres:</ion-label>
-      <ion-input value="{{usuario?.nombre}}"></ion-input>
+      <ion-input formControlName="nombre"  value="{{usuario?.nombre}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Apellidos:</ion-label>
-      <ion-input  value="{{usuario?.apellido}}"></ion-input>
+      <ion-input formControlName="apellido"   value="{{usuario?.apellido}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Teléfono:</ion-label>
-      <ion-input  value="{{usuario?.telefono}}"></ion-input>
+      <ion-input formControlName="telefono"  value="{{usuario?.telefono}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Correo Electrónico:</ion-label>
-      <ion-input  value="{{usuario?.email}}"></ion-input>
+      <ion-input formControlName="email"   value="{{usuario?.email}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Fecha Nacimiento:</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY" [(ngModel)]="fechaNacimiento"></ion-datetime>
+      <ion-datetime formControlName="nacimiento" displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY" [(ngModel)]="fechaNacimiento"></ion-datetime>
     </ion-item>
   </ion-list>
     <div class="spacer"></div>
     <div class="spacer"></div>
   <ion-buttons class="barra-botones" start>
-    <button ion-button class="boton-aceptar" round (tap)="guardarDatosCuenta(usuario?.$key)">Guardar</button>
-    <button ion-button color="dark" round>Cancelar Cuenta</button>
+    <button type="submit" ion-button class="boton-aceptar" round>Guardar</button>
+    <button ion-button color="dark" round (tap)="goToRoot()">Cancelar Cuenta</button>
   </ion-buttons>
+  </form>
 </ion-content>

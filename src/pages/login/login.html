@@ -38,16 +38,16 @@
     <div class="spacer"></div>
     <ion-buttons class="barra-botones" start>
       <button type="submit" ion-button class="boton-aceptar" round>Inicio de sesión</button>
-      <button ion-button color="dark" round  (click)="goToRoot()">Cancelar</button>
+      <button ion-button color="dark" round  (tap)="goToRoot()">Cancelar</button>
     </ion-buttons>
 
   </form>
 
-  <button class="button-clear" color="dark" ion-button block clear (click)="goToResetPassword()">
+  <button class="button-clear" color="dark" ion-button block clear (tap)="goToResetPassword()">
     ¿Olvidó su contraseña?
   </button>
 
-  <button class="button-clear" color="dark" ion-button block clear (click)="createAccount()">
+  <button class="button-clear" color="dark" ion-button block clear (tap)="createAccount()">
     Crear una nueva cuenta
   </button>
 
