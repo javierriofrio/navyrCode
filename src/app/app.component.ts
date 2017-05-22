@@ -72,7 +72,7 @@ export class MyApp {
         document.getElementById('cuenta').style.display = 'none';
         document.getElementById('puntos').style.display = 'none';
         document.getElementById('nav-puntos').style.display = 'none';
-        //document.getElementById('favoritos').style.display = 'none';
+        document.getElementById('favoritos').style.display = 'none';
         document.getElementById('reservas').style.display = 'none';
       }
       else {

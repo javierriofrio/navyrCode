@@ -33,7 +33,7 @@ export class FavoritoPage {
         this.obtenerEstablecimiento(element.$key).subscribe(snapshot=>{
           this.listEstablecimientos.push({
             'businessName':snapshot.businessName,
-            'key': snapshot.$key,
+            'key': element.$key,
             'logoUrl':snapshot.logoUrl
           });
         });

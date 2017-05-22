@@ -45,7 +45,7 @@
     <div class="spacer"></div>
     <div class="spacer"></div>
   <ion-buttons class="barra-botones" start>
-    <button ion-button class="boton-aceptar" round>Guardar</button>
+    <button ion-button class="boton-aceptar" round (tap)="guardarDatosCuenta(usuario?.$key)">Guardar</button>
     <button ion-button color="dark" round>Cancelar Cuenta</button>
   </ion-buttons>
 </ion-content>

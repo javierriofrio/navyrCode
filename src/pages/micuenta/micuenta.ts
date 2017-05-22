@@ -7,13 +7,14 @@ import { NavyrPage } from '../navyr/navyr';
 import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2';
 import { AuthService } from '../../providers/auth-service';
 import { LoginPage } from '../login/login';
+import localForage from "localforage";
 
 @Component({
   selector: 'page-micuenta',
   templateUrl: 'micuenta.html'
 })
 export class MiCuentaPage {
-  cameraData: string;
+  cameraData: Object;
   photoTaken: boolean;
   cameraUrl: string;
   photoSelected: boolean;
@@ -30,7 +31,13 @@ export class MiCuentaPage {
         database.object(`/development/private/users/${user.uid}`).subscribe(
           snapshot => {
             this.usuario = snapshot
-            this.fechaNacimiento = new Date(snapshot.fechaNacimiento).toString();
+            this.fechaNacimiento = new Date(snapshot.fechaNacimiento).toDateString();
+            localForage.getItem("photo").then((result) => {
+            this.cameraData = result ? result : 0;
+
+          }, (error) => {
+            console.log("ERROR: ", error);
+          });
           }
         )
       } else {
@@ -50,10 +57,18 @@ export class MiCuentaPage {
       this.cameraData = 'data:image/jpeg;base64,' + imageData;
       this.photoTaken = true;
       this.photoSelected = false;
+      localForage.setItem("photo",this.cameraData);
     }, (err) => {
       // Handle error
     });
   }
+  
+
+  guardarDatosCuenta(usuarioId){
+    console.log(usuarioId);
+    this.database.object(`/development/private/users/${usuarioId}`).set(this.usuario)
+  }
+
   
   openRootPage() {
 	  this.navCtrl.setRoot(NavyrPage);

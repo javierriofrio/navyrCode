@@ -5,7 +5,7 @@ import { NavyrPage } from '../navyr/navyr';
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2';
 import { LoginPage } from '../login/login';
 import { AuthService } from '../../providers/auth-service';
-
+import { AlertController } from 'ionic-angular';
 //commons
 import { Direccion } from '../../commons/direccion';
 
@@ -45,7 +45,7 @@ export class EstablecimientoPage {
 
 
   constructor(public modalCtrl: ModalController, public database: AngularFireDatabase,
-    public navParams: NavParams, public navCtrl: NavController, public authData: AuthService) {
+    public navParams: NavParams, public navCtrl: NavController, public authData: AuthService, public alertCtrl: AlertController) {
 
     this.idEstablecimiento = navParams.get("idEstablecimiento");
     this.database.object('/development/public/business/' + this.idEstablecimiento + '/business').subscribe(snapshot => {
@@ -121,8 +121,18 @@ export class EstablecimientoPage {
       let fav = this.favorite == "false" ? "true" : "false";
       const authId = this.authData.displayUID();
       this.listFavoritos.$ref.ref.child(id).child(authId).set(fav);
-      
+      this.showAlert(fav);
    }
+  }
+
+  showAlert(favorite) {
+    let textoAlert = favorite == "true" ? "agregado" : "eliminado";
+    let alert = this.alertCtrl.create({
+      title: 'Favoritos',
+      subTitle: 'Este establecimiento fue '+textoAlert+' de sus favoritos!',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
   openRootPage() {
