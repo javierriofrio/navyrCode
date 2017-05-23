@@ -46,6 +46,7 @@ export class MiCuentaPage {
             this.usuario = snapshot
             this.fechaNacimiento = new Date(snapshot.fechaNacimiento).toISOString();
             const cameraData = firebase.storage().ref('imagenes/usuarios/').child(user.uid).getDownloadURL;
+            console.log(cameraData);
             
 
           }
@@ -75,9 +76,12 @@ export class MiCuentaPage {
   
 
   guardarDatosCuenta(usuarioId){
-    firebase.storage().ref('imagenes/usuarios/').child(usuarioId).
-    putString(this.cameraData, 'base64', {contentType: 'image/png'})
-    this.database.object(`/development/private/users/${usuarioId}`).set(this.usuario)
+    /*firebase.storage().ref('imagenes/usuarios/').child(usuarioId).
+    putString(this.cameraData, 'base64', {contentType: 'image/png'})*/
+    console.log(this.cuentaForm.value);
+    //this.database.object(`/development/private/users/${usuarioId}`).set(this.usuario)
+    this.authData.updateUser(this.authData.displayUID(), this.cuentaForm.value.email,this.cuentaForm.value.cedula,this.cuentaForm.value.apellidos,this.cuentaForm.value.nombres,
+        this.cuentaForm.value.telefono, this.cuentaForm.value.nacimiento)
   }
 
 

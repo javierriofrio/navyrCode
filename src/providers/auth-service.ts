@@ -69,6 +69,20 @@ export class AuthService {
     this.userList.$ref.ref.child(uid).set(userInfo);
   }
 
+
+  updateUser(uid: string, newEmail: string, nombre: string, apellido: string, cedula: string, telefono: string, fechaNacimiento: string){
+    const userInfo = {
+      apellido: apellido,
+      nombre: nombre,
+      cedula: cedula,
+      email: newEmail,
+      telefono: telefono,
+      fechaNacimiento: fechaNacimiento,
+      habilitado: true
+    }
+    this.userList.$ref.ref.child(uid).set(userInfo);
+  }
+
   displayName(): string {
     if (this.authState != null) {
       return this.authState.facebook.displayName;

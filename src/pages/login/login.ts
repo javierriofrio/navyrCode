@@ -6,6 +6,7 @@ import { NavyrPage } from '../navyr/navyr';
 import { SignupPage } from '../signup/signup';
 import { ResetPasswordPage } from '../reset-password/reset-password';
 import { EmailValidator } from '../../validators/email';
+import { AngularFireDatabase } from 'angularfire2';
 
 @Component({
   selector: 'page-login',
@@ -18,7 +19,7 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController, public authData: AuthService,
     public formBuilder: FormBuilder, public alertCtrl: AlertController,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController, private database: AngularFireDatabase) {
 
     this.loginForm = formBuilder.group({
       email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
@@ -32,7 +33,15 @@ export class LoginPage {
     } else {
       this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password)
         .then(authData => {
-          document.getElementById("usuario").innerHTML = "test";
+          this.authData.auth$.subscribe(user => {
+            if (user) {
+              this.database.object(`/development/private/users/${user.uid}`).subscribe(
+                snapshot => {
+                  document.getElementById('usuario').innerHTML = snapshot.nombre;
+                }
+              )
+            }
+          });
           document.getElementById("sesion-in").style.display = "none";
           document.getElementById("sesion-out").style.display = "flex";
           document.getElementById("cuenta").style.display = "flex";

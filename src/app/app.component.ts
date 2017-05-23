@@ -68,6 +68,7 @@ export class MyApp {
       Splashscreen.hide();
       console.log(this.authData.authenticated);
       if (!this.authData.authenticated) {
+        
         document.getElementById('sesion-out').style.display = 'none';
         //document.getElementById('cuenta').style.display = 'none';
         document.getElementById('puntos').style.display = 'none';
