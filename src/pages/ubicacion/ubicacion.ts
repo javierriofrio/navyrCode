@@ -29,6 +29,9 @@ export class UbicacionPage {
   distance: Object;
   restaurants: FirebaseListObservable<any>;
 
+  href: string = "http://maps.google.com/maps?q={{direccion?.latitude}},{{direccion?.longitude}}&ll={{direccion?.latitude}},{{direccion?.longitude}}&z=17"
+  src: string = ""
+
   constructor(public navCtrl: NavController, private database: AngularFireDatabase) {
 
     this.restaurants = this.database.list('/development/public/businessByLocation/EC/Pichincha/Quito');
@@ -94,7 +97,13 @@ export class UbicacionPage {
       longitud = pos.coords.longitude;
       // create LatLng object
 
-      const ionic: GoogleMapsLatLng = new GoogleMapsLatLng(latitud, longitud);
+
+      this.src = "https://maps.googleapis.com/maps/api/staticmap?maptype=roadmap&size=600x400&center="+latitud+","+longitud+"&zoom=17";
+      this.src = this.src + "&markers=color:red%7Clabel:P%7C"+-0.2635297+","+-78.4703351;
+      this.src = this.src + "&markers=color:red%7Clabel:P%7C"+-0.1816454+","+-78.47878179999998;
+      this.src = this.src + "&key= AIzaSyCbliPMff9MlsOG6zjYvC-najZI0QRK-Y8"
+
+      /*const ionic: GoogleMapsLatLng = new GoogleMapsLatLng(latitud, longitud);
       const map = new GoogleMap(element, {
         'backgroundColor': 'white',
         'controls': {
@@ -115,10 +124,10 @@ export class UbicacionPage {
           'zoom': 15,
           'bearing': 50
         }
-      });
+      });*/
 
       // listen to MAP_READY event
-      map.one(GoogleMapsEvent.MAP_READY).then(() => console.log('Map is ready!'));
+      //map.one(GoogleMapsEvent.MAP_READY).then(() => console.log('Map is ready!'));
 
       // create CameraPosition
       /*     let position: CameraPosition = {
@@ -131,7 +140,7 @@ export class UbicacionPage {
            map.moveCamera(position);
      */
       // create new marker
-      const markerOptions: GoogleMapsMarkerOptions = {
+      /*const markerOptions: GoogleMapsMarkerOptions = {
         position: ionic,
         title: "Tu Posicion"
       };
@@ -139,7 +148,7 @@ export class UbicacionPage {
       map.addMarker(markerOptions)
         .then((marker: GoogleMapsMarker) => {
           marker.showInfoWindow();
-        });
+        });*/
 
       /*this.buscarRestaurantesPosicion(latitud, longitud).forEach(item => {
         const pos: GoogleMapsLatLng = new GoogleMapsLatLng(item.latitude, item.longitude);
@@ -162,7 +171,6 @@ export class UbicacionPage {
   buscarRestaurantesPosicion = function(latitud, longitud){
     const data = this.database;
     let array = [];
-    return new Promise((resolve,reject)=>{
       this.restaurants.subscribe(snapshot => {
 
         snapshot.forEach(element => {
@@ -186,11 +194,7 @@ export class UbicacionPage {
 
         })
       })
-        resolve(array);
-        reject('FAIL');
-
-    });
-      
+      return array;
   }
 
   getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {

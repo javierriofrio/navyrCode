@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Camera } from 'ionic-native';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavyrPage } from '../navyr/navyr';
@@ -8,7 +8,7 @@ import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2';
 import { AuthService } from '../../providers/auth-service';
 import { LoginPage } from '../login/login';
 import localForage from "localforage";
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators , FormGroup} from '@angular/forms';
 import { EmailValidator } from '../../validators/email';
 import * as firebase from 'firebase';
 
@@ -24,10 +24,10 @@ export class MiCuentaPage {
   userData : FirebaseObjectObservable<any>;
   usuario : Object;
   fechaNacimiento: String;
-  public cuentaForm: any;
+  private cuentaForm: FormGroup;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, private DomSanitizer: DomSanitizer, 
-  private database: AngularFireDatabase, public authData: AuthService,public formBuilder: FormBuilder,) {
+  private database: AngularFireDatabase, public authData: AuthService,public formBuilder: FormBuilder,private alertCtrl: AlertController) {
     this.photoTaken = false;
     this.cuentaForm = formBuilder.group({
       email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],      
@@ -78,18 +78,50 @@ export class MiCuentaPage {
   guardarDatosCuenta(usuarioId){
     /*firebase.storage().ref('imagenes/usuarios/').child(usuarioId).
     putString(this.cameraData, 'base64', {contentType: 'image/png'})*/
-    console.log(this.cuentaForm.value);
+    console.log(this.clean(this.cuentaForm.value));
+    this.cuentaForm.value.nacimiento = this.cuentaForm.value.nacimiento.toISOString;
     //this.database.object(`/development/private/users/${usuarioId}`).set(this.usuario)
-    this.authData.updateUser(this.authData.displayUID(), this.cuentaForm.value.email,this.cuentaForm.value.cedula,this.cuentaForm.value.apellidos,this.cuentaForm.value.nombres,
-        this.cuentaForm.value.telefono, this.cuentaForm.value.nacimiento)
+    this.authData.updateUser(usuarioId, this.clean(this.cuentaForm.value));
+  }
+
+  clean(obj) {
+    for (var propName in obj) { 
+      if (obj[propName] === null || obj[propName] === undefined || obj[propName] === "") {
+        delete obj[propName];
+      }
+    }
+    return obj;
   }
 
 
-  goToRoot() {
-    this.navCtrl.setRoot(NavyrPage);
+  cancelarCuenta(usuarioId) {
+    this.presentConfirm(usuarioId);
   }
 
   
+  presentConfirm(usuarioId) {
+  let alert = this.alertCtrl.create({
+    title: 'Cancelar Cuenta',
+    message: 'Estas seguro que deseas desactivar la cuenta?',
+    buttons: [
+      {
+        text: 'Cancelar',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Confirmar',
+        handler: () => {
+          this.authData.updateUser(usuarioId,{habilitado:false});
+        }
+      }
+    ]
+  });
+  alert.present();
+}
+
   openRootPage() {
 	  this.navCtrl.setRoot(NavyrPage);
   }

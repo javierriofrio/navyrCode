@@ -70,17 +70,11 @@ export class AuthService {
   }
 
 
-  updateUser(uid: string, newEmail: string, nombre: string, apellido: string, cedula: string, telefono: string, fechaNacimiento: string){
-    const userInfo = {
-      apellido: apellido,
-      nombre: nombre,
-      cedula: cedula,
-      email: newEmail,
-      telefono: telefono,
-      fechaNacimiento: fechaNacimiento,
-      habilitado: true
-    }
-    this.userList.$ref.ref.child(uid).set(userInfo);
+  updateUser(uid: string, cuentaForm){
+    
+    
+    console.log(cuentaForm);
+    this.userList.$ref.ref.child(uid).update(cuentaForm);
   }
 
   displayName(): string {

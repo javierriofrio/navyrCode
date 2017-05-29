@@ -16,7 +16,7 @@ import { EstablecimientoPage } from '../establecimiento/establecimiento'
   templateUrl: 'categoria.html'
 })
 export class CategoriaPage {
-  public nombreCategoria:any;
+  public nombreCategoria:string;
   categories: FirebaseListObservable<any>;
   listPromos: FirebaseListObservable<any>;
   tops: FirebaseListObservable<any>;
@@ -25,10 +25,21 @@ export class CategoriaPage {
   constructor(public navCtrl: NavController, public database: AngularFireDatabase, public navParams: NavParams) {
     this.nombreCategoria = navParams.get("nombre"); 
     this.categories = this.database.list('/development/shared/catalogs/businessCategories/'+this.nombreCategoria);
+    console.log(this.nombreCategoria);
     this.listPromos = this.database.list('/development/public/businessPromo');
     //this.categories = this.database.list('/development/catalogs/businessCategories');
-    this.tops = this.database.list('/development/public/topBusiness');
-    this.importants = this.database.list('/development/public/topImportantBusiness');
+    this.tops = this.database.list('/development/public/topBusiness', {
+      query: {
+          orderByChild: 'businessCategories',
+          equalTo: this.nombreCategoria
+      }
+    });
+    this.importants = this.database.list('/development/public/topImportantBusiness', {
+      query: {
+          orderByChild: 'businessCategories',
+          equalTo: this.nombreCategoria
+      }
+    });
 
                                                                                            
   }                                                     
