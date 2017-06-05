@@ -47,13 +47,13 @@
       </ion-card>
     </li>
 </ul>
-<div class="titulo tituloSeccion">Recomendaciones de Navyr para ti</div>
+<div class="titulo tituloSeccion">Establecimientos</div>
 
 <ul class="icon-establecimiento">
     <li class="family-icon"s *ngFor="let important of importants | async" (tap)="openEstablecimiento(important.$key)">
       <ion-card>
-        <img [src]="important.url">
-        <div class="titulo-establecimiento centrar">{{important.businessName}}</div>
+        <img [src]="important.business.logoUrl">
+        <div class="titulo-establecimiento centrar">{{important.business.businessName}}</div>
       </ion-card>
     </li>
 </ul>

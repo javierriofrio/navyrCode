@@ -34,9 +34,9 @@ export class CategoriaPage {
           equalTo: this.nombreCategoria
       }
     });
-    this.importants = this.database.list('/development/public/topImportantBusiness', {
+    this.importants = this.database.list('/development/public/business', {
       query: {
-          orderByChild: 'businessCategories',
+          orderByChild: 'business/category',
           equalTo: this.nombreCategoria
       }
     });
