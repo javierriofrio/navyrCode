@@ -25,7 +25,7 @@ export class NavyrPage {
     this.promos = this.database.list('/development/public/businessPromo');
     this.categories = this.database.list('/development/shared/catalogs/businessCategories');
     this.tops = this.database.list('/development/public/topBusiness');
-    this.importants = this.database.list('/development/public/topImportantBusiness');
+    this.importants = this.database.list('/development/public/suggestBusiness');
     
   }
 
