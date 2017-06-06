@@ -76,12 +76,10 @@ export class MiCuentaPage {
   
 
   guardarDatosCuenta(usuarioId){
-    /*firebase.storage().ref('imagenes/usuarios/').child(usuarioId).
-    putString(this.cameraData, 'base64', {contentType: 'image/png'})*/
-    console.log(this.clean(this.cuentaForm.value));
     this.cuentaForm.value.nacimiento = this.cuentaForm.value.nacimiento.toISOString;
     //this.database.object(`/development/private/users/${usuarioId}`).set(this.usuario)
     this.authData.updateUser(usuarioId, this.clean(this.cuentaForm.value));
+    this.presentSaveAlert();
   }
 
   clean(obj) {
@@ -98,7 +96,15 @@ export class MiCuentaPage {
     this.presentConfirm(usuarioId);
   }
 
-  
+  presentSaveAlert(){
+    let alert = this.alertCtrl.create({
+      title: 'Guardar',
+      subTitle: 'Se han guardado los datos correctamente!',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
   presentConfirm(usuarioId) {
   let alert = this.alertCtrl.create({
     title: 'Cancelar Cuenta',

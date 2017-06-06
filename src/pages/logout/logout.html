@@ -5,8 +5,8 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-    <ion-navbar>
-        <button ion-button menuToggle>
+  <ion-navbar>
+    <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Cerrar Sesión</ion-title>
@@ -15,14 +15,21 @@
 
 
 <ion-content padding>
-  <div style="text-align: center"><img  src="assets/img/logoLogin.png"/></div>
-  <p>
-    Esta seguro que quiere cerrar sesión
-  </p>
+  <div id="logout-center">
     <div class="spacer"></div>
     <div class="spacer"></div>
-  <ion-buttons class="barra-botones" start>
-    <button ion-button class="boton-aceptar" round (tap)="returnSesion()">Regresar</button>
-    <button ion-button color="dark" round (tap)="logOut()">Cerrar Sesión</button>
-  </ion-buttons>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div style="text-align: center"><img src="assets/img/logoLogin.png" /></div>
+    <p>
+      Esta seguro que quiere cerrar sesión
+    </p>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <ion-buttons class="barra-botones" start>
+      <button ion-button class="boton-aceptar" round (tap)="returnSesion()">Regresar</button>
+      <button ion-button color="dark" round (tap)="logOut()">Cerrar Sesión</button>
+    </ion-buttons>
+  </div>
 </ion-content>

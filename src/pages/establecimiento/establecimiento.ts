@@ -123,6 +123,9 @@ export class EstablecimientoPage {
       this.listFavoritos.$ref.ref.child(id).child(authId).set(fav);
       this.showAlert(fav);
    }
+   else{
+    this.showAlertFav();
+   }
   }
 
   showAlert(favorite) {
@@ -130,6 +133,15 @@ export class EstablecimientoPage {
     let alert = this.alertCtrl.create({
       title: 'Favoritos',
       subTitle: 'Este establecimiento fue '+textoAlert+' de sus favoritos!',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  showAlertFav() {
+    let alert = this.alertCtrl.create({
+      title: 'Favoritos',
+      subTitle: 'Por favor iniciar sesión para poder agregar a favoritos este establecimiento!',
       buttons: ['OK']
     });
     alert.present();

@@ -56,7 +56,7 @@ export class SignupPage {
     } else {
       this.authData.signupUser(this.signupForm.value.email, this.signupForm.value.password)
       .then(() => {
-        this.authData.createUser(this.authData.displayUID(), this.signupForm.value.email,this.signupForm.value.cedula,this.signupForm.value.apellidos,this.signupForm.value.nombres,
+        this.authData.createUser(this.authData.displayUID(), this.signupForm.value.email,this.signupForm.value.nombres,this.signupForm.value.apellidos,this.signupForm.value.cedula,
         this.signupForm.value.telefono, this.signupForm.value.nacimiento)
         this.navCtrl.setRoot(NavyrPage);
       }, (error) => {
