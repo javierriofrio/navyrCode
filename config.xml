@@ -72,11 +72,11 @@
     <preference name="FadeSplashScreenDuration" value="300" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
-    <preference name="SplashScreen" value="screen"/>
-    <preference name="SplashScreenDelay" value="30000"/>
-    <preference name="AutoHideSplashScreen" value="false"/>
-    <preference name="SplashShowOnlyFirstTime" value="false"/>
-    <preference name="FadeSplashScreen" value="false"/>
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="30000" />
+    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
+    <preference name="FadeSplashScreen" value="false" />
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
@@ -88,4 +88,8 @@
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
     <plugin name="cordova-sqlite-storage" spec="~2.0.3" />
+    <plugin name="cordova-plugin-facebook4" spec="~1.9.1">
+        <variable name="APP_ID" value="385958498406710" />
+        <variable name="APP_NAME" value="navyr" />
+    </plugin>
 </widget>

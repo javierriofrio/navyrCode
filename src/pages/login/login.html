@@ -42,7 +42,7 @@
     </ion-buttons>
 
   </form>
-
+  
   <button class="button-clear" color="dark" ion-button block clear (tap)="goToResetPassword()">
     ¿Olvidó su contraseña?
   </button>
@@ -50,5 +50,16 @@
   <button class="button-clear" color="dark" ion-button block clear (tap)="createAccount()">
     Crear una nueva cuenta
   </button>
+  <div class="spacer"></div>
+  <div id="barra-botones-login">
+    <button class="loginBtn loginBtn--facebook" (click)="loginFacebook()">
+      Iniciar con Facebook
+    </button>
+
+    <button class="loginBtn loginBtn--google"  (click)="loginGoogle()">
+      Iniciar con Google
+    </button>
+  </div>
+
 
 </ion-content>

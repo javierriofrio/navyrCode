@@ -71,7 +71,17 @@ export class LoginPage {
     }
   }
 
+  loginFacebook(){
+    console.log("test");
+    this.authData.signInWithFacebook();
+  }
+
+  loginGoogle(){
+    this.authData.signInWithGoogle();
+  }
+
   goToResetPassword() {
+    console.log("test2");
     this.navCtrl.push(ResetPasswordPage);
   }
 

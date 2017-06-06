@@ -20,6 +20,7 @@ import { LogoutPage } from '../pages/logout/logout';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 import { SignupPage } from '../pages/signup/signup';
 import { AuthService } from '../providers/auth-service';
+//import { Facebook } from '@ionic-native/facebook'
 
 // Import the AF2 Module
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';

@@ -29,16 +29,18 @@ export class AuthService {
   }
 
   signInWithFacebook(): firebase.Promise<FirebaseAuthState> {
+    console.log("logeo con facebook");
     return this.auth$.login({
       provider: AuthProviders.Facebook,
-      method: AuthMethods.Popup
+      method: AuthMethods.Redirect
     });
   }
 
   signInWithGoogle(): firebase.Promise<FirebaseAuthState> {
+    console.log("logeo con google");
     return this.auth$.login({
       provider: AuthProviders.Google,
-      method: AuthMethods.Popup
+      method: AuthMethods.Redirect
     });
   }
 
