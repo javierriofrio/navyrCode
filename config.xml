@@ -92,4 +92,7 @@
         <variable name="APP_ID" value="385958498406710" />
         <variable name="APP_NAME" value="navyr" />
     </plugin>
+    <plugin name="cordova-plugin-googleplus" spec="~5.1.1">
+        <variable name="REVERSED_CLIENT_ID" value="329734583670-l89vkfhoh84hl4f7vm353139dtg0k81a.apps.googleusercontent.com" />
+    </plugin>
 </widget>

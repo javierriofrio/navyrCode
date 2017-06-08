@@ -81,7 +81,6 @@ export class LoginPage {
   }
 
   goToResetPassword() {
-    console.log("test2");
     this.navCtrl.push(ResetPasswordPage);
   }
 

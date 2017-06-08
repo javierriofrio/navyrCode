@@ -15,7 +15,7 @@
 
 </ion-header>
 <ion-content padding>
-  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-searchbar (ionInput)="getItems($event)" placeholder="Buscar"></ion-searchbar>
   <ion-list>
     <ion-item class="find-list" *ngFor="let item of listEstablecimientos" [navPush]="establecimiento"  (tap)="openEstablecimiento(item?.$key)">
       <ion-thumbnail item-left>

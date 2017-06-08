@@ -8,7 +8,14 @@
 </ion-header>
 
 <ion-content>
+  <ion-fab bottom left class="barra-botones">
+        <button ion-fab type="submit" class="boton-aceptar">Guardar</button>
+        </ion-fab>
+    <ion-fab bottom right class="barra-botones">
+        <button ion-fab class="boton-cancelar" (tap)="cancelarCuenta(usuario?.$key)">Cancelar Cuenta</button>
+    </ion-fab>
 <form [formGroup]="cuentaForm" (ngSubmit)="guardarDatosCuenta(usuario?.$key)" novalidate>
+    
   <ion-list>
     <ion-item class="item-no-border">
       <ion-thumbnail item-left>
@@ -44,9 +51,9 @@
   </ion-list>
     <div class="spacer"></div>
     <div class="spacer"></div>
-  <ion-buttons class="barra-botones" start>
-    <button type="submit" ion-button class="boton-aceptar" round>Guardar</button>
-    <button ion-button color="dark" round (tap)="cancelarCuenta(usuario?.$key)">Cancelar Cuenta</button>
-  </ion-buttons>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    
   </form>
+
 </ion-content>
