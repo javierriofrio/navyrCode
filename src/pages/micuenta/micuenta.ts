@@ -6,11 +6,11 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { NavyrPage } from '../navyr/navyr';
 import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2';
 import { AuthService } from '../../providers/auth-service';
-import { LoginPage } from '../login/login';
-import localForage from "localforage";
+//import { LoginPage } from '../login/login';
+//import localForage from "localforage";
 import { FormBuilder, Validators , FormGroup} from '@angular/forms';
 import { EmailValidator } from '../../validators/email';
-import * as firebase from 'firebase';
+//import * as firebase from 'firebase';
 
 @Component({
   selector: 'page-micuenta',
