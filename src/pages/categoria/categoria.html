@@ -41,9 +41,9 @@
 </ul>
 <div class="titulo tituloSeccion">Sub-Categorías</div>
 <ul class="family-icon-scroller">
-    <li class="family-icon"  *ngFor="let category of categories | async">
+    <li class="family-icon"  *ngFor="let category of categories | async" (tap)="openSubCategoria(category.$key)">
       <ion-card>
-        <img  ng-if="category.$key != 'url'" [src]="category.$value">
+        <img  ng-if="category.$key" [src]="category.$value">
       </ion-card>
     </li>
 </ul>

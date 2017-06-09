@@ -7,46 +7,13 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{nombreCategoria}}</ion-title>
+    <ion-title>{{nombreSubCategoria}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
- <ion-fab class="ubicacion">
-   <button ion-fab (click)="openUbicacion()"><ion-icon name="pin"></ion-icon></button>
- </ion-fab>
-  <!--<ion-slides loop="true" autoplay="2000" slider="slider1" delegate-handle="slider1" id="navyr-slider1">
-    <ion-slide>
-      <img src="https://www.tarjetasaenz.com.ar/images/promociones.jpg">
-    </ion-slide>
-    <ion-slide>
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL1W7hDKIVWC2KBFFgh5qDdU3SBs-o8m7ckSzddHP7g63Vsre1">
-    </ion-slide>
-  </ion-slides>-->
-  <ion-slides  pager="true"  class="slider-home"  slider="slider1">
-    <ion-slide *ngFor="let promo of listPromos | async">
-      <img [src]="promo.url">
-    </ion-slide>
-  </ion-slides>
-<div class="titulo tituloSeccion">Top Establecimientos</div>
-
-<ul class="family-icon-scroller">
-    <li class="family-icon"  *ngFor="let top of tops | async" (tap)="openEstablecimiento(top.$key)">
-      <ion-card>
-        <img [src]="top.url">
-      </ion-card>
-    </li>
-</ul>
-<div class="titulo tituloSeccion">Sub-Categorías</div>
-<ul class="family-icon-scroller">
-    <li class="family-icon"  *ngFor="let category of categories | async">
-      <ion-card>
-        <img  ng-if="category.$key != 'url'" [src]="category.$value">
-      </ion-card>
-    </li>
-</ul>
 <div class="titulo tituloSeccion">Establecimientos</div>
 
 <ul class="icon-establecimiento">

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { UbicacionPage } from '../ubicacion/ubicacion';
 import { NavyrPage } from '../navyr/navyr';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2';
 import { EstablecimientoPage } from '../establecimiento/establecimiento'
@@ -12,45 +11,37 @@ import { EstablecimientoPage } from '../establecimiento/establecimiento'
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-categoria',
-  templateUrl: 'categoria.html'
+  selector: 'page-subcategoria',
+  templateUrl: 'subcategoria.html'
 })
 export class SubCategoriaPage {
   public nombreCategoria:string;
+  public nombreSubCategoria:string;
   categories: FirebaseListObservable<any>;
   listPromos: FirebaseListObservable<any>;
   tops: FirebaseListObservable<any>;
   importants: FirebaseListObservable<any>;
 
   constructor(public navCtrl: NavController, public database: AngularFireDatabase, public navParams: NavParams) {
-    this.nombreCategoria = navParams.get("nombre"); 
-    this.categories = this.database.list('/development/shared/catalogs/businessCategories/'+this.nombreCategoria);
-    console.log(this.nombreCategoria);
-    this.listPromos = this.database.list('/development/public/businessPromo');
-    //this.categories = this.database.list('/development/catalogs/businessCategories');
-    this.tops = this.database.list('/development/public/topBusiness', {
-      query: {
-          orderByChild: 'businessCategories',
-          equalTo: this.nombreCategoria
-      }
-    });
-    this.importants = this.database.list('/development/public/business', {
-      query: {
-          orderByChild: 'business/category',
-          equalTo: this.nombreCategoria
-      }
-    });
-
-                                                                                           
+  this.nombreSubCategoria = navParams.get("nombre");
+  this.nombreCategoria = navParams.get("categoria");
+    if(this.nombreSubCategoria.trim() === '*Todos'){
+      this.importants = this.database.list('/development/public/business', {
+        query: {
+            orderByChild: 'business/category',
+            equalTo: this.nombreCategoria
+        }
+      });
+    }
+    else{
+      this.importants = this.database.list('/development/public/business', {
+        query: {
+            orderByChild: 'business/subcategory',
+            equalTo: this.nombreSubCategoria
+        }
+      });
+    }
   }                                                     
-
-  ionViewDidLoad() {
-    //console.log('ionViewDidLoad CategoriaPage');
-  }
-
-    openUbicacion() {
-      this.navCtrl.push(UbicacionPage);
-  }
    
   openRootPage() {
 	  this.navCtrl.setRoot(NavyrPage);

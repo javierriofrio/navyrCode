@@ -3,7 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { UbicacionPage } from '../ubicacion/ubicacion';
 import { NavyrPage } from '../navyr/navyr';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2';
-import { EstablecimientoPage } from '../establecimiento/establecimiento'
+import { EstablecimientoPage } from '../establecimiento/establecimiento';
+import { SubCategoriaPage } from '../subcategoria/subcategoria';
 
 /*
   Generated class for the Categoria page.
@@ -60,6 +61,13 @@ export class CategoriaPage {
   openEstablecimiento(establecimiento) {
           this.navCtrl.push(EstablecimientoPage, {
             idEstablecimiento: establecimiento,
+          });
+  }
+
+  openSubCategoria(nombreCategoria) {
+          this.navCtrl.push(SubCategoriaPage, {
+            nombre: nombreCategoria,
+            categoria: this.nombreCategoria
           });
   }
 

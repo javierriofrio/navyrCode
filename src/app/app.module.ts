@@ -20,6 +20,7 @@ import { LogoutPage } from '../pages/logout/logout';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 import { SignupPage } from '../pages/signup/signup';
 import { AuthService } from '../providers/auth-service';
+import { SubCategoriaPage } from '../pages/subcategoria/subcategoria';
 //import { Facebook } from '@ionic-native/facebook'
 
 // Import the AF2 Module
@@ -46,6 +47,7 @@ const myFirebaseAuthConfig = {
     MisReservasPage,
     EstablecimientoPage,
     CategoriaPage,
+    SubCategoriaPage,
     AjustesPage,
     ReservaPage,
     UbicacionPage,
@@ -72,6 +74,7 @@ const myFirebaseAuthConfig = {
     MisReservasPage,
     EstablecimientoPage,
     CategoriaPage,
+    SubCategoriaPage,
     AjustesPage,
     ReservaPage,
     UbicacionPage,

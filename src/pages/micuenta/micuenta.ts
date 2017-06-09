@@ -39,7 +39,7 @@ export class MiCuentaPage {
       imagen: ['', Validators.compose([Validators.required])]
     });
 
-   this.authData.auth$.subscribe(user => {
+  /* this.authData.auth$.subscribe(user => {
       if (user) {
         database.object(`/development/private/users/${user.uid}`).subscribe(
           snapshot => {
@@ -54,7 +54,7 @@ export class MiCuentaPage {
       } else {
         this.navCtrl.setRoot(LoginPage);
       }
-    });
+    });*/
   }
 
 
@@ -68,7 +68,7 @@ export class MiCuentaPage {
       this.cameraData = 'data:image/jpeg;base64,' + imageData;
       this.photoTaken = true;
       this.photoSelected = false;
-      localForage.setItem("photo",this.cameraData);
+      //localForage.setItem("photo",this.cameraData);
     }, (err) => {
       // Handle error
     });
