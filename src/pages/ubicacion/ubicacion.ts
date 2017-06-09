@@ -119,7 +119,7 @@ export class UbicacionPage {
       });
 
       // listen to MAP_READY event
-      map.on(GoogleMapsEvent.MAP_READY).then(() =>
+      map.one(GoogleMapsEvent.MAP_READY).then(() =>
         this.buscarRestaurantesPosicion(latitud, longitud).forEach(item => {
           const pos: GoogleMapsLatLng = new GoogleMapsLatLng(item.latitude, item.longitude);
           const markerOptions: GoogleMapsMarkerOptions = {
