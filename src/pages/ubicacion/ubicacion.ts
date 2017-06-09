@@ -119,7 +119,7 @@ export class UbicacionPage {
       });
 
       // listen to MAP_READY event
-      map.one(GoogleMapsEvent.MAP_READY).then(() =>
+      map.on(GoogleMapsEvent.MAP_READY).then(() =>
         this.buscarRestaurantesPosicion(latitud, longitud).forEach(item => {
           const pos: GoogleMapsLatLng = new GoogleMapsLatLng(item.latitude, item.longitude);
           const markerOptions: GoogleMapsMarkerOptions = {
@@ -166,7 +166,7 @@ export class UbicacionPage {
 
 
   buscarRestaurantesPosicion = function (latitud, longitud) {
-    const data = this.database;
+    //const data = this.database;
     let array = [];
     this.database.list('/development/public/businessByLocation/EC/Pichincha/Quito').subscribe(snapshot => {
 
