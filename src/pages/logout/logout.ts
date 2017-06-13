@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { NavyrPage } from '../navyr/navyr';
 import { LoginPage } from '../login/login';
@@ -15,7 +15,8 @@ import { LoginPage } from '../login/login';
 })
 export class LogoutPage {
 
-  constructor(public navCtrl: NavController, public authData : AuthService) {
+  constructor(public navCtrl: NavController, public authData : AuthService,
+  private alertCtrl:AlertController) {
 
   }
 
@@ -38,6 +39,30 @@ export class LogoutPage {
     document.getElementById("reservas").style.display = "none";
     this.navCtrl.setRoot(LoginPage);
   }
+
+
+  presentConfirm() {
+  let alert = this.alertCtrl.create({
+    title: 'Cerrar Sesión',
+    message: 'Estas seguro que deseas cerrar sesión?',
+    buttons: [
+      {
+        text: 'Cancelar',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Confirmar',
+        handler: () => {
+          this.logOut();
+        }
+      }
+    ]
+  });
+  alert.present();
+}
 
 
 }

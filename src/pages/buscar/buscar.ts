@@ -16,6 +16,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2';
 export class BuscarPage {
   searchQuery: string = '';
   items: string[];
+  public buscar = true;
   establecimiento = EstablecimientoPage
   listEstablecimientos: FirebaseListObservable<any>;
 
@@ -32,24 +33,20 @@ export class BuscarPage {
     this.navCtrl.setRoot(NavyrPage);
   }
 
-
   getItems(ev: any) {
-
     let val = ev.target.value;
     // Reset items back to all of the items
     if (val && val.trim() != '') {
-
       var list = this.database.list('/development/public/business').map(_items => _items.filter(_item =>
         _item.business.businessName.toLowerCase().startsWith(val.toLowerCase())));
 
       list.subscribe(item => {
         this.listEstablecimientos = item;
+        this.buscar = false;
         return this.listEstablecimientos;
       })
     }
-
   }
-
 
   openEstablecimiento(establecimiento) {
     this.navCtrl.push(EstablecimientoPage, {

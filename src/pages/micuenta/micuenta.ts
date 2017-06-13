@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ActionSheetController } from 'ionic-angular';
 import { Camera } from 'ionic-native';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavyrPage } from '../navyr/navyr';
 import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2';
 import { AuthService } from '../../providers/auth-service';
-//import { LoginPage } from '../login/login';
+import { LoginPage } from '../login/login';
 //import localForage from "localforage";
 import { FormBuilder, Validators , FormGroup} from '@angular/forms';
 import { EmailValidator } from '../../validators/email';
-//import * as firebase from 'firebase';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'page-micuenta',
@@ -27,7 +27,8 @@ export class MiCuentaPage {
   private cuentaForm: FormGroup;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, private DomSanitizer: DomSanitizer, 
-  private database: AngularFireDatabase, public authData: AuthService,public formBuilder: FormBuilder,private alertCtrl: AlertController) {
+  private database: AngularFireDatabase, public authData: AuthService,public formBuilder: FormBuilder,private alertCtrl: AlertController,
+  public actionSheetCtrl: ActionSheetController) {
     this.photoTaken = false;
     this.cuentaForm = formBuilder.group({
       email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],      
@@ -35,34 +36,43 @@ export class MiCuentaPage {
       apellido: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
       nombre: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
       telefono: ['', Validators.compose([Validators.minLength(7), Validators.required])],
-      nacimiento: ['', Validators.compose([Validators.required])],
+      fechaNacimiento: ['', Validators.compose([Validators.required])],
       imagen: ['', Validators.compose([Validators.required])]
     });
 
-  /* this.authData.auth$.subscribe(user => {
+   this.authData.auth$.subscribe(user => {
       if (user) {
         database.object(`/development/private/users/${user.uid}`).subscribe(
           snapshot => {
             this.usuario = snapshot
             this.fechaNacimiento = new Date(snapshot.fechaNacimiento).toISOString();
-            const cameraData = firebase.storage().ref('imagenes/usuarios/').child(user.uid).getDownloadURL;
-            console.log(cameraData);
+            firebase.storage().ref().child(`imagenes/usuarios/${user.uid}.jpg`).getDownloadURL().then((url) => {
+              this.cameraData = url
+              const imagen = document.getElementById("fotoUser") as HTMLImageElement;
+              imagen.src = url;
+            })
+    
             
 
           }
         )
       } else {
+        this.cameraData = "assets/img/avatar-img.png";
         this.navCtrl.setRoot(LoginPage);
       }
-    });*/
+    });
   }
 
 
 
-  tomarFoto() {
+  tomarFoto(origen) {
     var options = {
-      sourceType: Camera.PictureSourceType.CAMERA,
-      destinationType: Camera.DestinationType.DATA_URL
+      sourceType: origen,
+      destinationType: Camera.DestinationType.DATA_URL,
+        targetWidth: 1200,
+        targetHeight: 1200,
+        encodingType: Camera.EncodingType.JPEG,
+        allowEdit: true,
     };
     Camera.getPicture(options).then((imageData) => {
       this.cameraData = 'data:image/jpeg;base64,' + imageData;
@@ -73,12 +83,49 @@ export class MiCuentaPage {
       // Handle error
     });
   }
+
+  upload(userId:string) {
+    let storageRef = firebase.storage().ref();
+    
+    const imageRef = storageRef.child(`imagenes/usuarios/${userId}.jpg`);
+
+    imageRef.putString(this.cameraData, firebase.storage.StringFormat.DATA_URL).then((snapshot)=> {
+     // Do something here when the data is succesfully uploaded!
+    });
+  }
+
+  public presentActionSheet() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Seleccione una imagen',
+      buttons: [
+        {
+          text: 'Seleccinar de la librería',
+          handler: () => {
+            this.tomarFoto(Camera.PictureSourceType.PHOTOLIBRARY);
+          }
+        },
+        {
+          text: 'Usar Cámara',
+          handler: () => {
+            this.tomarFoto(Camera.PictureSourceType.CAMERA);
+          }
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        }
+      ]
+    });
+    actionSheet.present();
+  }
+
   
 
   guardarDatosCuenta(usuarioId){
-    this.cuentaForm.value.nacimiento = this.cuentaForm.value.nacimiento.toISOString;
     //this.database.object(`/development/private/users/${usuarioId}`).set(this.usuario)
+    console.log(this.cuentaForm.value);
     this.authData.updateUser(usuarioId, this.clean(this.cuentaForm.value));
+    this.upload(usuarioId); 
     this.presentSaveAlert();
   }
 
@@ -96,6 +143,7 @@ export class MiCuentaPage {
   cancelarCuenta(usuarioId) {
     this.presentConfirm(usuarioId);
   }
+
 
   presentSaveAlert(){
     let alert = this.alertCtrl.create({

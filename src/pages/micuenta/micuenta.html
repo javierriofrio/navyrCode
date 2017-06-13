@@ -8,21 +8,16 @@
 </ion-header>
 
 <ion-content>
-      <ion-fab bottom left class="barra-botones">
-        <button ion-fab type="submit" class="boton-aceptar">Guardar</button>
-        </ion-fab>
-    <ion-fab bottom right class="barra-botones">
-        <button ion-fab class="boton-cancelar" (tap)="cancelarCuenta(usuario?.$key)">Cancelar Cuenta</button>
-    </ion-fab>
-<form [formGroup]="cuentaForm" (ngSubmit)="guardarDatosCuenta(usuario?.$key)" novalidate>
   <ion-list>
     <ion-item class="item-no-border">
       <ion-thumbnail item-left>
-        <img formControlName="imagen" [src]="DomSanitizer.bypassSecurityTrustUrl(cameraData)" *ngIf="photoTaken">
-        <img src="assets/img/avatar-img.png" *ngIf="!photoTaken">
+        <img id="imagenAvatar" [src]="cameraData">
       </ion-thumbnail>
-      <ion-icon name="camera"  (click)="tomarFoto()"></ion-icon>
+      <ion-icon name="camera"  (click)="presentActionSheet()"></ion-icon>
     </ion-item>
+  </ion-list>
+<form id='mi-cuenta' [formGroup]="cuentaForm" (ngSubmit)="guardarDatosCuenta(usuario?.$key)" novalidate>
+  <ion-list>
     <ion-item>
       <ion-label floating>Cédula:</ion-label>
       <ion-input formControlName="cedula" name="cedula"  value="{{usuario?.cedula}}"></ion-input>
@@ -45,7 +40,7 @@
     </ion-item>
     <ion-item>
       <ion-label stacked>Fecha Nacimiento:</ion-label>
-      <ion-datetime formControlName="nacimiento" name="nacimiento" displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY" [(ngModel)]="fechaNacimiento"></ion-datetime>
+      <ion-datetime formControlName="fechaNacimiento" name="fechaNacimiento" displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY" [(ngModel)]="fechaNacimiento"></ion-datetime>
     </ion-item>
   </ion-list>
     <div class="spacer"></div>
@@ -54,5 +49,10 @@
     <div class="spacer"></div>
     
   </form>
-
+      <ion-fab bottom left class="barra-botones">
+        <button ion-fab form="mi-cuenta" type="submit" class="boton-aceptar" >Guardar</button>
+        </ion-fab>
+    <ion-fab bottom right class="barra-botones">
+        <button ion-fab class="boton-cancelar" (tap)="cancelarCuenta(usuario?.$key)">Cancelar Cuenta</button>
+    </ion-fab>
 </ion-content>

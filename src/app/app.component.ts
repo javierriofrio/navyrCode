@@ -14,6 +14,7 @@ import { TerminosPage } from '../pages/terminos/terminos';
 import { LoginPage } from '../pages/login/login';
 import { LogoutPage } from '../pages/logout/logout';
 import { AuthService } from '../providers/auth-service';
+import * as firebase from 'firebase';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class MyApp {
   rootPage: any = NavyrPage;
 
   usuario: Object;
+  cameraData: string;
 
   pages: Array<{ title: string, component: any, icon: string, id: string }>;
 
@@ -66,17 +68,25 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
-      console.log(this.authData.authenticated);
       if (!this.authData.authenticated) {
-        
         document.getElementById('sesion-out').style.display = 'none';
-        //document.getElementById('cuenta').style.display = 'none';
+        document.getElementById('cuenta').style.display = 'none';
         document.getElementById('puntos').style.display = 'none';
         document.getElementById('nav-puntos').style.display = 'none';
         document.getElementById('favoritos').style.display = 'none';
         document.getElementById('reservas').style.display = 'none';
+        this.authData.auth$.subscribe(user => {
+            if (user) {
+              firebase.storage().ref().child(`imagenes/usuarios/${user.uid}.jpg`).getDownloadURL().then((url) => {
+              const imagen = document.getElementById("fotoUser") as HTMLImageElement;
+              imagen.src = url;
+              });
+            }
+          });
       }
       else {
+        const imagen = document.getElementById("fotoUser") as HTMLImageElement;
+        imagen.src = "assets/img/avatar-img.png";
         document.getElementById('sesion-in').style.display = 'none';
       }
     });

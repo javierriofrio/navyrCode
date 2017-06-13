@@ -75,6 +75,7 @@ export class AuthService {
   updateUser(uid: string, cuentaForm){
     
     
+    //cuentaForm.nacimiento = cuentaForm.nacimiento;
     console.log(cuentaForm);
     this.userList.$ref.ref.child(uid).update(cuentaForm);
   }

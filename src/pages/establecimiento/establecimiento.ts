@@ -45,7 +45,16 @@ export class EstablecimientoPage {
 
 
   constructor(public modalCtrl: ModalController, public database: AngularFireDatabase,
-    public navParams: NavParams, public navCtrl: NavController, public authData: AuthService, public alertCtrl: AlertController) {
+    public navParams: NavParams, public navCtrl: NavController, public authData: AuthService, public alertCtrl: AlertController) { 
+
+    const hoy = new Date();
+    const anio = hoy.getFullYear();
+    const mes = hoy.getMonth() + 1;
+    const dia = hoy.getDate();
+   
+    this.database.list(`development/public/nusinessRanking/${this.idEstablecimiento}/views`).$ref.ref.child(`${anio}`).child(`${mes}`).update((update)=>{
+      
+    });
 
     this.idEstablecimiento = navParams.get("idEstablecimiento");
     this.database.object('/development/public/business/' + this.idEstablecimiento + '/business').subscribe(snapshot => {
