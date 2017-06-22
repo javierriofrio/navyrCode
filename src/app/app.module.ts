@@ -21,6 +21,8 @@ import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 import { SignupPage } from '../pages/signup/signup';
 import { AuthService } from '../providers/auth-service';
 import { SubCategoriaPage } from '../pages/subcategoria/subcategoria';
+import { ValidarReserva } from '../pages/validar-reserva/validar-reserva'
+import { QRCodeModule } from 'angular2-qrcode'
 //import { Facebook } from '@ionic-native/facebook'
 
 // Import the AF2 Module
@@ -59,11 +61,13 @@ const myFirebaseAuthConfig = {
     LoginPage,
     LogoutPage,
     ResetPasswordPage,
-    SignupPage
+    SignupPage,
+    ValidarReserva
   ],
   imports: [
     NgCalendarModule,
     IonicModule.forRoot(MyApp),
+    QRCodeModule,
     AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
   ],
   bootstrap: [IonicApp],
@@ -86,7 +90,8 @@ const myFirebaseAuthConfig = {
     LoginPage,
     LogoutPage,
     ResetPasswordPage,
-    SignupPage
+    SignupPage,
+    ValidarReserva
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService]
 })

@@ -19,34 +19,36 @@
 </ion-header>
 <ion-content>
   <div class="spacer" style="height: 20px;"></div>
-  <ion-list>
-    <ion-item>
-      <ion-label floating>Lugar</ion-label>
-      <ion-input type="text" value="Pizza Hut"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label floating>Titulo de la Reserva:</ion-label>
-      <ion-input type="text" value=""></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label floating>No de personas</ion-label>
-      <ion-input type="text" value=""></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label floating>Descripción de la Reserva</ion-label>
-      <ion-input type="text" value=""></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Fecha Reserva:</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY"></ion-datetime>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Hora Reserva:</ion-label>
-      <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
-    </ion-item>
-  </ion-list>
-    <ion-buttons class="barra-botones" start>
-    <button ion-button class="boton-aceptar" round>Reservar</button>
-    <button ion-button color="dark" round>Cancelar</button>
-  </ion-buttons>
+  <form id='reservaForm' [formGroup]="reservaForm" (ngSubmit)="guardarDatosReserva()" novalidate>
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Lugar</ion-label>
+        <ion-input formControlName="lugar" type="text" value="Pizza Hut"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Titulo de la Reserva:</ion-label>
+        <ion-input formControlName="tipo" type="text" value=""></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>No de personas</ion-label>
+        <ion-input formControlName="noPersonas" type="text" value=""></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Descripción de la Reserva</ion-label>
+        <ion-input  formControlName="descripcion" type="text" value=""></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Fecha Reserva:</ion-label>
+        <ion-datetime formControlName="fecha" displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Hora Reserva:</ion-label>
+        <ion-datetime formControlName="hora" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+      </ion-item>
+    </ion-list>
+      <ion-buttons class="barra-botones" start>
+      <button ion-button (tap)="guardarDatosReserva()" class="boton-aceptar" round>Reservar</button>
+      <button ion-button color="dark" (tap)="dismiss()" round>Cancelar</button>
+    </ion-buttons>
+  </form>
 </ion-content>
