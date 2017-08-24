@@ -39,9 +39,11 @@ export class EstablecimientoPage {
   listPayment: FirebaseListObservable<any>;
   listSchedules: FirebaseListObservable<any>;
   listFavoritos: FirebaseListObservable<any>;
+  listReviews: FirebaseListObservable<any>;
   galeryBussiness: FirebaseListObservable<any>;
   paymentName: string;
   favorite: Object;
+  rate: number;
 
 
   constructor(public modalCtrl: ModalController, public database: AngularFireDatabase,
@@ -52,14 +54,18 @@ export class EstablecimientoPage {
     const mes = hoy.getMonth() + 1;
     const dia = hoy.getDate();
    
-    this.database.list(`development/public/nusinessRanking/${this.idEstablecimiento}/views`).$ref.ref.child(`${anio}`).child(`${mes}`).update((update)=>{
-      
+    this.idEstablecimiento = navParams.get("idEstablecimiento");
+    this.database.list(`development/public/businessRanking/${this.idEstablecimiento}/views`).$ref.ref.child(`${anio}`).child(`${mes}`).update((update)=>{
+      //ranking de establecimientos cuando este la parte de la seguridad de datos
     });
 
-    this.idEstablecimiento = navParams.get("idEstablecimiento");
+    this.listReviews = this.database.list(`development/private/businessReviews/${this.idEstablecimiento}`);
+
     this.database.object('/development/public/business/' + this.idEstablecimiento + '/business').subscribe(snapshot => {
       this.establecimientoId = snapshot.id;
       this.establecimiento = snapshot;
+      this.rate = this.establecimiento['stars'];
+      
     });;
 
     this.database.object('/development/public/business/' + this.idEstablecimiento + '/businessServices/features').subscribe(snapshot => {
@@ -122,6 +128,10 @@ export class EstablecimientoPage {
       }
     });
 
+  }
+
+  onModelChange($event){
+    
   }
 
   guardarQuitarFavorito() {

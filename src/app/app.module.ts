@@ -23,6 +23,7 @@ import { AuthService } from '../providers/auth-service';
 import { SubCategoriaPage } from '../pages/subcategoria/subcategoria';
 import { ValidarReserva } from '../pages/validar-reserva/validar-reserva'
 import { QRCodeModule } from 'angular2-qrcode'
+import { Ionic2RatingModule } from 'ionic2-rating';
 //import { Facebook } from '@ionic-native/facebook'
 
 // Import the AF2 Module
@@ -68,6 +69,7 @@ const myFirebaseAuthConfig = {
     NgCalendarModule,
     IonicModule.forRoot(MyApp),
     QRCodeModule,
+    Ionic2RatingModule,
     AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
   ],
   bootstrap: [IonicApp],

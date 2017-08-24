@@ -1,6 +1,5 @@
 {
   "name": "navyrTest",
   "app_id": "a782688c",
-  "v2": true,
-  "typescript": true
+  "type": "ionic-angular"
 }

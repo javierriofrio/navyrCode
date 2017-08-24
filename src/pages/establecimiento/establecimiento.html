@@ -38,6 +38,7 @@
   <ion-fab class="" top right edge>
     <button id="favorito" ion-fab mini class="favoritos" ion-fab (tap)="guardarQuitarFavorito()"><ion-icon  name="{{favorite =='true' ? 'star' : 'star-outline' }}"></ion-icon></button>
   </ion-fab>
+
   <div class="description">
     <p>
       {{establecimiento?.description}}
@@ -86,6 +87,23 @@
       <ion-icon name="checkmark-circle" item-right></ion-icon>
     </ion-item>
   </ion-list>
+
+  <h4>Comentarios</h4>
+  <rating [(ngModel)]="rate" 
+        readOnly="false" 
+        max="5" 
+        emptyStarIconName="star-outline" 
+        halfStarIconName="star-half" 
+        starIconName="star" 
+        nullable="false" 
+        (ngModelChange)="onModelChange($event)"> 
+  </rating>
+  <ion-list>
+    <ion-item  text-wrap ion-item *ngFor="let review of listReviews | async">
+    {{review.comment}}   
+   </ion-item>
+  </ion-list>
+
   <h4>Ubicación</h4>
   <div #map id="map">
     <a href="http://maps.google.com/maps?q={{direccion?.latitude}},{{direccion?.longitude}}&ll={{direccion?.latitude}},{{direccion?.longitude}}&z=17">
